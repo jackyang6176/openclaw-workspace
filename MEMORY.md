@@ -42,6 +42,31 @@
   - 所有建議需基於可驗證的技術分析  
   - 避免模糊話術（如「可能上漲」→ 改為「目標價 $XX，停損 $YY」）
 
+## 每日財經新聞與投資機會監控系統 - 2026-02-14 ✅
+- **功能**：自動蒐集財經新聞、分析投資機會、生成具體交易建議  
+- **輸出內容**：  
+  - 投資標的（股票代碼/名稱）  
+  - 建議買入價位  
+  - 目標獲利價位  
+  - 停損價位  
+  - 操作策略說明  
+- **執行頻率**：每日上午9點（Asia/Shanghai時區）  
+- **交付方式**：自動發送至Discord頻道  
+- **技術實現**：Browser自動化 + 新聞API + 技術分析  
+- **檔案路徑**：`/home/admin/.openclaw/workspace/finance_news_system/`  
+- **Cron Job ID**：d736fe94-3f89-45ab-a717-1023df8f4e88
+
+## 武陵農場每日氣象報告系統 - 2026-02-14 🌤️
+- **功能**：提供武陵農場詳細天氣預報和旅遊建議
+- **執行期間**：2026-02-14 至 2026-02-23
+- **執行時間**：每日早上7點（Asia/Shanghai時區）
+- **交付方式**：自動發送至Discord頻道 + 網站發布
+- **技術實現**：wttr.in API + 自動化報告生成 + 網站部署
+- **檔案路徑**：`/home/admin/.openclaw/workspace/wuling_weather/`
+- **網站路徑**：`http://aiothome.top/travel/wuling-farm/weather/`
+- **最新報告**：`http://aiothome.top/travel/wuling-farm/weather/latest.html`
+- **Cron Job ID**：d21135bf-f03f-421c-96e2-a2025941e0e8
+
 ## 網域名稱設定 - 2026-02-13
 - **Domain**: `aiothome.top`  
 - **對應 IP**: `47.82.4.181`  
