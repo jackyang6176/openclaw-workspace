@@ -1,0 +1,16 @@
+# Gmail Monitor sensitive files
+gmail_monitor/credentials.json
+gmail_monitor/token.pickle
+gmail_monitor/auth_code.txt
+
+# Virtual environments
+*/venv/
+*/venv_*/
+*_venv/
+gmail_venv/
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
