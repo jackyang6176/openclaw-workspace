@@ -85,3 +85,13 @@
   - 用途：本地語音轉文字（無需 API key）  
   - 狀態：已安裝並驗證可用（`whisper --help` 測試通過）  
   - 整合計畫：與 voice-call 技能協同處理語音提醒
+
+## Gmail 監控系統 - 2026-02-15 📧
+- **功能**：主動監控 Gmail 重要郵件並發送通知
+- **監控類型**：信用卡帳單、重要通知、投資相關、旅遊相關
+- **檢查頻率**：每2小時自動檢查
+- **通知方式**：透過 Discord 發送即時通知
+- **技術實現**：Gmail API + OAuth 2.0 認證 + 自動化腳本
+- **檔案路徑**：`/home/admin/.openclaw/workspace/gmail_monitor/`
+- **Cron Job ID**：60d04327-02ce-4e9f-812d-73f7675fdc1f
+- **安全措施**：credentials.json 和 token.pickle 不上傳至版本控制
