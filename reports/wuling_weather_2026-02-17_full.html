@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>武陵農場每日氣象報告 - 2026-02-17</title>
+    <style>
+        body {
+            font-family: 'Microsoft JhengHei', 'Arial Unicode MS', sans-serif;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .date {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+        .weather-section {
+            padding: 30px;
+        }
+        .current-weather {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #00b894;
+        }
+        .current-temp {
+            font-size: 3em;
+            font-weight: bold;
+            color: #00b894;
+            margin: 10px 0;
+        }
+        .current-condition {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        .current-wind {
+            font-size: 1.2em;
+            color: #666;
+        }
+        .forecast {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .forecast-day {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid #74b9ff;
+        }
+        .forecast-date {
+            font-weight: bold;
+            font-size: 1.3em;
+            color: #00b894;
+            margin-bottom: 15px;
+        }
+        .forecast-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .forecast-time {
+            font-weight: bold;
+            color: #666;
+        }
+        .forecast-temp {
+            font-size: 1.3em;
+            color: #00b894;
+        }
+        .forecast-condition {
+            color: #666;
+            margin: 5px 0;
+        }
+        .forecast-wind {
+            font-size: 0.9em;
+            color: #999;
+        }
+        .travel-advice {
+            background: linear-gradient(135deg, #fdcb6e 0%, #e17055 100%);
+            color: white;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 10px;
+        }
+        .travel-advice h2 {
+            margin-top: 0;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        .advice-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .advice-item {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9em;
+            border-top: 1px solid #eee;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            .current-temp {
+                font-size: 2.5em;
+            }
+            .forecast {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏞️ 武陵農場每日氣象報告</h1>
+            <div class="date">📅 2026年2月17日（星期二）</div>
+        </div>
+        
+        <div class="weather-section">
+            <div class="current-weather">
+                <div class="current-temp">15°C</div>
+                <div class="current-condition">⛅ 部分多雲</div>
+                <div class="current-wind">💨 風速：18 km/h（東南風）</div>
+                <div class="current-visibility">👁️ 能見度：10 km</div>
+            </div>
+            
+            <h2 style="text-align: center; color: #00b894;">🌤️ 三日天氣預報</h2>
+            <div class="forecast">
+                <div class="forecast-day">
+                    <div class="forecast-date">今天 2/17</div>
+                    <div class="forecast-item">
+                        <div class="forecast-time">上午</div>
+                        <div class="forecast-temp">16°C</div>
+                        <div class="forecast-condition">⛅ 部分多雲</div>
+                        <div class="forecast-wind">↙ 20-23 km/h</div>
+                    </div>
+                    <div class="forecast-item">
+                        <div class="forecast-time">中午</div>
+                        <div class="forecast-temp">19°C</div>
+                        <div class="forecast-condition">⛅ 部分多雲</div>
+                        <div class="forecast-wind">↓ 23-27 km/h</div>
+                    </div>
+                    <div class="forecast-item">
+                        <div class="forecast-time">傍晚</div>
+                        <div class="forecast-temp">15°C</div>
+                        <div class="forecast-condition">⛅ 部分多雲</div>
+                        <div class="forecast-wind">↙ 18-21 km/h</div>
+                    </div>
+                    <div class="forecast-item">
+                        <div class="forecast-time">夜間</div>
+                        <div class="forecast-temp">14°C</div>
+                        <div class="forecast-condition">🌧️ 零星小雨</div>
+                        <div class="forecast-wind">↙ 15-17 km/h</div>
+                    </div>
+                </div>
+                
+                <div class="forecast-day">
+                    <div class="forecast-date">明天 2/18</div>
+                    <div class="forecast-item">
+                        <div class="forecast-time">上午</div>
+                        <div class="forecast-temp">17°C</div>
+                        <div class="forecast-condition">☀️ 晴朗</div>
+                        <div class="forecast-wind">↓ 21-24 km/h</div>
+                    </div>
+                    <div class="forecast-item">
+                        <div class="forecast-time">中午</div>
+                        <div class="forecast-temp">18°C</div>
+                        <div class="forecast-condition">☀️ 晴朗</div>
+                        <div class="forecast-wind">↓ 24-28 km/h</div>
+                    </div>
+                    <div class="forecast-item">
+                        <div class="forecast-time">傍晚</div>
+                        <div class="forecast-temp">15°C</div>
+                        <div class="forecast-condition">🌙 晴朗</div>
+                        <div class="forecast-wind">↙ 20-23 km/h</div>
+                    </div>
+                    <div class="forecast-item">
+                        <div class="forecast-time">夜間</div>
+                        <div class="forecast-temp">14°C</div>
+                        <div class="forecast-condition">🌙 晴朗</div>
+                        <div class="forecast-wind">↙ 18-22 km/h</div>
+                    </div>
+                </div>
+                
+                <div class="forecast-day">
+                    <div class="forecast-date">後天 2/19</div>
+                    <div class="forecast-item">
+                        <div class="forecast-time">上午</div>
+                        <div class="forecast-temp">18°C</div>
+                        <div class="forecast-condition">☀️ 晴朗</div>
+                        <div class="forecast-wind">↓ 8-9 km/h</div>
+                    </div>
+                    <div class="forecast-item">
+                        <div class="forecast-time">中午</div>
+                        <div class="forecast-temp">22°C</div>
+                        <div class="forecast-condition">☀️ 晴朗</div>
+                        <div class="forecast-wind">↘ 12-13 km/h</div>
+                    </div>
+                    <div class="forecast-item">
+                        <div class="forecast-time">傍晚</div>
+                        <div class="forecast-temp">18°C</div>
+                        <div class="forecast-condition">🌙 晴朗</div>
+                        <div class="forecast-wind">↓ 11-13 km/h</div>
+                    </div>
+                    <div class="forecast-item">
+                        <div class="forecast-time">夜間</div>
+                        <div class="forecast-temp">17°C</div>
+                        <div class="forecast-condition">⛅ 部分多雲</div>
+                        <div class="forecast-wind">↙ 6-8 km/h</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="travel-advice">
+                <h2>🎒 武陵農場旅遊建議</h2>
+                <div class="advice-list">
+                    <div class="advice-item">
+                        <strong>👕 穿衣指南</strong><br>
+                        今日溫差較大（14-19°C），建議穿著輕便外套，夜間需加保暖衣物
+                    </div>
+                    <div class="advice-item">
+                        <strong>☂️ 攜帶物品</strong><br>
+                        夜間有零星小雨，請攜帶雨具；白天晴朗，記得防曬用品
+                    </div>
+                    <div class="advice-item">
+                        <strong>🥾 活動建議</strong><br>
+                        今日適合戶外活動，但風勢較強，登山時請注意安全
+                    </div>
+                    <div class="advice-item">
+                        <strong>🌅 最佳觀賞時段</strong><br>
+                        明日天氣更佳，晴朗無雨，適合觀賞日出和櫻花
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>📍 位置：臺灣臺中市和平區武陵農場（24.38°N, 121.35°E）</p>
+            <p>📊 資料來源：wttr.in | 🤖 由 OpenClaw 自動化系統生成</p>
+            <p>⏰ 更新時間：2026-02-17 17:30 CST</p>
+        </div>
+    </div>
+</body>
+</html>
