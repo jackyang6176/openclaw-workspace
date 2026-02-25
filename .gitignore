@@ -1,3 +1,34 @@
 # Gmail Monitor credentials
 gmail_monitor/credentials.json
 gmail_monitor/token.pickle
+
+# Python virtual environments
+venv/
+*/venv/
+*/*/venv/
+*venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Python packaging
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Secrets
+token.pickle
+credentials.json
+.env
+*.pem
+*.key
