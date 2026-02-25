@@ -1,17 +1,38 @@
 # USER.md - About Your Human
 
-*Learn about the person you're helping. Update this as you go.*
-
-- **Name:** 
-- **What to call them:** 
-- **Pronouns:** *(optional)*
-- **Timezone:** 
-- **Notes:** 
+- **Name**: 諾亞
+- **What to call them**: 諾亞
+- **Pronouns**: 他
+- **Timezone**: Asia/Shanghai (台灣時間)
+- **Notes**: 專注投資分析，重視數據即時性和技術精確性
 
 ## Context
 
-*(What do they care about? What projects are they working on? What annoys them? What makes them laugh? Build this over time.)*
+### 投資目標與策略
+- **主要目標**: 產生足夠被動收入，實現財富自由，支持長期旅行增廣見聞
+- **投資期限**: 長期（5年以上）
+- **風險承受度**: 中等偏積極（願意承擔短線操作風險）
+- **主要市場**: 台灣股市、中國A股、港股
+- **當前持倉**: 
+  - 00655L 國泰A50正2（槓桿ETF，81張）
+  - 00882 中信中國高股息（20張）
+  - 00887 永豐中國科技50大（40張）
+- **策略轉換**: 評估從槓桿ETF轉向配息為主的ETF
 
----
+### 操作需求
+- **短線交易Agent**: 需要能執行短線操作的代理
+- **專用帳戶**: 將設置台灣股票帳戶及專用現金
+- **定期檢視**: 定期檢視盈虧狀況，決定是否繼續委託
+- **操作風格**: 技術分析為主，結合市場時機判斷
 
-The more you know, the better you can help. But remember — you're learning about a person, not building a dossier. Respect the difference.
+### 技術偏好
+- **數據要求**: 必須使用即時市場數據，拒絕過時資訊
+- **分析深度**: 需要詳細技術分析，包含進出場點、停損點
+- **風險管理**: 嚴格停損紀律，資金配置建議
+- **報告頻率**: 交易時機立即通知，定期績效檢視
+- **溝通風格**: 直接、精確、透明，包含完整風險警告
+
+### 背景資訊
+- **投資經驗**: 有經驗投資者，已持有中國相關ETF
+- **專業背景**: 具備金融投資知識
+- **使用場景**: 個人投資組合管理，追求被動收入

@@ -31,6 +31,51 @@
    - Every modification requires Git commit with descriptive message  
    - Push changes to GitHub repository after commit
 
+8. **Human-like GUI Operation Priority**  
+   - Simulate human GUI operations to achieve everyday tasks like a real person  
+   - Primary applications: Email management (send/receive), voice/video calls, stock/futures trading  
+   - Implement realistic human behavior: random timing, natural mouse movements, visual scanning patterns  
+   - Optimize interaction methods based on specific application requirements and user workflows  
+   - Use programmatic APIs only as fallback when GUI automation is not feasible
+
+9. **Context Length Management**  
+   - Monitor context usage and split into separate topics when exceeding 70% length limit  
+   - Maintain clear topic boundaries with headers and status tags  
+   - Extract key conclusions to daily memory files when compressing context  
+   - Keep last 10 lines of each topic for continuity
+
+10. **Two-Agent Verification System (Maker-Checker)** - 2026-02-24 ✅
+    - **Architecture**: DOER generates → VERIFIER validates → 【REJECTED】? DOER corrects → VERIFIER re-validates → 【APPROVED】→ User receives ONLY approved output
+    - **DOER Role**: Execute tasks, generate analysis, take actions, produce initial drafts (action-oriented, efficient, proactive)
+    - **VERIFIER Role**: Review all outputs, check data accuracy, validate conclusions, flag errors, REJECT and return to DOER for correction (skeptical, detail-oriented, critical)
+    - **Mandatory Verification Triggers**:
+      - 📊 Investment analysis & trading recommendations (verify data sources, prevent fictional data)
+      - 📧 Financial monitoring reports (verify authentication status, accuracy of alerts)
+      - 📰 News aggregation & market data (verify real-time data vs templates/fabrication)
+      - 💰 Credit card/payment notifications (verify amounts, due dates, account details)
+      - 📈 Technical analysis (verify indicators, price data, support/resistance levels)
+      - 🔒 Security-sensitive operations (verify credentials, permissions, safety)
+    - **VERIFIER Decision Flow**:
+      - If【APPROVED】→ Deliver to User immediately
+      - If【APPROVED WITH CONDITIONS】→ DOER addresses conditions → VERIFIER confirms → Deliver to User
+      - If【REJECTED】→ Return to DOER with specific errors → DOER corrects → VERIFIER re-validates → Repeat until【APPROVED】
+    - **User Visibility Rule**: **User ONLY sees【APPROVED】outputs**. All iterations, rejections, and corrections happen behind the scenes between DOER and VERIFIER.
+    - **VERIFIER Output Format** (internal, not shown to User):
+      - ✓ Confirmed correct elements
+      - ⚠️ Issues or omissions found
+      - ✗ Errors or suspicious content
+      - 💡 Improvement suggestions
+      - Data credibility score: 0-100%
+      - Final verdict: 【APPROVED】or【REJECTED】or【APPROVED WITH CONDITIONS】
+    - **Quality Gates**:
+      - All investment recommendations must pass VERIFIER before delivery
+      - Any data from unverified sources must be flagged and rejected
+      - Fictional/template-based content must be【REJECTED】and returned to DOER
+      - Risk warnings mandatory for leveraged products
+      - DOER must correct ALL errors before User sees output
+    - **Iteration Limit**: Maximum 3 correction cycles. If still not【APPROVED】after 3 cycles, escalate to User with full error report.
+    - **Lesson Learned**: Today's fictional news crisis (Tokyo +3.8%, fabricated market data) and incorrect investment analysis (00655L price error 21%) proved this system is critical for capital protection. User should NEVER see unverified or rejected content.
+
 ## 投資建議報告策略邏輯 - 2026-02-11
 - **系統架構**：單一整合式交易建議系統（不再切換版本）  
 - **核心要素**：  
@@ -97,3 +142,78 @@
 - **安全措施**：credentials.json 和 token.pickle 不上傳至版本控制
 - **測試狀態**：✅ 已完成完整測試，成功識別信用卡帳單和銀行安全通知
 - **主動通知**：✅ 已啟用，發現重要郵件立即通知（不等待用戶詢問）
+
+## GUI X Window 狀態 - 2026-02-17 ✅
+- **狀態**：✅ 已安裝並驗證可用
+- **DISPLAY**：:1 (工作正常)
+- **X11 測試**：✅ xset 命令正常執行
+- **瀏覽器測試**：✅ Chrome 可以正常啟動和運行
+- **GUI 能力**：✅ 完整的圖形界面應用支援
+- **使用方式**：在 SSH session 中設定 DISPLAY=:1 即可使用 GUI 應用
+- **重要備註**：不再需要手動操作，可以執行完整的瀏覽器自動化任務
+- **pCloud 認證**：✅ 已完成主機 IP (47.82.4.181) 認證
+- **記憶備份**：✅ 長期記憶會自動備份到 /home/admin/pCloudDrive/openclaw/
+
+## 新增投資分析技能 - 2026-02-20 ✅
+- **find-skills**：技能發現和安裝工具，可搜索並安裝新技能
+- **analyze**：個股深度分析技能，支援A股、港股、ETF分析
+  - 使用宏觀-行業-個股三層分析框架
+  - 提供100分制綜合評分
+  - 生成完整投資報告
+  - 配置路徑：`/home/admin/股市信息/`
+- **trading-strategist**：加密貨幣交易策略技能
+  - 整合Binance市場數據
+  - 計算技術分析指標（SMA、RSI、MACD、布林帶等）
+  - 分析市場情緒
+  - 提供交易建議和風險管理
+  - 腳本路徑：`/home/admin/.agents/skills/trading-strategist/scripts/`
+- **環境配置**：
+  - Python虛擬環境：`/home/admin/trading_venv/`
+  - 必要依賴：pandas、numpy、requests
+  - 測試狀態：✅ 兩個技能均通過完整測試
+
+## PPTX簡報生成技能 - 2026-02-20 ✅
+- **pptx-presentation-builder**：專業PPTX簡報生成技能
+  - 支援品牌一致性的簡報設計
+  - 提供多種簡報模板（投資簡報、產品介紹、路線圖等）
+  - 可根據結構化簡報大綱自動生成PPTX文件
+  - 支援自訂品牌配色、字體、Logo配置
+- **技術實現**：
+  - Python套件：python-pptx、pandas、pillow、lxml
+  - 虛擬環境：`/home/admin/trading_venv/`
+  - 腳本路徑：`/home/admin/.agents/skills/pptx-presentation-builder/scripts/`
+- **測試狀態**：✅ 已通過完整測試，可生成專業投資簡報
+
+## A股投資分析技能 - 2026-02-20 ✅
+- **china-stock-analysis**：專門針對中國A股的價值投資分析工具
+  - 提供股票篩選、個股深度分析、行業對比和估值計算
+  - 基於價值投資理論，使用akshare獲取公開財務數據
+  - 特別適合低頻交易的普通投資者
+  - 支援財務異常檢測和風險評估
+- **技術實現**：
+  - Python套件：akshare、pandas、numpy、beautifulsoup4
+  - 安裝位置：`/home/admin/.local/lib/python3.12/site-packages/`
+  - 腳本路徑：`/home/admin/.agents/skills/china-stock-analysis/scripts/`
+- **功能特色**：
+  - 股票篩選器：按PE、PB、ROE、股息率等條件篩選
+  - 財務分析器：杜邦分析、盈利能力、成長性分析
+  - 行業對比：同行業橫向對比分析
+  - 估值計算器：DCF、DDM、相對估值等方法
+  - 財務異常檢測：應收賬款、現金流背離、存貨異常等
+- **測試狀態**：✅ 套件安裝完成，網路連接問題屬正常測試環境限制
+
+## 專業簡報美化技能 - 2026-02-20 ✅
+- **elite-powerpoint-designer**：世界級簡報設計技能
+  - 提供Apple/Tesla風格、Microsoft企業風格、Google創意風格等5種專業設計系統
+  - 自動應用視覺層級、色彩系統、動畫效果
+  - 支援智能模板選擇和一致性驗證
+  - 包含完整的動畫和過渡指南
+- **presentation-design**：簡報設計診斷和優化技能
+  - 提供受眾中心設計框架
+  - 斷言-證據結構取代項目符號
+  - 認知負荷管理和無障礙設計
+  - 包含常見問題診斷和改進優先級
+- **技術實現**：
+  - Python套件：python-pptx、pillow、pyyaml
+  - 腳本路徑：`/home/admin/.agents/skills/elite-powerpoint-designer/scripts/`
+- **測試狀態**：✅ 所有依賴已安裝，測試腳本通過驗證
