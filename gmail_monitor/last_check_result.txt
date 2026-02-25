@@ -1,0 +1,8 @@
+## 📧 Gmail 監控結果
+
+⚠️ 檢查失敗：Page.wait_for_selector: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("div[role=\"listitem\"]") to be visible
+
+
+**檢查時間**: 2026-02-25 14:04
