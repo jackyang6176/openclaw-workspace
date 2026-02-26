@@ -82,7 +82,8 @@ class GmailBrowserMonitor:
         
         with sync_playwright() as p:
             import os
-            os.environ['DISPLAY'] = ':1'  # 設置正確的 DISPLAY
+            # 設置正確的 DISPLAY（X11）
+            os.environ['DISPLAY'] = ':1'
             
             # 啟動 Chrome 瀏覽器（GUI 模式，可以處理密碼和認證碼）
             browser = p.chromium.launch_persistent_context(
@@ -93,10 +94,10 @@ class GmailBrowserMonitor:
                     '--disable-blink-features=AutomationControlled',
                     '--no-sandbox',
                     '--disable-dev-shm-usage',
-                    '--start-maximized'
+                    '--start-maximized',
+                    '--disable-gpu'
                 ],
-                slow_mo=1000,  # 放慢操作速度，模擬人類
-                env={**os.environ, 'DISPLAY': ':1'}
+                slow_mo=1000  # 放慢操作速度，模擬人類
             )
             
             page = browser.pages[0] if browser.pages else browser.new_page()
