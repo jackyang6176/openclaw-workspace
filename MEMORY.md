@@ -44,17 +44,37 @@
    - Extract key conclusions to daily memory files when compressing context  
    - Keep last 10 lines of each topic for continuity
 
-10. **Two-Agent Verification System (Maker-Checker)** - 2026-02-24 ✅
+10. **Two-Agent Verification System (Maker-Checker)** - 2026-02-24 ✅ (**Updated 2026-02-26: Universal Application**)
     - **Architecture**: DOER generates → VERIFIER validates → 【REJECTED】? DOER corrects → VERIFIER re-validates → 【APPROVED】→ User receives ONLY approved output
-    - **DOER Role**: Execute tasks, generate analysis, take actions, produce initial drafts (action-oriented, efficient, proactive)
-    - **VERIFIER Role**: Review all outputs, check data accuracy, validate conclusions, flag errors, REJECT and return to DOER for correction (skeptical, detail-oriented, critical)
-    - **Mandatory Verification Triggers**:
-      - 📊 Investment analysis & trading recommendations (verify data sources, prevent fictional data)
-      - 📧 Financial monitoring reports (verify authentication status, accuracy of alerts)
-      - 📰 News aggregation & market data (verify real-time data vs templates/fabrication)
-      - 💰 Credit card/payment notifications (verify amounts, due dates, account details)
-      - 📈 Technical analysis (verify indicators, price data, support/resistance levels)
-      - 🔒 Security-sensitive operations (verify credentials, permissions, safety)
+    - **DOER Agent Configuration**:
+      - **Agent ID**: `main`
+      - **Model**: `kimi-k2.5` (bailian/kimi-k2.5)
+      - **Workspace**: `/home/admin/.openclaw/workspace`
+      - **Role**: Execute tasks, generate analysis, take actions, produce initial drafts (action-oriented, efficient, proactive)
+    - **VERIFIER Agent Configuration**:
+      - **Agent ID**: `deepseek`
+      - **Model**: `qwen3-max-thinking` (bailian/qwen3-max-2026-01-23)
+      - **Workspace**: `/home/admin/.openclaw/workspace-deepseek`
+      - **Role**: Review ALL outputs, check data accuracy, validate conclusions, flag errors, REJECT and return to DOER for correction (skeptical, detail-oriented, critical)
+    - **Universal Application**: **ALL user-assigned tasks must pass VERIFIER before delivery** (not limited to investment analysis)
+    - **Mandatory Verification Scope** (ALL user work):
+      - 📊 Investment analysis & trading recommendations
+      - 📧 Financial monitoring reports
+      - 📰 News aggregation & market data
+      - 💰 Credit card/payment notifications
+      - 📈 Technical analysis
+      - 🔒 Security-sensitive operations
+      - 💻 Code generation & review
+      - 🔧 System configuration changes
+      - 📋 Work reports & summaries
+      - 📊 Data analysis & statistics
+      - ✉️ Email & communication drafts
+      - 📅 Schedule & reminder setup
+      - 📝 Document writing & editing
+      - 🎯 Planning & strategy development
+      - 🔍 New skill installation & configuration
+      - 📚 Knowledge organization & summarization
+      - 🧪 Testing & verification results
     - **VERIFIER Decision Flow**:
       - If【APPROVED】→ Deliver to User immediately
       - If【APPROVED WITH CONDITIONS】→ DOER addresses conditions → VERIFIER confirms → Deliver to User
@@ -68,13 +88,15 @@
       - Data credibility score: 0-100%
       - Final verdict: 【APPROVED】or【REJECTED】or【APPROVED WITH CONDITIONS】
     - **Quality Gates**:
-      - All investment recommendations must pass VERIFIER before delivery
+      - **ALL user-assigned tasks** must pass VERIFIER before delivery
       - Any data from unverified sources must be flagged and rejected
       - Fictional/template-based content must be【REJECTED】and returned to DOER
       - Risk warnings mandatory for leveraged products
       - DOER must correct ALL errors before User sees output
     - **Iteration Limit**: Maximum 3 correction cycles. If still not【APPROVED】after 3 cycles, escalate to User with full error report.
     - **Lesson Learned**: Today's fictional news crisis (Tokyo +3.8%, fabricated market data) and incorrect investment analysis (00655L price error 21%) proved this system is critical for capital protection. User should NEVER see unverified or rejected content.
+    - **Implementation Date**: 2026-02-26 (Universal application to ALL tasks per user instruction)
+    - **Reference Documentation**: `/home/admin/.openclaw/workspace/two_agent_verification.md`
 
 ## 投資建議報告策略邏輯 - 2026-02-11
 - **系統架構**：單一整合式交易建議系統（不再切換版本）  
