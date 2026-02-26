@@ -32,3 +32,16 @@ credentials.json
 .env
 *.pem
 *.key
+# Development directories (2026-02-26)
+investment/
+wuling_weather/
+finance_news_system/
+etf_presentation_env/
+.agents/
+.clawhub/
+.cline/
+.openclaw/
+*.pptx
+gmail_monitor/chrome-*/
+gmail_monitor/*.py
+gmail_monitor/*.png
