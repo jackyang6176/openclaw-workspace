@@ -30,11 +30,14 @@
 | 名稱 | 頻率 | 狀態 |
 |------|------|------|
 | International News Report | **每 2 小時** | ✅ 已修復（改用 kimi-k2.5）|
+| OpenClaw Memory Backup | **每 4 小時** | ✅ 已優化 |
+| 自動版本控制監控 | **每 8 小時** | ✅ 已優化 |
 | 四策略投資分析 | 每日 8:30 | ✅ 正常（休市日跳過）|
 | Morning Lobster Report | 每日 8:00 | ✅ 正常 |
 | Weekly Memory Archive | 每週日 02:00 | ✅ 正常 |
 | Disk Space Monitor | 每日 09:00 | ✅ 正常 |
 | **Google Calendar 提醒** | **每30分鐘** | ✅ **活動前30分鐘私訊提醒** |
+| ~~Google Drive 自動整理~~ | ~~每日~~ | ❌ **已停用**（重複）|
 
 ---
 
@@ -48,8 +51,7 @@
 | Fubon API 相關 | 帳號審批結果 | - |
 
 ### 已知問題
-- Hourly International News Report 偶發 Qwen 內容過濾錯誤
-  - 建議：遷移至 Kimi K2.5 模型
+- ✅ 已解決：Hourly International News Report 已遷移至 Kimi K2.5
 
 ---
 
@@ -60,6 +62,7 @@
 2. ✅ Gmail 已登入（無需再次手動登入）
 3. ✅ 雙人驗證模型已配置（無需再次更新 models.json）
 4. ✅ pCloudDrive 歸檔已自動化（無需手動執行）
+5. ✅ Cron job 頻率已優化（無需再次調整）
 
 **下次開機/重啟後只需確認**:
 - Xtightvnc 是否運作（pgrep Xvnc）
@@ -68,4 +71,4 @@
 
 ---
 
-*最後更新: 2026-02-27 16:17 GMT+8*
+*最後更新: 2026-02-27 17:40 GMT+8*
