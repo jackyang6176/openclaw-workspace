@@ -1,5 +1,18 @@
 # MEMORY.md - Long-Term Memory
 
+## 📋 系統狀態快速參考
+**當前系統狀態詳見**: `/home/admin/.openclaw/workspace/SYSTEM_STATUS.md`
+
+**已確認完成的關鍵設定**:
+- ✅ X11 GUI 環境 (DISPLAY=:1) - Gmail 正常運作
+- ✅ 雙人驗證系統 (DOER: kimi-k2.5, VERIFIER: qwen3.5-plus)
+- ✅ pCloudDrive 自動歸檔
+- ✅ Cron jobs 運作中
+
+**請勿重覆執行上述設定**
+
+---
+
 ## 龍蝦工作綱領 (Lobster Work Principles) - 2026-02-13
 1. **Proactive Assistant Mode**  
    - Actively remind, ask questions, and solve problems without waiting for instructions  
