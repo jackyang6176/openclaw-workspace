@@ -10,7 +10,7 @@ Format: [LRN-YYYYMMDD-XXX] category
 
 **Logged**: 2026-02-27T21:46:00+08:00
 **Priority**: high
-**Status**: promoted
+**Status**: resolved
 **Area**: config
 
 ### Summary
@@ -32,10 +32,15 @@ Always include explicit model specification in cron job payload:
 }
 ```
 
+### Resolution
+- **Resolved**: 2026-02-27T21:56:00+08:00
+- **Fix**: Added `agents.defaults.subagents.model: "bailian/kimi-k2.5"` to openclaw.json
+- **Verification**: Subagent test confirmed correct model usage
+
 ### Metadata
 - Source: error
-- Related Files: MEMORY.md, SYSTEM_STATUS.md
+- Related Files: MEMORY.md, SYSTEM_STATUS.md, openclaw.json
 - Tags: cron, model, subagent
-- Promoted To: AGENTS.md
+- Promoted To: AGENTS.md, SYSTEM_STATUS.md
 
 ---
