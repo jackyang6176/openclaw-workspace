@@ -29,7 +29,7 @@
 ### ⏰ Cron Jobs 運作中
 | 名稱 | 頻率 | 狀態 |
 |------|------|------|
-| Hourly International News Report | 每小時 | ⚠️ 偶發內容過濾錯誤 |
+| Hourly International News Report | 每小時 | ✅ 已修復（改用 kimi-k2.5）|
 | 四策略投資分析 | 每日 8:30 | ✅ 正常（休市日跳過）|
 | Morning Lobster Report | 每日 8:00 | ✅ 正常 |
 | Weekly Memory Archive | 每週日 02:00 | ✅ 正常 |
