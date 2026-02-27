@@ -1,3 +1,9 @@
+# OpenClaw configuration (contains secrets)
+openclaw.json
+openclaw_config_patch.json
+*.token
+*.credentials
+
 # Gmail Monitor credentials
 gmail_monitor/credentials.json
 gmail_monitor/token.pickle
