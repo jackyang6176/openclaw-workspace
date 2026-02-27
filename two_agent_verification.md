@@ -5,7 +5,7 @@
 | 角色 | Agent ID | Model | Workspace | 職責 |
 |------|----------|-------|-----------|------|
 | **DOER** | `main` | `kimi-k2.5` | `/home/admin/.openclaw/workspace` | 生成內容、執行任務、產出初稿 |
-| **VERIFIER** | `verifier_agent` | `bailian/qwen3-max-2026-01-23` | `/home/admin/.openclaw/workspace-verifier` | 驗證數據準確性、檢查結論、標記錯誤 |
+| **VERIFIER** | `verifier_agent` | `bailian/qwen3.5-plus` | `/home/admin/.openclaw/workspace-verifier` | 驗證數據準確性、檢查結論、標記錯誤 |
 
 ## 強制驗證觸發器
 

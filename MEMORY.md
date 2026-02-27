@@ -52,9 +52,9 @@
       - **Workspace**: `/home/admin/.openclaw/workspace`
       - **Role**: Execute tasks, generate analysis, take actions, produce initial drafts (action-oriented, efficient, proactive)
     - **VERIFIER Agent Configuration**:
-      - **Agent ID**: `deepseek`
-      - **Model**: `qwen3-max-thinking` (bailian/qwen3-max-2026-01-23)
-      - **Workspace**: `/home/admin/.openclaw/workspace-deepseek`
+      - **Agent ID**: `verifier_agent`
+      - **Model**: `qwen3.5-plus` (bailian/qwen3.5-plus)
+      - **Workspace**: `/home/admin/.openclaw/workspace-verifier`
       - **Role**: Review ALL outputs, check data accuracy, validate conclusions, flag errors, REJECT and return to DOER for correction (skeptical, detail-oriented, critical)
     - **Universal Application**: **ALL user-assigned tasks must pass VERIFIER before delivery** (not limited to investment analysis)
     - **Mandatory Verification Scope** (ALL user work):
