@@ -34,7 +34,7 @@
 | Morning Lobster Report | 每日 8:00 | ✅ 正常 |
 | Weekly Memory Archive | 每週日 02:00 | ✅ 正常 |
 | Disk Space Monitor | 每日 09:00 | ✅ 正常 |
-| **Google Calendar 每日提醒** | **每日 09:00** | ✅ **新增** |
+| **Google Calendar 提醒** | **每30分鐘** | ✅ **活動前30分鐘私訊提醒** |
 
 ---
 
