@@ -211,13 +211,18 @@ ls -lh /home/admin/.openclaw/memory/
 
 ## 📋 相關 Cron Jobs
 
+### ✅ 啟用中
+
 | ID | 名稱 | 頻率 | 說明 |
 |----|------|------|------|
-| `ee6772fe-6760-4188-a07c-1c9f63308e6e` | System Resource Monitor | 每小時 | 整合監控（內存 + 硬碟 + CPU） |
-| `164faa52-d172-4601-a66e-18570d2f9d89` | Memory Monitor | 每小時 | 舊內存監控（可停用） |
-| `7f9c1d38-078f-4a4b-8630-eb9277a30fd7` | Disk Space Monitor | 每日 09:00 | 硬碟監控（可停用） |
+| `ee6772fe-6760-4188-a07c-1c9f63308e6e` | System Resource Monitor | 每小時 | 整合監控（內存 + 硬碟 + CPU + Chrome） |
 
-**建議**: 停用舊的監控 Job，統一使用新的整合監控
+### ❌ 已停用
+
+| ID | 名稱 | 停用時間 | 原因 |
+|----|------|---------|------|
+| `164faa52-d172-4601-a66e-18570d2f9d89` | Memory Monitor | 2026-02-28 | 已整合到 System Resource Monitor |
+| `7f9c1d38-078f-4a4b-8630-eb9277a30fd7` | Disk Space Monitor | 2026-02-28 | 已整合到 System Resource Monitor |
 
 ---
 
