@@ -93,19 +93,20 @@ class KronosIntegration:
             
             # 時間戳處理
             if 'timestamps' in historical_df.columns:
-                x_timestamp = historical_df.iloc[-lookback:]['timestamps']
+                x_timestamp = historical_df.iloc[-lookback:]['timestamps'].reset_index(drop=True)
             else:
                 # 假設 5 分鐘 K 線
                 base_time = datetime.now() - timedelta(minutes=5*lookback)
-                x_timestamp = pd.date_range(
+                x_timestamp = pd.Series(pd.date_range(
                     start=base_time,
                     periods=lookback,
                     freq='5min'
-                )
+                ))
             
             # 預測時間戳
+            last_time = x_timestamp.iloc[-1] if hasattr(x_timestamp, 'iloc') else x_timestamp[-1]
             y_timestamp = pd.date_range(
-                start=x_timestamp.iloc[-1] + pd.Timedelta(minutes=5),
+                start=last_time + pd.Timedelta(minutes=5),
                 periods=pred_len,
                 freq='5min'
             )
