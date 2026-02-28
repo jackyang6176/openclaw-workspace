@@ -91,11 +91,12 @@ class KronosIntegration:
             
             x_df = historical_df.iloc[-lookback:][available_cols].copy()
             
-            # 時間戳處理
+            # 時間戳處理 - 必須是 pandas Series 或 DatetimeIndex (需要 .dt 訪問器)
             if 'timestamps' in historical_df.columns:
-                x_timestamp = historical_df.iloc[-lookback:]['timestamps'].reset_index(drop=True)
+                # 從 DataFrame 提取，保持為 Series
+                x_timestamp = historical_df['timestamps'].iloc[-lookback:].reset_index(drop=True)
             else:
-                # 假設 5 分鐘 K 線
+                # 假設 5 分鐘 K 線，創建 Series
                 base_time = datetime.now() - timedelta(minutes=5*lookback)
                 x_timestamp = pd.Series(pd.date_range(
                     start=base_time,
@@ -103,13 +104,13 @@ class KronosIntegration:
                     freq='5min'
                 ))
             
-            # 預測時間戳
-            last_time = x_timestamp.iloc[-1] if hasattr(x_timestamp, 'iloc') else x_timestamp[-1]
-            y_timestamp = pd.date_range(
+            # 預測時間戳 - 也必須是 Series 或 DatetimeIndex
+            last_time = x_timestamp.iloc[-1]
+            y_timestamp = pd.Series(pd.date_range(
                 start=last_time + pd.Timedelta(minutes=5),
                 periods=pred_len,
                 freq='5min'
-            )
+            ))
             
             # 生成預測
             print(f"🔮 生成預測 (lookback={lookback}, pred_len={pred_len})...")
