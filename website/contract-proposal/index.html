@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>合約管理系統架構圖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #1a202c;
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #718096;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+        
+        .architecture-layer {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .layer-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #4299e1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .layer-icon {
+            font-size: 24px;
+        }
+        
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .module-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 4px solid #4299e1;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+        
+        .module-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .module-features {
+            list-style: none;
+        }
+        
+        .module-features li {
+            font-size: 14px;
+            color: #4a5568;
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .module-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: bold;
+        }
+        
+        .flow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .flow-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .flow-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .flow-step {
+            flex: 1;
+            min-width: 180px;
+            background: linear-gradient(135deg, #4299e1 0%, #667eea 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .flow-step-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .flow-step-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .flow-step-desc {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        
+        .flow-arrow {
+            font-size: 24px;
+            color: #4299e1;
+            font-weight: bold;
+        }
+        
+        .security-layers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .security-card {
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px solid #fc8181;
+        }
+        
+        .security-card.blue {
+            background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+            border-color: #4299e1;
+        }
+        
+        .security-card.green {
+            background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+            border-color: #48bb78;
+        }
+        
+        .security-card.purple {
+            background: linear-gradient(135deg, #faf5ff 0%, #e9d8fd 100%);
+            border-color: #9f7aea;
+        }
+        
+        .section-divider {
+            height: 4px;
+            background: linear-gradient(90deg, #4299e1, #667eea, #9f7aea);
+            border-radius: 2px;
+            margin: 40px 0;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏢 合約管理系統架構圖</h1>
+        <p class="subtitle">Contract Management System Architecture | 2026 版本</p>
+        
+        <!-- Layer 1: 企業環境層 -->
+        <div class="architecture-layer">
+            <div class="layer-title">
+                <span class="layer-icon">🏛️</span>
+                企業環境層 (Enterprise Layer)
+            </div>
+            <div class="module-grid">
+                <div class="module-card" style="border-left-color: #48bb78;">
+                    <div class="module-name">👥 HR 系統</div>
+                    <ul class="module-features">
+                        <li>組織架構同步</li>
+                        <li>人員資料維護</li>
+                        <li>職級權限對照</li>
+                        <li>異動通知機制</li>
+                    </ul>
+                </div>
+                <div class="module-card" style="border-left-color: #ed8936;">
+                    <div class="module-name">🔐 ISIM 認證</div>
+                    <ul class="module-features">
+                        <li>單一登入 (SSO)</li>
+                        <li>身份驗證服務</li>
+                        <li>權限管理整合</li>
+                        <li>密碼策略執行</li>
+                    </ul>
+                </div>
+                <div class="module-card" style="border-left-color: #4299e1;">
+                    <div class="module-name">📧 M365 辦公</div>
+                    <ul class="module-features">
+                        <li>Outlook 郵件整合</li>
+                        <li>Teams 通知推播</li>
+                        <li>SharePoint 文件協作</li>
+                        <li>OneDrive 檔案儲存</li>
+                    </ul>
+                </div>
+                <div class="module-card" style="border-left-color: #9f7aea;">
+                    <div class="module-name">🖥️ AD 域控制</div>
+                    <ul class="module-features">
+                        <li>帳號集中管理</li>
+                        <li>群組原則設定</li>
+                        <li>網域信任關係</li>
+                        <li>登入稽核日誌</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Layer 2: 安全與整合閘道層 -->
+        <div class="architecture-layer">
+            <div class="layer-title">
+                <span class="layer-icon">🔒</span>
+                安全與整合閘道層 (Gateway Layer)
+            </div>
+            <div class="module-grid">
+                <div class="module-card" style="border-left-color: #f56565;">
+                    <div class="module-name">🛡️ OAuth 2.0 身份驗證</div>
+                    <ul class="module-features">
+                        <li>JWT Token 發放</li>
+                        <li>存取權限驗證</li>
+                        <li>Token 刷新機制</li>
+                        <li>會話管理</li>
+                    </ul>
+                </div>
+                <div class="module-card" style="border-left-color: #48bb78;">
+                    <div class="module-name">🔑 SSO 單一登入</div>
+                    <ul class="module-features">
+                        <li>SAML 2.0 整合</li>
+                        <li>一次登入多系統通行</li>
+                        <li>身份提供者 (IdP) 對接</li>
+                        <li>登出同步</li>
+                    </ul>
+                </div>
+                <div class="module-card" style="border-left-color: #4299e1;">
+                    <div class="module-name">👮 權限控管 (RBAC/ABAC)</div>
+                    <ul class="module-features">
+                        <li>角色基礎存取控制</li>
+                        <li>屬性基礎存取控制</li>
+                        <li>動態權限計算</li>
+                        <li>權限繼承機制</li>
+                    </ul>
+                </div>
+                <div class="module-card" style="border-left-color: #ed8936;">
+                    <div class="module-name">🚦 流量限制 (Rate Limit)</div>
+                    <ul class="module-features">
+                        <li>API 呼叫頻率控制</li>
+                        <li>防止 DDoS 攻擊</li>
+                        <li>請求排隊機制</li>
+                        <li>超載保護</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <!-- Layer 3: 核心業務層 -->
+        <div class="architecture-layer">
+            <div class="layer-title">
+                <span class="layer-icon">⚙️</span>
+                合約管理系統平台 (Core Platform)
+            </div>
+            
+            <div class="flow-diagram">
+                <div class="flow-title">📱 使用者介面層 (UI Layer)</div>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="flow-step-icon">🌐</div>
+                        <div class="flow-step-title">Web Portal</div>
+                        <div class="flow-step-desc">響應式設計<br>RWD 支援</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">📱</div>
+                        <div class="flow-step-title">行動裝置</div>
+                        <div class="flow-step-desc">iOS / Android<br>PWA 支援</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">✉️</div>
+                        <div class="flow-step-title">電子郵件</div>
+                        <div class="flow-step-desc">通知提醒<br>審批連結</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">🔔</div>
+                        <div class="flow-step-title">通知推播</div>
+                        <div class="flow-step-desc">Teams / SMS<br>即時推播</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-grid">
+                <div class="module-card" style="border-left-color: #4299e1;">
+                    <div class="module-name">📝 線上合約建立</div>
+                    <ul class="module-features">
+                        <li>表單設計引擎（拖曳式）</li>
+                        <li>簽核流程引擎（多層級）</li>
+                        <li>用印申請管理</li>
+                        <li>電子歸檔機制</li>
+                        <li>合約範本庫管理</li>
+                    </ul>
+                </div>
+                <div class="module-card" style="border-left-color: #48bb78;">
+                    <div class="module-name">🗂️ 合約管理中心</div>
+                    <ul class="module-features">
+                        <li>合約主檔管理（CRUD）</li>
+                        <li>版本控制與歷史追蹤</li>
+                        <li>權限控管（流程/歸檔）</li>
+                        <li>到期自動稽催</li>
+                        <li>報表分析儀表板</li>
+                    </ul>
+                </div>
+                <div class="module-card" style="border-left-color: #ed8936;">
+                    <div class="module-name">🤖 AI 智能應用</div>
+                    <ul class="module-features">
+                        <li>AI 合約文件比對</li>
+                        <li>OCR 文字辨識</li>
+                        <li>差異自動標註</li>
+                        <li>風險條款偵測</li>
+                        <li>智能合約審查</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <div class="layer-title" style="font-size: 18px; border-bottom-color: #718096;">
+                    <span class="layer-icon">🔧</span>
+                    共用服務層 (Shared Services)
+                </div>
+                <div class="module-grid">
+                    <div class="module-card" style="border-left-color: #718096;">
+                        <div class="module-name">📢 通知服務</div>
+                        <ul class="module-features">
+                            <li>Email 發送</li>
+                            <li>SMS 簡訊</li>
+                            <li>APP 推播</li>
+                            <li>Teams 整合</li>
+                        </ul>
+                    </div>
+                    <div class="module-card" style="border-left-color: #718096;">
+                        <div class="module-name">⏰ 排程服務</div>
+                        <ul class="module-features">
+                            <li>Cron 定時任務</li>
+                            <li>Quartz 排程引擎</li>
+                            <li>到期提醒</li>
+                            <li>背景作業</li>
+                        </ul>
+                    </div>
+                    <div class="module-card" style="border-left-color: #718096;">
+                        <div class="module-name">📊 報表服務</div>
+                        <ul class="module-features">
+                            <li>BI 儀表板</li>
+                            <li>自訂報表</li>
+                            <li>數據匯出</li>
+                            <li>趨勢分析</li>
+                        </ul>
+                    </div>
+                    <div class="module-card" style="border-left-color: #718096;">
+                        <div class="module-name">🔍 搜尋服務</div>
+                        <ul class="module-features">
+                            <li>全文檢索</li>
+                            <li>索引建立</li>
+                            <li>進階篩選</li>
+                            <li>搜尋建議</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <!-- Layer 4: 資料存取層 -->
+        <div class="architecture-layer">
+            <div class="layer-title">
+                <span class="layer-icon">💾</span>
+                資料存取層 (Data Access Layer)
+            </div>
+            <div class="module-grid">
+                <div class="module-card" style="border-left-color: #4299e1;">
+                    <div class="module-name">🗄️ 合約主檔 (SQL DB)</div>
+                    <ul class="module-features">
+                        <li>PostgreSQL / MySQL</li>
+                        <li>主從複製</li>
+                        <li>交易一致性</li>
+                        <li>ACID 保證</li>
+                    </ul>
+                </div>
+                <div class="module-card" style="border-left-color: #48bb78;">
+                    <div class="module-name">📁 文件儲存 (Object Storage)</div>
+                    <ul class="module-features">
+                        <li>MinIO / AWS S3</li>
+                        <li>版本控制</li>
+                        <li>加密儲存</li>
+                        <li>CDN 加速</li>
+                    </ul>
+                </div>
+                <div class="module-card" style="border-left-color: #ed8936;">
+                    <div class="module-name">📜 稽核日誌 (Log DB)</div>
+                    <ul class="module-features">
+                        <li>MongoDB / Elasticsearch</li>
+                        <li>不可竄改性</li>
+                        <li>完整軌跡</li>
+                        <li>即時查詢</li>
+                    </ul>
+                </div>
+                <div class="module-card" style="border-left-color: #9f7aea;">
+                    <div class="module-name">⚡ 快取層 (Redis)</div>
+                    <ul class="module-features">
+                        <li>Session 管理</li>
+                        <li>熱資料快取</li>
+                        <li>分散式鎖</li>
+                        <li>發布/訂閱</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Layer 5: 基礎設施層 -->
+        <div class="architecture-layer">
+            <div class="layer-title">
+                <span class="layer-icon">🔧</span>
+                基礎設施層 (Infrastructure Layer)
+            </div>
+            <div class="module-grid">
+                <div class="module-card" style="border-left-color: #4299e1;">
+                    <div class="module-name">🐳 容器編排</div>
+                    <ul class="module-features">
+                        <li>Kubernetes / Docker</li>
+                        <li>自動擴展</li>
+                        <li>健康檢查</li>
+                        <li>滾動更新</li>
+                    </ul>
+                </div>
+                <div class="module-card" style="border-left-color: #48bb78;">
+                    <div class="module-name">⚖️ 負載平衡</div>
+                    <ul class="module-features">
+                        <li>Nginx / ALB</li>
+                        <li>健康探測</li>
+                        <li>會話保持</li>
+                        <li>SSL 終止</li>
+                    </ul>
+                </div>
+                <div class="module-card" style="border-left-color: #ed8936;">
+                    <div class="module-name">📊 監控告警</div>
+                    <ul class="module-features">
+                        <li>Prometheus + Grafana</li>
+                        <li>即時指標監控</li>
+                        <li>異常告警通知</li>
+                        <li>日誌聚合分析</li>
+                    </ul>
+                </div>
+                <div class="module-card" style="border-left-color: #9f7aea;">
+                    <div class="module-name">💾 備份還原</div>
+                    <ul class="module-features">
+                        <li>自動化備份</li>
+                        <li>異地備援</li>
+                        <li>定時還原測試</li>
+                        <li>災難復原計劃</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <!-- 安全架構 -->
+        <div class="architecture-layer">
+            <div class="layer-title">
+                <span class="layer-icon">🛡️</span>
+                多層次安全防護架構 (Security Architecture)
+            </div>
+            <div class="security-layers">
+                <div class="security-card">
+                    <div class="module-name">🔒 Layer 1: 網路安全</div>
+                    <ul class="module-features">
+                        <li>SSL/TLS 1.3 加密傳輸</li>
+                        <li>DDoS 防護 (Cloudflare / AWS Shield)</li>
+                        <li>IP 白名單 / 地理限制</li>
+                        <li>VPN 專線連接</li>
+                    </ul>
+                </div>
+                <div class="security-card blue">
+                    <div class="module-name">👤 Layer 2: 身份與存取管理</div>
+                    <ul class="module-features">
+                        <li>多因子驗證 (MFA)</li>
+                        <li>單一登入 (SSO/SAML)</li>
+                        <li>RBAC + ABAC 權限模型</li>
+                        <li>生物特徵認證</li>
+                    </ul>
+                </div>
+                <div class="security-card green">
+                    <div class="module-name">🗄️ Layer 3: 資料安全</div>
+                    <ul class="module-features">
+                        <li>傳輸中加密 (TLS 1.3)</li>
+                        <li>靜態加密 (AES-256)</li>
+                        <li>資料庫欄位級加密</li>
+                        <li>浮水印保護</li>
+                    </ul>
+                </div>
+                <div class="security-card purple">
+                    <div class="module-name">📋 Layer 4: 稽核與監控</div>
+                    <ul class="module-features">
+                        <li>完整操作日誌 (Immutable)</li>
+                        <li>異常行為偵測 (SIEM)</li>
+                        <li>合規報表 (SOX/ISO)</li>
+                        <li>即時告警通知</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 部署架構 -->
+        <div class="architecture-layer" style="background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%); border-color: #4299e1;">
+            <div class="layer-title">
+                <span class="layer-icon">☁️</span>
+                雲端部署架構 (建議方案)
+            </div>
+            <div class="flow-diagram" style="background: white;">
+                <div class="flow-steps" style="flex-direction: column; gap: 15px;">
+                    <div class="flow-step" style="background: linear-gradient(135deg, #f6ad55 0%, #ed8936 100%);">
+                        <div class="flow-step-icon">🌐</div>
+                        <div class="flow-step-title">CDN (靜態資源加速)</div>
+                        <div class="flow-step-desc">CloudFront / Azure CDN / 阿里雲 CDN</div>
+                    </div>
+                    <div class="flow-arrow">⬇️</div>
+                    <div class="flow-step" style="background: linear-gradient(135deg, #fc8181 0%, #f56565 100%);">
+                        <div class="flow-step-icon">🛡️</div>
+                        <div class="flow-step-title">WAF (Web Application Firewall)</div>
+                        <div class="flow-step-desc">AWS WAF / Azure Front Door / 騰訊雲 WAF</div>
+                    </div>
+                    <div class="flow-arrow">⬇️</div>
+                    <div class="flow-step" style="background: linear-gradient(135deg, #63b3ed 0%, #4299e1 100%);">
+                        <div class="flow-step-icon">⚖️</div>
+                        <div class="flow-step-title">Load Balancer (負載平衡器)</div>
+                        <div class="flow-step-desc">ALB / Azure LB / SLB (多可用區部署)</div>
+                    </div>
+                    <div class="flow-arrow">⬇️</div>
+                    <div class="flow-step" style="background: linear-gradient(135deg, #9f7aea 0%, #805ad5 100%);">
+                        <div class="flow-step-icon">🐳</div>
+                        <div class="flow-step-title">Kubernetes Cluster (容器叢集)</div>
+                        <div class="flow-step-desc">Web Pod (3) / API Pod (5) / AI Pod (2) / Worker Pod (2)<br>Auto Scaling: CPU > 70% 時自動擴展</div>
+                    </div>
+                    <div class="flow-arrow">⬇️</div>
+                    <div class="flow-step" style="background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);">
+                        <div class="flow-step-icon">💾</div>
+                        <div class="flow-step-title">資料層 (Data Tier)</div>
+                        <div class="flow-step-desc">PostgreSQL (主從) / MongoDB (Replica Set) / Redis Cluster<br>MinIO / S3 (物件儲存) / Elasticsearch (全文搜尋)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #e2e8f0; color: #718096; font-size: 14px;">
+            <p>🦸‍♂️ 羅賓生成 | 合約管理系統架構圖 v1.0 | 2026-03-03</p>
+        </div>
+    </div>
+</body>
+</html>
