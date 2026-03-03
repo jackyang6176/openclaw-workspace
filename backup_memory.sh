@@ -1,32 +1,49 @@
 #!/bin/bash
 
 # OpenClaw Memory Backup Script
-# Backups MEMORY.md and daily memory files to pCloud
+# Backups MEMORY.md and daily memory files to pCloud (with local fallback)
 
 WORKSPACE="/home/admin/.openclaw/workspace"
 PCLOUD_BACKUP="/home/admin/pCloudDrive/openclaw"
+LOCAL_BACKUP="$WORKSPACE/backup/local"
 
-# Create backup directory if it doesn't exist
-mkdir -p "$PCLOUD_BACKUP/memory"
+# Create backup directories if they don't exist
+mkdir -p "$LOCAL_BACKUP"
+mkdir -p "$PCLOUD_BACKUP/memory" 2>/dev/null || echo "pCloudDrive not available, using local backup only"
 
-# Backup MEMORY.md if it exists
-if [ -f "$WORKSPACE/MEMORY.md" ]; then
-    cp "$WORKSPACE/MEMORY.md" "$PCLOUD_BACKUP/MEMORY.md"
-    echo "$(date): Backed up MEMORY.md"
-fi
+# Function to backup file
+backup_file() {
+    local src="$1"
+    local dest_dir="$2"
+    local filename=$(basename "$src")
+    
+    if [ -f "$src" ]; then
+        cp "$src" "$dest_dir/$filename"
+        echo "$(date): Backed up $filename to $dest_dir"
+    fi
+}
 
-# Backup today's memory file if it exists
+echo "$(date): Starting memory backup..."
+
+# Backup to local (always)
+backup_file "$WORKSPACE/MEMORY.md" "$LOCAL_BACKUP"
+
+# Backup today's memory file
 TODAY=$(date +%Y-%m-%d)
-if [ -f "$WORKSPACE/memory/$TODAY.md" ]; then
-    cp "$WORKSPACE/memory/$TODAY.md" "$PCLOUD_BACKUP/memory/$TODAY.md"
-    echo "$(date): Backed up memory/$TODAY.md"
-fi
+backup_file "$WORKSPACE/memory/$TODAY.md" "$LOCAL_BACKUP"
 
 # Also backup yesterday's memory file
 YESTERDAY=$(date -d "yesterday" +%Y-%m-%d)
-if [ -f "$WORKSPACE/memory/$YESTERDAY.md" ]; then
-    cp "$WORKSPACE/memory/$YESTERDAY.md" "$PCLOUD_BACKUP/memory/$YESTERDAY.md"
-    echo "$(date): Backed up memory/$YESTERDAY.md"
+backup_file "$WORKSPACE/memory/$YESTERDAY.md" "$LOCAL_BACKUP"
+
+# Try to backup to pCloud if available
+if [ -d "$PCLOUD_BACKUP" ] && [ -w "$PCLOUD_BACKUP" ]; then
+    backup_file "$WORKSPACE/MEMORY.md" "$PCLOUD_BACKUP"
+    backup_file "$WORKSPACE/memory/$TODAY.md" "$PCLOUD_BACKUP/memory"
+    backup_file "$WORKSPACE/memory/$YESTERDAY.md" "$PCLOUD_BACKUP/memory"
+    echo "$(date): pCloud backup completed"
+else
+    echo "$(date): pCloudDrive not available, local backup only"
 fi
 
 echo "$(date): Memory backup completed"
