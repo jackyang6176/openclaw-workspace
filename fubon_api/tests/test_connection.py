@@ -63,23 +63,17 @@ def test_login():
         
         sdk = FubonSDK()
         
-        # 嘗試登入
+        # 嘗試使用憑證登入
         if 'cert_path' in config and config['cert_path']:
-            # 使用網頁憑證登入
+            print("🔐 使用網頁憑證登入...")
             accounts = sdk.login(
                 config['user_id'],
                 config['password'],
                 config['cert_path'],
                 config.get('cert_password', '')
             )
-        elif 'api_key' in config and config['api_key']:
-            # 使用 API Key 登入
-            accounts = sdk.login_with_api_key(
-                config['user_id'],
-                config['api_key']
-            )
         else:
-            print(f"⚠️  未找到認證資訊")
+            print(f"⚠️  未找到憑證路徑，請先匯出網頁憑證")
             return None
         
         print(f"✅ 登入成功")
@@ -93,6 +87,8 @@ def test_login():
         
     except Exception as e:
         print(f"❌ 登入失敗：{e}")
+        import traceback
+        traceback.print_exc()
         return False
 
 def test_market_data():

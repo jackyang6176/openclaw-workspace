@@ -1,15 +1,13 @@
 #!/bin/bash
 
 # OpenClaw Memory Backup Script
-# Backups MEMORY.md and daily memory files to pCloud (with local fallback)
+# Backups MEMORY.md and daily memory files to local backup directory
 
 WORKSPACE="/home/admin/.openclaw/workspace"
-PCLOUD_BACKUP="/home/admin/pCloudDrive/openclaw"
 LOCAL_BACKUP="$WORKSPACE/backup/local"
 
-# Create backup directories if they don't exist
+# Create backup directory if it doesn't exist
 mkdir -p "$LOCAL_BACKUP"
-mkdir -p "$PCLOUD_BACKUP/memory" 2>/dev/null || echo "pCloudDrive not available, using local backup only"
 
 # Function to backup file
 backup_file() {
@@ -25,7 +23,7 @@ backup_file() {
 
 echo "$(date): Starting memory backup..."
 
-# Backup to local (always)
+# Backup MEMORY.md
 backup_file "$WORKSPACE/MEMORY.md" "$LOCAL_BACKUP"
 
 # Backup today's memory file
@@ -35,15 +33,5 @@ backup_file "$WORKSPACE/memory/$TODAY.md" "$LOCAL_BACKUP"
 # Also backup yesterday's memory file
 YESTERDAY=$(date -d "yesterday" +%Y-%m-%d)
 backup_file "$WORKSPACE/memory/$YESTERDAY.md" "$LOCAL_BACKUP"
-
-# Try to backup to pCloud if available
-if [ -d "$PCLOUD_BACKUP" ] && [ -w "$PCLOUD_BACKUP" ]; then
-    backup_file "$WORKSPACE/MEMORY.md" "$PCLOUD_BACKUP"
-    backup_file "$WORKSPACE/memory/$TODAY.md" "$PCLOUD_BACKUP/memory"
-    backup_file "$WORKSPACE/memory/$YESTERDAY.md" "$PCLOUD_BACKUP/memory"
-    echo "$(date): pCloud backup completed"
-else
-    echo "$(date): pCloudDrive not available, local backup only"
-fi
 
 echo "$(date): Memory backup completed"
