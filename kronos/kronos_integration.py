@@ -20,9 +20,10 @@ sys.path.insert(0, '/tmp/Kronos')
 try:
     from model import Kronos, KronosTokenizer, KronosPredictor
     KRONOS_AVAILABLE = True
-except ImportError:
+except ImportError as e:
     KRONOS_AVAILABLE = False
-    print("⚠️  Kronos 模型未安裝，使用模擬模式")
+    print(f"⚠️  Kronos 模型未安裝：{e}")
+    print("⚠️  使用模擬模式")
 
 
 class KronosIntegration:
@@ -62,6 +63,8 @@ class KronosIntegration:
             print("✅ 模型加載成功")
         except Exception as e:
             print(f"❌ 模型加載失敗：{e}")
+            import traceback
+            traceback.print_exc()
             print("⚠️  切換到模擬模式")
             self.predictor = None
     
@@ -91,12 +94,10 @@ class KronosIntegration:
             
             x_df = historical_df.iloc[-lookback:][available_cols].copy()
             
-            # 時間戳處理 - 必須是 pandas Series 或 DatetimeIndex (需要 .dt 訪問器)
+            # 時間戳處理
             if 'timestamps' in historical_df.columns:
-                # 從 DataFrame 提取，保持為 Series
                 x_timestamp = historical_df['timestamps'].iloc[-lookback:].reset_index(drop=True)
             else:
-                # 假設 5 分鐘 K 線，創建 Series
                 base_time = datetime.now() - timedelta(minutes=5*lookback)
                 x_timestamp = pd.Series(pd.date_range(
                     start=base_time,
@@ -104,7 +105,7 @@ class KronosIntegration:
                     freq='5min'
                 ))
             
-            # 預測時間戳 - 也必須是 Series 或 DatetimeIndex
+            # 預測時間戳
             last_time = x_timestamp.iloc[-1]
             y_timestamp = pd.Series(pd.date_range(
                 start=last_time + pd.Timedelta(minutes=5),
@@ -130,6 +131,8 @@ class KronosIntegration:
             
         except Exception as e:
             print(f"❌ 預測失敗：{e}")
+            import traceback
+            traceback.print_exc()
             return self._mock_prediction(historical_df, pred_len)
     
     def _mock_prediction(self, historical_df, pred_len):
