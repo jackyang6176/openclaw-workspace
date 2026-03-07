@@ -8,6 +8,7 @@
 - ✅ 雙人驗證系統 (DOER: kimi-k2.5, VERIFIER: qwen3.5-plus)
 - ✅ pCloudDrive 自動歸檔
 - ✅ Cron jobs 運作中
+- ✅ 記憶備份機制 (每4小時執行) - 備份MEMORY.md、每日日誌至本地目錄
 
 **請勿重覆執行上述設定**
 
@@ -183,6 +184,11 @@
 - **測試狀態**：✅ 已完成完整測試，成功識別信用卡帳單和銀行安全通知
 - **主動通知**：✅ 已啟用，發現重要郵件立即通知（不等待用戶詢問）
 
+## pCloudDrive存取規則 - 2026-03-07 ✅
+- 禁止執行任何pCloudDrive的掛載/卸載操作
+- 遇pCloudDrive及其子目錄存取異常時，立即發送Discord通知給用戶
+- 當前異常備註：HTML投資分析報告暫存於/home/admin/.openclaw/workspace/website/investment/four_strategy_report_2026-03-07_1334.html
+
 ## GUI X Window 狀態 - 2026-02-17 ✅
 - **狀態**：✅ 已安裝並驗證可用
 - **DISPLAY**：:1 (工作正常)
@@ -193,6 +199,13 @@
 - **重要備註**：不再需要手動操作，可以執行完整的瀏覽器自動化任務
 - **pCloud 認證**：✅ 已完成主機 IP (47.82.4.181) 認證
 - **記憶備份**：✅ 長期記憶會自動備份到 /home/admin/pCloudDrive/openclaw/
+
+## 檔案目錄路由配置 - 2026-03-07 ✅
+- 阿福審核輸出目錄：~/pCloudDrive/openclaw/messages/Alfred
+- 阿福回覆接收目錄：~/pCloudDrive/openclaw/messages/Robin
+- 用戶直接交付目錄：~/pCloudDrive/openclaw/messages/Wayne
+- 生效時間：2026-03-07 11:38 GMT+8
+- 指令來源：用戶Nooya（sender_id:1467170004477935811）
 
 ## 新增投資分析技能 - 2026-02-20 ✅
 - **find-skills**：技能發現和安裝工具，可搜索並安裝新技能
