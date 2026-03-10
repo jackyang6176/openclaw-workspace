@@ -1,0 +1,324 @@
+[2026-03-10 07:46:40] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-03-10 07:46:40] [INFO] ✅ 配置載入成功
+[2026-03-10 07:46:40] [INFO] ======================================================================
+[2026-03-10 07:46:40] [INFO] 執行登入...
+[2026-03-10 07:46:40] [INFO] 用戶：H120193488
+[2026-03-10 07:46:40] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-03-10 07:46:41] [INFO] ✅ 登入成功！
+[2026-03-10 07:46:41] [INFO] 帳戶資訊：
+[2026-03-10 07:46:41] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-03-10 07:46:41] [INFO] ✅ 行情連線初始化成功
+[2026-03-10 07:46:41] [INFO] ======================================================================
+[2026-03-10 07:46:41] [INFO] 查詢帳戶餘額...
+[2026-03-10 07:46:41] [ERROR] ❌ 餘額查詢錯誤：'builtins.Accounting' object has no attribute 'get_balance'
+[2026-03-10 07:46:41] [ERROR] Traceback (most recent call last):
+  File "/home/admin/.openclaw/workspace/fubon_api/fubon_client.py", line 148, in get_balance
+    result = self.sdk.accounting.get_balance(account)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'builtins.Accounting' object has no attribute 'get_balance'
+
+[2026-03-10 07:46:41] [INFO] ======================================================================
+[2026-03-10 07:46:41] [INFO] 查詢持倉...
+[2026-03-10 07:46:41] [ERROR] ❌ 持倉查詢錯誤：'builtins.Accounting' object has no attribute 'get_position'
+[2026-03-10 07:46:41] [ERROR] Traceback (most recent call last):
+  File "/home/admin/.openclaw/workspace/fubon_api/fubon_client.py", line 206, in get_positions
+    result = self.sdk.accounting.get_position(account)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'builtins.Accounting' object has no attribute 'get_position'
+
+[2026-03-10 07:46:41] [INFO] ======================================================================
+[2026-03-10 07:46:41] [INFO] 查詢股票行情：00655L
+[2026-03-10 07:46:41] [ERROR] ❌ 行情查詢錯誤：'builtins.Stock' object has no attribute 'get_quote'
+[2026-03-10 07:46:41] [ERROR] Traceback (most recent call last):
+  File "/home/admin/.openclaw/workspace/fubon_api/fubon_client.py", line 177, in get_stock_quote
+    result = self.sdk.stock.get_quote(symbol)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'builtins.Stock' object has no attribute 'get_quote'
+
+[2026-03-10 07:46:41] [INFO] ======================================================================
+[2026-03-10 07:46:41] [INFO] 查詢股票行情：00882
+[2026-03-10 07:46:41] [ERROR] ❌ 行情查詢錯誤：'builtins.Stock' object has no attribute 'get_quote'
+[2026-03-10 07:46:41] [ERROR] Traceback (most recent call last):
+  File "/home/admin/.openclaw/workspace/fubon_api/fubon_client.py", line 177, in get_stock_quote
+    result = self.sdk.stock.get_quote(symbol)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'builtins.Stock' object has no attribute 'get_quote'
+
+[2026-03-10 07:46:41] [INFO] ======================================================================
+[2026-03-10 07:46:41] [INFO] 查詢股票行情：00887
+[2026-03-10 07:46:41] [ERROR] ❌ 行情查詢錯誤：'builtins.Stock' object has no attribute 'get_quote'
+[2026-03-10 07:46:41] [ERROR] Traceback (most recent call last):
+  File "/home/admin/.openclaw/workspace/fubon_api/fubon_client.py", line 177, in get_stock_quote
+    result = self.sdk.stock.get_quote(symbol)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'builtins.Stock' object has no attribute 'get_quote'
+
+[2026-03-10 07:46:41] [INFO] ✅ 已登出
+[2026-03-10 07:48:17] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-03-10 07:48:17] [INFO] ✅ 配置載入成功
+[2026-03-10 07:48:17] [INFO] ======================================================================
+[2026-03-10 07:48:17] [INFO] 執行登入...
+[2026-03-10 07:48:17] [INFO] 用戶：H120193488
+[2026-03-10 07:48:17] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-03-10 07:48:18] [INFO] ✅ 登入成功！
+[2026-03-10 07:48:18] [INFO] 帳戶資訊：
+[2026-03-10 07:48:18] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-03-10 07:48:18] [INFO] ✅ 行情連線初始化成功
+[2026-03-10 07:48:18] [INFO] ======================================================================
+[2026-03-10 07:48:18] [INFO] 查詢帳戶餘額...
+[2026-03-10 07:48:18] [ERROR] ❌ 餘額查詢錯誤：Accounting.bank_remain() missing 1 required positional argument: 'account'
+[2026-03-10 07:48:18] [ERROR] Traceback (most recent call last):
+  File "/home/admin/.openclaw/workspace/fubon_api/fubon_client.py", line 147, in get_balance
+    result = self.sdk.accounting.bank_remain()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Accounting.bank_remain() missing 1 required positional argument: 'account'
+
+[2026-03-10 07:48:18] [INFO] ======================================================================
+[2026-03-10 07:48:18] [INFO] 查詢持倉（未實現損益）...
+[2026-03-10 07:48:18] [ERROR] ❌ 持倉查詢錯誤：Accounting.unrealized_gains_and_loses() missing 1 required positional argument: 'account'
+[2026-03-10 07:48:18] [ERROR] Traceback (most recent call last):
+  File "/home/admin/.openclaw/workspace/fubon_api/fubon_client.py", line 205, in get_positions
+    result = self.sdk.accounting.unrealized_gains_and_loses()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Accounting.unrealized_gains_and_loses() missing 1 required positional argument: 'account'
+
+[2026-03-10 07:48:18] [INFO] ======================================================================
+[2026-03-10 07:48:18] [INFO] 查詢股票行情：00655L
+[2026-03-10 07:48:18] [ERROR] ❌ 行情查詢錯誤：argument 'account': 'str' object cannot be converted to 'Account'
+[2026-03-10 07:48:18] [ERROR] Traceback (most recent call last):
+  File "/home/admin/.openclaw/workspace/fubon_api/fubon_client.py", line 176, in get_stock_quote
+    result = self.sdk.stock.query_symbol_snapshot(symbol)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument 'account': 'str' object cannot be converted to 'Account'
+
+[2026-03-10 07:48:18] [INFO] ======================================================================
+[2026-03-10 07:48:18] [INFO] 查詢股票行情：00882
+[2026-03-10 07:48:18] [ERROR] ❌ 行情查詢錯誤：argument 'account': 'str' object cannot be converted to 'Account'
+[2026-03-10 07:48:18] [ERROR] Traceback (most recent call last):
+  File "/home/admin/.openclaw/workspace/fubon_api/fubon_client.py", line 176, in get_stock_quote
+    result = self.sdk.stock.query_symbol_snapshot(symbol)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument 'account': 'str' object cannot be converted to 'Account'
+
+[2026-03-10 07:48:18] [INFO] ======================================================================
+[2026-03-10 07:48:18] [INFO] 查詢股票行情：00887
+[2026-03-10 07:48:18] [ERROR] ❌ 行情查詢錯誤：argument 'account': 'str' object cannot be converted to 'Account'
+[2026-03-10 07:48:18] [ERROR] Traceback (most recent call last):
+  File "/home/admin/.openclaw/workspace/fubon_api/fubon_client.py", line 176, in get_stock_quote
+    result = self.sdk.stock.query_symbol_snapshot(symbol)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument 'account': 'str' object cannot be converted to 'Account'
+
+[2026-03-10 07:48:18] [INFO] ✅ 已登出
+[2026-03-10 07:48:35] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-03-10 07:48:35] [INFO] ✅ 配置載入成功
+[2026-03-10 07:48:35] [INFO] ======================================================================
+[2026-03-10 07:48:35] [INFO] 執行登入...
+[2026-03-10 07:48:35] [INFO] 用戶：H120193488
+[2026-03-10 07:48:35] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-03-10 07:48:36] [INFO] ✅ 登入成功！
+[2026-03-10 07:48:36] [INFO] 帳戶資訊：
+[2026-03-10 07:48:36] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-03-10 07:48:36] [INFO] ✅ 行情連線初始化成功
+[2026-03-10 07:48:36] [INFO] ======================================================================
+[2026-03-10 07:48:36] [INFO] 查詢帳戶餘額...
+[2026-03-10 07:48:36] [INFO] 餘額查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: BankRemain {
+    branch_no: "20214",
+    account: "408322",
+    currency: "TWD",
+    balance: 0,
+    available_balance: 0,
+}
+}
+[2026-03-10 07:48:36] [INFO] ✅ 餘額查詢成功
+[2026-03-10 07:48:36] [INFO] ======================================================================
+[2026-03-10 07:48:36] [INFO] 查詢持倉（未實現損益）...
+[2026-03-10 07:48:36] [INFO] 持倉查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: []
+}
+[2026-03-10 07:48:36] [INFO] ✅ 持倉查詢成功
+[2026-03-10 07:48:36] [INFO] ======================================================================
+[2026-03-10 07:48:36] [INFO] 查詢股票行情：00655L
+[2026-03-10 07:48:36] [ERROR] ❌ 行情查詢錯誤：argument 'market_type': 'str' object cannot be converted to 'MarketType'
+[2026-03-10 07:48:36] [ERROR] Traceback (most recent call last):
+  File "/home/admin/.openclaw/workspace/fubon_api/fubon_client.py", line 178, in get_stock_quote
+    result = self.sdk.stock.query_symbol_snapshot(account, symbol)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument 'market_type': 'str' object cannot be converted to 'MarketType'
+
+[2026-03-10 07:48:36] [INFO] ======================================================================
+[2026-03-10 07:48:36] [INFO] 查詢股票行情：00882
+[2026-03-10 07:48:36] [ERROR] ❌ 行情查詢錯誤：argument 'market_type': 'str' object cannot be converted to 'MarketType'
+[2026-03-10 07:48:36] [ERROR] Traceback (most recent call last):
+  File "/home/admin/.openclaw/workspace/fubon_api/fubon_client.py", line 178, in get_stock_quote
+    result = self.sdk.stock.query_symbol_snapshot(account, symbol)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument 'market_type': 'str' object cannot be converted to 'MarketType'
+
+[2026-03-10 07:48:36] [INFO] ======================================================================
+[2026-03-10 07:48:36] [INFO] 查詢股票行情：00887
+[2026-03-10 07:48:36] [ERROR] ❌ 行情查詢錯誤：argument 'market_type': 'str' object cannot be converted to 'MarketType'
+[2026-03-10 07:48:36] [ERROR] Traceback (most recent call last):
+  File "/home/admin/.openclaw/workspace/fubon_api/fubon_client.py", line 178, in get_stock_quote
+    result = self.sdk.stock.query_symbol_snapshot(account, symbol)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument 'market_type': 'str' object cannot be converted to 'MarketType'
+
+[2026-03-10 07:48:36] [INFO] ✅ 已登出
+[2026-03-10 07:50:17] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-03-10 07:50:17] [INFO] ✅ 配置載入成功
+[2026-03-10 07:50:17] [INFO] ======================================================================
+[2026-03-10 07:50:17] [INFO] 執行登入...
+[2026-03-10 07:50:17] [INFO] 用戶：H120193488
+[2026-03-10 07:50:17] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-03-10 07:50:18] [INFO] ✅ 登入成功！
+[2026-03-10 07:50:18] [INFO] 帳戶資訊：
+[2026-03-10 07:50:18] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-03-10 07:50:18] [INFO] ✅ 行情連線初始化成功
+[2026-03-10 07:50:18] [INFO] ======================================================================
+[2026-03-10 07:50:18] [INFO] 查詢帳戶餘額...
+[2026-03-10 07:50:18] [INFO] 餘額查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: BankRemain {
+    branch_no: "20214",
+    account: "408322",
+    currency: "TWD",
+    balance: 0,
+    available_balance: 0,
+}
+}
+[2026-03-10 07:50:18] [INFO] ✅ 餘額查詢成功
+[2026-03-10 07:50:18] [INFO] ======================================================================
+[2026-03-10 07:50:18] [INFO] 查詢持倉（未實現損益）...
+[2026-03-10 07:50:18] [INFO] 持倉查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: []
+}
+[2026-03-10 07:50:18] [INFO] ✅ 持倉查詢成功
+[2026-03-10 07:50:18] [INFO] ======================================================================
+[2026-03-10 07:50:18] [INFO] 查詢股票行情：00655L
+[2026-03-10 07:50:18] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "00655L",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 31.59,
+    unit: 1000,
+    update_time: "",
+    limitup_price: 9999.95,
+    limitdown_price: 0.01,
+    open_price: 30.7,
+    high_price: 31.25,
+    low_price: 30.05,
+    last_price: 31.25,
+    total_volume: 2814,
+    total_transaction: 0,
+    total_value: 86934430,
+    last_size: 20,
+    last_transaction: 0,
+    last_value: 625000,
+    bid_price: 31.25,
+    bid_volume: 136,
+    ask_price: 31.26,
+    ask_volume: 20,
+}
+}
+[2026-03-10 07:50:18] [INFO] ✅ 行情查詢成功
+[2026-03-10 07:50:18] [INFO] ======================================================================
+[2026-03-10 07:50:18] [INFO] 查詢股票行情：00882
+[2026-03-10 07:50:18] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "00882",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 16.05,
+    unit: 1000,
+    update_time: "",
+    limitup_price: 9999.95,
+    limitdown_price: 0.01,
+    open_price: 15.62,
+    high_price: 15.96,
+    low_price: 15.58,
+    last_price: 15.92,
+    total_volume: 27065,
+    total_transaction: 0,
+    total_value: 429140700,
+    last_size: 137,
+    last_transaction: 0,
+    last_value: 2181040,
+    bid_price: 15.91,
+    bid_volume: 8,
+    ask_price: 15.92,
+    ask_volume: 10,
+}
+}
+[2026-03-10 07:50:18] [INFO] ✅ 行情查詢成功
+[2026-03-10 07:50:18] [INFO] ======================================================================
+[2026-03-10 07:50:18] [INFO] 查詢股票行情：00887
+[2026-03-10 07:50:19] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAISDAQ",
+    symbol: "00887",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 12.92,
+    unit: 1000,
+    update_time: "",
+    limitup_price: 9999.95,
+    limitdown_price: 0.01,
+    open_price: 12.65,
+    high_price: 12.7,
+    low_price: 12.35,
+    last_price: 12.58,
+    total_volume: 9438,
+    total_transaction: 0,
+    total_value: 117595460,
+    last_size: 164,
+    last_transaction: 0,
+    last_value: 2063120,
+    bid_price: 12.57,
+    bid_volume: 220,
+    ask_price: 12.58,
+    ask_volume: 14,
+}
+}
+[2026-03-10 07:50:19] [INFO] ✅ 行情查詢成功
+[2026-03-10 07:50:19] [INFO] ✅ 已登出

@@ -1,0 +1,9 @@
+登入錯誤時間：2026-03-09 13:08:55
+錯誤訊息：CoreSDK.apikey_login() missing 1 required positional argument: 'cert_path'
+
+完整堆疊追蹤：
+Traceback (most recent call last):
+  File "/home/admin/.openclaw/workspace/fubon_api/tests/test_apikey_login.py", line 96, in test_apikey_login
+    result = sdk.apikey_login(user_id, api_key)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: CoreSDK.apikey_login() missing 1 required positional argument: 'cert_path'
