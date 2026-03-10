@@ -15,7 +15,8 @@ import sys
 import os
 
 # 添加 Kronos 模型路徑
-sys.path.insert(0, '/tmp/Kronos')
+KRONOS_PATH = '/home/admin/.openclaw/workspace/Kronos'
+sys.path.insert(0, KRONOS_PATH)
 
 try:
     from model import Kronos, KronosTokenizer, KronosPredictor
