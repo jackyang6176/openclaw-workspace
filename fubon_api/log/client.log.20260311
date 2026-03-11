@@ -1,0 +1,7 @@
+[2026-03-11 11:43:24.574513807 +08:00 INFO] [login] personal_id="H120193488"
+[2026-03-11 11:43:24.650799614 +08:00 INFO] this account require 2fa
+[2026-03-11 11:43:24.895274623 +08:00 INFO] [future_option_mapping]: 180.719436ms
+[2026-03-11 11:43:24.958150030 +08:00 INFO] [future_option_mapping]: 61.323973ms
+[2026-03-11 11:43:25.098199503 +08:00 INFO] [future_option_mapping]: 139.865964ms
+[2026-03-11 11:43:25.168270953 +08:00 INFO] [future_option_mapping]: 62.973182ms
+[2026-03-11 11:43:25.396926707 +08:00 INFO] [logout] user manually logout
