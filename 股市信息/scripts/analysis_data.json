@@ -1,0 +1,11 @@
+{
+  "00655L": {
+    "error": "RetryError[<Future at 0x7105ce7fbe30 state=finished raised ConnectionError>]"
+  },
+  "00882": {
+    "error": "RetryError[<Future at 0x7105ce837320 state=finished raised ConnectionError>]"
+  },
+  "00887": {
+    "error": "RetryError[<Future at 0x7105ce837e00 state=finished raised ConnectionError>]"
+  }
+}

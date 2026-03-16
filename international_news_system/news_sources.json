@@ -1,0 +1,40 @@
+{
+  "sources": [
+    {
+      "name": "BBC World",
+      "url": "https://www.bbc.com/news/world",
+      "selectors": [
+        "h3[data-testid='card-headline']",
+        "h2[class*='headline']",
+        ".gs-c-promo-heading__title"
+      ]
+    },
+    {
+      "name": "Reuters World", 
+      "url": "https://www.reuters.com/world/",
+      "selectors": [
+        "h3[data-testid='Heading']",
+        ".story-title",
+        "a[href*='/world/'] h3"
+      ]
+    },
+    {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/news/",
+      "selectors": [
+        "h3[class*='heading']",
+        ".article-heading",
+        "a[href*='/news/'] h3"
+      ]
+    },
+    {
+      "name": "CNN World",
+      "url": "https://www.cnn.com/world",
+      "selectors": [
+        "h3[class*='headline']",
+        ".cd__headline",
+        "a[href*='/world/'] span"
+      ]
+    }
+  ]
+}

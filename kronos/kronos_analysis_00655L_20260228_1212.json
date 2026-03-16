@@ -1,0 +1,22 @@
+[
+  {
+    "symbol":"00655L",
+    "timestamp":"2026-02-28T12:12:24.840655",
+    "last_close":44.7614416517,
+    "prediction":{
+      "short_term":44.6781600657,
+      "mid_term":44.4485859739,
+      "full_period":43.9891077588
+    },
+    "signals":{
+      "signal":"HOLD",
+      "confidence":45.3469588795,
+      "target_price":44.7614416517,
+      "stop_loss":44.3138272352,
+      "short_term_change":-0.186056532,
+      "mid_term_change":-0.6989401285
+    },
+    "model":"NeoQuasar\/Kronos-small",
+    "pred_len":120
+  }
+]

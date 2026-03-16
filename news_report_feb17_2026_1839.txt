@@ -1,0 +1,37 @@
+# Hourly International News Report
+**Date/Time:** Tuesday, February 17th, 2026 — 6:39 PM (Asia/Shanghai)
+
+## System Notice
+⚠️ **Unable to fetch real-time news updates** due to missing Brave Search API key configuration.
+
+To enable real-time international news reporting, please configure the Brave Search API key by running:
+```
+openclaw configure --section web
+```
+Or set the BRAVE_API_KEY environment variable in the Gateway.
+
+## Report Structure (Template)
+When properly configured, this hourly report would include:
+
+### Major Global Events
+- Breaking geopolitical developments
+- Significant international incidents
+- Major diplomatic announcements
+
+### Economic Updates
+- Key market movements (Asian close, European afternoon, US pre-market)
+- Currency fluctuations
+- Commodity price changes
+- Central bank announcements
+
+### Actionable Insights
+- Investment implications
+- Trade opportunity alerts
+- Risk assessment for global markets
+
+### Verification Status
+All information would be cross-referenced with multiple reliable sources before inclusion.
+
+---
+*This automated report is generated hourly by OpenClaw's news monitoring system.*
+*Next report scheduled for 7:39 PM (Asia/Shanghai).*

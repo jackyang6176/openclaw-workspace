@@ -1,0 +1,28 @@
+{
+  "sources": [
+    {
+      "name": "AP News",
+      "url": "https://apnews.com/",
+      "method": "web_fetch",
+      "priority": 1
+    },
+    {
+      "name": "Reuters World",
+      "url": "https://www.reuters.com/world/",
+      "method": "web_fetch", 
+      "priority": 2
+    },
+    {
+      "name": "BBC World",
+      "url": "https://www.bbc.com/news/world",
+      "method": "web_fetch",
+      "priority": 3
+    },
+    {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/news/",
+      "method": "browser_automation",
+      "priority": 4
+    }
+  ]
+}

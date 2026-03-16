@@ -1,0 +1,36 @@
+[2026-03-08 10:34:51.094836572 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-03-08 10:34:51.165319068 +08:00 INFO] API Key account requires certificate validation
+[2026-03-08 10:34:51.221926485 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, MarketData, StockTrading}
+[2026-03-08 10:38:27.029457011 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-03-08 10:38:27.087697543 +08:00 INFO] API Key account requires certificate validation
+[2026-03-08 10:38:27.143358998 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockTrading, MarketData, StockAccounting}
+[2026-03-08 10:39:29.598008562 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-03-08 10:39:29.654877167 +08:00 INFO] API Key account requires certificate validation
+[2026-03-08 10:39:29.712097164 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, StockTrading, MarketData}
+[2026-03-08 10:42:43.139498077 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-03-08 10:42:43.210776977 +08:00 INFO] API Key account requires certificate validation
+[2026-03-08 10:42:43.275289413 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockTrading, MarketData, StockAccounting}
+[2026-03-08 10:54:00.623992041 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-03-08 10:54:00.690796478 +08:00 INFO] API Key account requires certificate validation
+[2026-03-08 10:54:00.755975729 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockTrading, StockAccounting, MarketData}
+[2026-03-08 10:56:30.346558653 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-03-08 10:56:30.403832548 +08:00 INFO] API Key account requires certificate validation
+[2026-03-08 10:56:30.460273872 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {MarketData, StockAccounting, StockTrading}
+[2026-03-08 10:57:16.996379776 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-03-08 10:57:17.054150218 +08:00 INFO] API Key account requires certificate validation
+[2026-03-08 10:57:17.110687772 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {MarketData, StockTrading, StockAccounting}
+[2026-03-08 10:58:07.732136962 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-03-08 10:58:07.790715898 +08:00 INFO] API Key account requires certificate validation
+[2026-03-08 10:58:07.847064409 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, MarketData, StockTrading}
+[2026-03-08 11:05:55.781888967 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-03-08 11:05:55.847882891 +08:00 INFO] API Key account requires certificate validation
+[2026-03-08 11:05:55.912635903 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, StockTrading, MarketData}
+[2026-03-08 11:06:52.892793566 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-03-08 11:06:52.951218961 +08:00 INFO] API Key account requires certificate validation
+[2026-03-08 11:06:53.006968697 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {MarketData, StockTrading, StockAccounting}
+[2026-03-08 11:07:59.929136962 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-03-08 11:07:59.995872009 +08:00 INFO] API Key account requires certificate validation
+[2026-03-08 11:08:00.060573614 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockTrading, MarketData, StockAccounting}
+[2026-03-08 11:15:51.778161293 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-03-08 11:15:51.846217072 +08:00 INFO] API Key account requires certificate validation
+[2026-03-08 11:15:51.911261172 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, StockTrading, MarketData}

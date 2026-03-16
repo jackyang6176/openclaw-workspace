@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>互動式投資看板</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .card { background: white; border-radius: 8px; padding: 16px; margin: 16px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .header { text-align: center; color: #333; margin-bottom: 24px; }
+        .stock-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .stock-name { font-weight: bold; color: #2c3e50; }
+        .price { font-size: 18px; }
+        .change { padding: 4px 8px; border-radius: 4px; font-weight: bold; }
+        .up { background: #e8f5e9; color: #2e7d32; }
+        .down { background: #ffebee; color: #c62828; }
+        .chart-container { height: 300px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="header">🦞 互動式投資看板（測試版）</h1>
+        
+        <div class="card">
+            <h2>市場概覽</h2>
+            <div class="stock-item">
+                <span class="stock-name">上證指數</span>
+                <span class="price">3,250.45</span>
+                <span class="change up">+1.2%</span>
+            </div>
+            <div class="stock-item">
+                <span class="stock-name">深證成指</span>
+                <span class="price">11,890.32</span>
+                <span class="change up">+0.8%</span>
+            </div>
+            <div class="stock-item">
+                <span class="stock-name">恒生指數</span>
+                <span class="price">18,750.67</span>
+                <span class="change down">-0.5%</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>重點股票分析</h2>
+            <div class="stock-item">
+                <span class="stock-name">台積電 (2330)</span>
+                <span class="price">855.00</span>
+                <span class="change up">+2.3%</span>
+            </div>
+            <div class="stock-item">
+                <span class="stock-name">聯發科 (2454)</span>
+                <span class="price">1,210.00</span>
+                <span class="change up">+1.5%</span>
+            </div>
+            <div class="stock-item">
+                <span class="stock-name">鴻海 (2317)</span>
+                <span class="price">181.50</span>
+                <span class="change down">-0.3%</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>技術指標視覺化</h2>
+            <div class="chart-container">
+                <p style="text-align: center; color: #666;">📈 此處應顯示互動式圖表（需 Chart.js 支援）</p>
+                <p style="text-align: center; color: #666; margin-top: 10px;">（當前為靜態示範版本）</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>投資建議</h2>
+            <ul>
+                <li><strong>台積電</strong>：買點 850-860 元，停損 830 元</li>
+                <li><strong>聯發科</strong>：本益比 18.2 合理，ROE 24.3%</li>
+                <li><strong>鴻海</strong>：股利殖利率 5.12%，技術面突破</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+# OpenClaw configuration (contains secrets)
+openclaw.json
+openclaw_config_patch.json
+*.token
+*.credentials
+
+# Gmail Monitor credentials
+gmail_monitor/credentials.json
+gmail_monitor/token.pickle
+
+# Python virtual environments
+venv/
+*/venv/
+*/*/venv/
+*venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Python packaging
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Secrets
+token.pickle
+credentials.json
+.env
+*.pem
+*.key
+# Development directories (2026-02-26)
+investment/
+wuling_weather/
+finance_news_system/
+etf_presentation_env/
+.agents/
+.clawhub/
+.cline/
+.openclaw/
+*.pptx
+gmail_monitor/chrome-*/
+gmail_monitor/*.py
+gmail_monitor/*.png

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投資報告看板 - 簡化版</title>
+    <style>
+        body {
+            font-family: 'Microsoft JhengHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .market-overview {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .index-card {
+            text-align: center;
+            padding: 10px;
+            margin: 5px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            min-width: 120px;
+        }
+        .positive { color: #28a745; }
+        .negative { color: #dc3545; }
+        .stock-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .stock-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+        }
+        .indicators {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        .recommendations {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f5e8;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📈 投資報告看板</h1>
+            <p>報告日期: 2026年2月13日</p>
+        </div>
+        
+        <div class="market-overview">
+            <div class="index-card">
+                <h3>上證指數</h3>
+                <div>3,250.45</div>
+                <div class="positive">+1.2%</div>
+            </div>
+            <div class="index-card">
+                <h3>深證成指</h3>
+                <div>11,890.32</div>
+                <div class="positive">+0.8%</div>
+            </div>
+            <div class="index-card">
+                <h3>恒生指數</h3>
+                <div>18,450.67</div>
+                <div class="negative">-0.3%</div>
+            </div>
+        </div>
+        
+        <div class="stock-section">
+            <h2>重點股票分析</h2>
+            
+            <div class="stock-item">
+                <div class="stock-header">
+                    <span>貴州茅台 (600519)</span>
+                    <span class="positive">¥1,850.20 (+2.5%)</span>
+                </div>
+                <div class="indicators">
+                    <span>RSI(14): 65.3</span>
+                    <span>MACD: 金叉形成</span>
+                    <span>均線: 站上20日</span>
+                </div>
+            </div>
+            
+            <div class="stock-item">
+                <div class="stock-header">
+                    <span>寧德時代 (300750)</span>
+                    <span class="negative">¥380.50 (-1.2%)</span>
+                </div>
+                <div class="indicators">
+                    <span>RSI(14): 42.1</span>
+                    <span>MACD: 死叉確認</span>
+                    <span>均線: 跌破50日</span>
+                </div>
+            </div>
+            
+            <div class="stock-item">
+                <div class="stock-header">
+                    <span>比亞迪 (002594)</span>
+                    <span class="positive">¥220.80 (+3.1%)</span>
+                </div>
+                <div class="indicators">
+                    <span>RSI(14): 72.5</span>
+                    <span>MACD: 強勢上行</span>
+                    <span>均線: 多頭排列</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="recommendations">
+            <h3>投資建議</h3>
+            <p><strong>短期策略:</strong> 關注貴州茅台的突破機會，謹慎對待比亞迪的超買風險</p>
+            <p><strong>中期策略:</strong> 寧德時代等待企穩信號，可考慮分批建倉</p>
+            <p><strong>風險提示:</strong> 市場波動加劇，建議控制倉位在60%以下</p>
+        </div>
+    </div>
+</body>
+</html>

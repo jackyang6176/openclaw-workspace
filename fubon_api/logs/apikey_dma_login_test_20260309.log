@@ -1,0 +1,20 @@
+[2026-03-09 13:09:39] [INFO] 用戶 ID：H120193488
+[2026-03-09 13:09:39] [INFO] API Key：195B242E5D...E79F5F9B2C
+[2026-03-09 13:09:39] [INFO] 正在導入富邦 SDK...
+[2026-03-09 13:09:40] [INFO] ✅ SDK 導入成功，版本：2.2.8
+[2026-03-09 13:09:40] [INFO] 初始化 FubonSDK...
+[2026-03-09 13:09:40] [INFO] ✅ SDK 初始化成功
+[2026-03-09 13:09:40] [INFO] ======================================================================
+[2026-03-09 13:09:40] [INFO] 執行 sdk.apikey_dma_login(user_id, api_key)...
+[2026-03-09 13:09:40] [INFO] ======================================================================
+[2026-03-09 13:09:40] [INFO] 登入結果類型：<class 'builtins.CustomReturnType'>
+[2026-03-09 13:09:40] [INFO] 登入結果：Result {
+  is_success: False,
+  message: Login Error, API認證,APIKEY位址不符,
+  data: None
+}
+[2026-03-09 13:09:40] [INFO] is_success：False
+[2026-03-09 13:09:40] [INFO] data：None
+[2026-03-09 13:09:40] [INFO] message：Login Error, API認證,APIKEY位址不符
+[2026-03-09 13:09:40] [ERROR] ❌ API Key DMA 登入失敗
+[2026-03-09 13:09:40] [ERROR] 錯誤訊息：Login Error, API認證,APIKEY位址不符
