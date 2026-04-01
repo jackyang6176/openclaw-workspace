@@ -1,0 +1,22 @@
+{
+  "date": "20260401",
+  "timestamp": "2026-04-01T16:47:44.223790",
+  "total_stocks": 318,
+  "strategy4_candidates": [
+    {
+      "symbol": "3305",
+      "detail": "型態:bullish_engulfing, 量比:2.2x, MA20偏離:2.5%",
+      "score": 0.8,
+      "pattern": "bullish_engulfing",
+      "pattern_desc": "多頭吞噬（两K線組合多方反轉）",
+      "pattern_score": 0.85,
+      "vol_ratio": 2.22,
+      "ma20": 104.4,
+      "ma_dist_pct": 2.49,
+      "close": 107.0,
+      "open": 103.0,
+      "high": 112.0,
+      "low": 102.0,
+      "volume": 6691661,
+      "range_pct": 15.79,
+      "vol3_up": 
