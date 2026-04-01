@@ -2,77 +2,63 @@
 """
 Watchlist Manager - 持續追蹤清單管理系統
 ========================================
-功能：
-1. 每次新篩選結果加入清單
-2. 與持倉股合併（持倉股優先保留）
-3. 限留 20 檔，淘汰弱勢股
-4. 記錄每檔入選原因、入選日期、表現
-
-新策略A進場條件（需滿足全部4條件）：
-  1. 價格在 MA20 以下
-  2. 股價已呈橫盤整理（10日高低差距 < 8%）
-  3. 連三日量增（今日 > 昨日 > 前日 > 大前日）
-  4. 型態止跌（錘子或多頭吞噬）
+新策略A進場條件（需滿足全部5條件）：
+  1. 5日均線在 20日均線下方
+  2. 5MA 與 20MA 價差連三日縮小（收斂中）
+  3. 20MA > 5MA（方向未翻轉，差值 < 1%）
+  4. 最近交易日：兩線價差 < 1%
+  5. 連三日量增（今日 > 昨日 > 前日 > 大前日）
 出廠：價格反彈至 MA20 獲利了結
 停損：進場價 -3%
 
 使用方式：
     python3 watchlist_manager.py --add path/to/results.json
     python3 watchlist_manager.py --show
-    python3 watchlist_manager.py --trim  # 手動執行優勝劣汰
+    python3 watchlist_manager.py --trim
 """
 
 import json
 import sys
-import os
 from datetime import datetime, date
 from pathlib import Path
 
 WATCHLIST_FILE = Path(__file__).parent / "watchlist.json"
 MAX_WATCHLIST = 20
 
+# 持倉股（從帳戶讀取）
+HOLDINGS = {}
 
 def load_watchlist():
     if WATCHLIST_FILE.exists():
         with open(WATCHLIST_FILE) as f:
             return json.load(f)
-    return {
-        "holdings": {},
-        "watchlist": [],
-        "last_updated": ""
-    }
-
+    return {"holdings": {}, "watchlist": [], "last_updated": ""}
 
 def save_watchlist(data):
     data["last_updated"] = datetime.now().isoformat()
     with open(WATCHLIST_FILE, "w") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-
 def score_stock(stock):
-    """計算股票保留分數（越高越保留）
-
-    新策略A條件（進場需滿足全部4條件）：
-      1. 價格在 MA20 以下
-      2. 橫盤整理（10日高低差距 < 8%）
-      3. 連三日量增
-      4. 型態止跌
-    """
+    """計算股票保留分數（越高越保留）"""
     score = 0
 
-    # 1. 距MA20（低於MA20越多分數越高，最高20分）
-    ma_dist = stock.get("ma_dist_pct", 0)
-    if ma_dist is not None and ma_dist < 0:
-        score += min(20, abs(ma_dist) * 2)
-    elif ma_dist is not None:
-        score += max(0, 20 - ma_dist * 2)
+    # 1. 5MA-20MA 差值（越接近0（即將黃金交叉）分數越高）
+    ma_gap = stock.get("ma_gap_pct", 0)
+    if ma_gap is not None and ma_gap < 0:
+        # 5MA低於20MA，差值越小（接近0）越好
+        score += min(20, abs(ma_gap) * 10 + (1 - abs(ma_gap)) * 5)
+    elif ma_gap is not None and ma_gap > 0:
+        score += max(0, 15 - ma_gap * 3)
 
-    # 2. 橫盤加分（10日高低差距 < 8% 給15分）
-    range_pct = stock.get("range_10d_pct", 0)
-    if range_pct > 0 and range_pct < 8:
-        score += 15
-    elif range_pct > 0:
-        score += max(0, 15 - (range_pct - 8))
+    # 2. 兩線收斂速度（差值減少越多分數越高）
+    gap_narrow_days = stock.get("gap_narrow_days", 0)
+    if gap_narrow_days >= 3:
+        score += 20
+    elif gap_narrow_days == 2:
+        score += 12
+    elif gap_narrow_days == 1:
+        score += 6
 
     # 3. 連三日量增（滿足給20分）
     vol_days = stock.get("vol_increase_days", 0)
@@ -83,55 +69,43 @@ def score_stock(stock):
     elif vol_days == 1:
         score += 5
 
-    # 4. 型態強度（15分）
-    pattern = stock.get("pattern", "")
-    if "engulfing" in pattern.lower():
+    # 4. 兩線差值 < 1%（滿足給15分）
+    if ma_gap is not None and abs(ma_gap) < 1:
         score += 15
-    elif "hammer" in pattern.lower():
-        score += 12
-    else:
-        score += 5
 
     # 5. 已在倉位（+20分）
-    sym = stock.get("code", stock.get("symbol", ""))
+    sym = stock.get("code", "")
     if sym in HOLDINGS or stock.get("is_holding", False):
         score += 20
 
-    # 6. 連續在清單天數（越久表現越好，最高+10分）
+    # 6. 連續在清單天數（最高+10分）
     days_in_list = stock.get("days_in_list", 0)
     score += min(10, days_in_list)
 
     return round(score, 1)
 
-
 def check_entry_signal(stock):
     """檢查是否符合新策略A進場條件"""
-    ma_dist = stock.get("ma_dist_pct", 0)
-    range_pct = stock.get("range_10d_pct", 0)
+    ma_gap = stock.get("ma_gap_pct", 0)
+    gap_narrow_days = stock.get("gap_narrow_days", 0)
     vol_days = stock.get("vol_increase_days", 0)
-    pattern = stock.get("pattern", "").lower()
 
-    cond1 = (ma_dist is not None and ma_dist < 0)       # 價格在MA20以下
-    cond2 = (range_pct > 0 and range_pct < 8)            # 橫盤整理
-    cond3 = (vol_days >= 3)                                 # 連三日量增
-    cond4 = ("hammer" in pattern or "engulfing" in pattern)  # 止跌型態
+    cond1 = (ma_gap is not None and ma_gap < 0)            # 5MA在20MA下方
+    cond2 = (gap_narrow_days >= 3)                           # 差值連三日縮小
+    cond3 = (ma_gap is not None and abs(ma_gap) < 1)      # 差值<1%
+    cond4 = (vol_days >= 3)                                  # 連三日量增
 
     all_ok = cond1 and cond2 and cond3 and cond4
     confidence = (cond1 + cond2 + cond3 + cond4) / 4 * 100
 
     return all_ok, confidence, {
-        "cond1_below_ma20": cond1,
-        "cond2_consolidation": cond2,
-        "cond3_vol_increase": cond3,
-        "cond4_hammer_engulfing": cond4
+        "cond1_5ma_below_20ma": cond1,
+        "cond2_gap_narrow_3d": cond2,
+        "cond3_gap_under_1pct": cond3,
+        "cond4_vol_up_3d": cond4
     }
 
-
-HOLDINGS = {}
-
-
 def add_to_watchlist(new_stocks):
-    """加入新候選股至清單"""
     data = load_watchlist()
     existing = {s["code"]: s for s in data["watchlist"]}
     now = date.today().isoformat()
@@ -143,13 +117,16 @@ def add_to_watchlist(new_stocks):
         if code in existing:
             existing[code]["days_in_list"] = existing[code].get("days_in_list", 0) + 1
             existing[code]["last_seen"] = now
-            existing[code]["today_change_pct"] = s.get("today_change_pct", s.get("change_pct", 0))
-            existing[code]["ma_dist_pct"] = s.get("ma_dist_pct", s.get("dist_ma", 0))
-            existing[code]["vol_ratio"] = s.get("vol_ratio", s.get("volume_ratio", 1.0))
-            existing[code]["last_price"] = s.get("close", s.get("last_price", 0))
-            existing[code]["pattern"] = s.get("pattern", existing[code].get("pattern", ""))
-            existing[code]["range_10d_pct"] = s.get("range_10d_pct", existing[code].get("range_10d_pct", 0))
-            existing[code]["vol_increase_days"] = s.get("vol_increase_days", existing[code].get("vol_increase_days", 0))
+            existing[code].update({
+                "today_change_pct": s.get("today_change_pct", s.get("change_pct", 0)),
+                "ma_gap_pct": s.get("ma_gap_pct", existing[code].get("ma_gap_pct", 0)),
+                "gap_narrow_days": s.get("gap_narrow_days", existing[code].get("gap_narrow_days", 0)),
+                "vol_increase_days": s.get("vol_increase_days", existing[code].get("vol_increase_days", 0)),
+                "ma5": s.get("ma5", existing[code].get("ma5", 0)),
+                "ma20": s.get("ma20", existing[code].get("ma20", 0)),
+                "last_price": s.get("close", s.get("last_price", 0)),
+                "pattern": s.get("pattern", existing[code].get("pattern", "")),
+            })
         else:
             existing[code] = {
                 "code": code,
@@ -158,12 +135,13 @@ def add_to_watchlist(new_stocks):
                 "last_seen": now,
                 "days_in_list": 0,
                 "pattern": s.get("pattern", ""),
-                "entry_reason": s.get("reason", s.get("entry_reason", "")),
+                "entry_reason": s.get("reason", ""),
                 "today_change_pct": s.get("today_change_pct", s.get("change_pct", 0)),
-                "ma_dist_pct": s.get("ma_dist_pct", s.get("dist_ma", 0)),
-                "vol_ratio": s.get("vol_ratio", s.get("volume_ratio", 1.0)),
-                "range_10d_pct": s.get("range_10d_pct", 0),
+                "ma_gap_pct": s.get("ma_gap_pct", 0),
+                "gap_narrow_days": s.get("gap_narrow_days", 0),
                 "vol_increase_days": s.get("vol_increase_days", 0),
+                "ma5": s.get("ma5", 0),
+                "ma20": s.get("ma20", 0),
                 "last_price": s.get("close", s.get("last_price", 0)),
                 "is_holding": code in HOLDINGS
             }
@@ -171,9 +149,7 @@ def add_to_watchlist(new_stocks):
     data["watchlist"] = list(existing.values())
     return data
 
-
 def trim_watchlist(data):
-    """限留20檔，淘汰弱勢股"""
     total_holdings = len([h for h in HOLDINGS.values() if h.get("entry_price", 0) > 0])
     watchlist_only = [s for s in data["watchlist"] if not s.get("is_holding")]
     holdings_in_list = [s for s in data["watchlist"] if s.get("is_holding")]
@@ -182,7 +158,6 @@ def trim_watchlist(data):
         s["_score"] = score_stock(s)
 
     watchlist_only.sort(key=lambda x: x.get("_score", 0), reverse=True)
-
     slot = max(0, MAX_WATCHLIST - total_holdings - len(holdings_in_list))
     kept = watchlist_only[:slot]
     removed = watchlist_only[slot:]
@@ -196,26 +171,24 @@ def trim_watchlist(data):
 
     return data
 
-
 def show_watchlist():
-    """顯示目前清單，含進場信號評估"""
     data = load_watchlist()
-    print(f"\n{'='*80}")
+    print(f"\n{'='*90}")
     print(f"  持續追蹤清單  {date.today()}  |  持倉 {len([h for h in HOLDINGS.values() if h.get('entry_price',0)>0])} 檔  |  觀察 {len(data['watchlist'])} 檔")
-    print(f"{'='*80}")
+    print(f"{'='*90}")
 
     if data["watchlist"]:
-        print(f"\n{'代碼':<8}{'名稱':<10}{'分數':<6}{'MA20距':<8}{'橫盤':<7}{'量增':<6}{'型態':<15}{'天':<4}{'信號'}")
-        print("-" * 85)
+        print(f"\n{'代碼':<8}{'名稱':<10}{'MA5':<8}{'MA20':<8}{'兩線差%':<8}{'收斂日':<7}{'量增日':<7}{'分數':<6}{'信號'}")
+        print("-" * 75)
         for s in sorted(data["watchlist"], key=lambda x: score_stock(x), reverse=True):
             sc = score_stock(s)
             ok, conf, conds = check_entry_signal(s)
             sig = f"✅進({conf:.0f}%)" if ok else f"({conf:.0f}%)"
-            ma = f"{s.get('ma_dist_pct',0):+.2f}%"
-            rng = f"{s.get('range_10d_pct',0):.1f}%" if s.get('range_10d_pct') else "-"
-            vol = f"{s.get('vol_increase_days',0)}天"
-            print(f"{s['code']:<8}{s.get('name',''):<10}{sc:<6.1f}{ma:<8}{rng:<7}{vol:<6}"
-                  f"{s.get('pattern',''):<15}{s.get('days_in_list',0):<4}{sig}")
+            ma5 = f"{s.get('ma5',0):.2f}"
+            ma20 = f"{s.get('ma20',0):.2f}"
+            gap = f"{s.get('ma_gap_pct',0):+.2f}%"
+            print(f"{s['code']:<8}{s.get('name',''):<10}{ma5:<8}{ma20:<8}{gap:<8}"
+                  f"{s.get('gap_narrow_days',0):<7}{s.get('vol_increase_days',0):<7}{sc:<6.1f}{sig}")
 
     if data.get("removed_last"):
         print(f"\n已淘汰：{', '.join([r['code'] for r in data['removed_last']])}")
@@ -223,7 +196,6 @@ def show_watchlist():
     print(f"\n更新時間：{data.get('last_updated', 'N/A')}")
     print()
     return data
-
 
 if __name__ == "__main__":
     import argparse
