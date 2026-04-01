@@ -1,0 +1,471 @@
+#!/usr/bin/env python3
+"""
+新策略A篩選器 - 富邦API專用版
+【嚴格規定】只使用富邦 API，拒用 Yahoo Finance / FinMind
+
+新策略A進場條件（需同時滿足5條件）：
+1. 5日均線在20日均線下方（5MA < 20MA）
+2. 兩線價差（20MA-5MA）連三日縮小
+3. 20MA > 5MA（方向未翻轉）且兩線價差 < 1%
+4. 最近交易日：兩線價差 < 1%
+5. 連三日量增（今日 > 昨日 > 前日 > 大前日）
+
+出场：價格反彈至 MA20 獲利了結
+停損：進場價 -3%
+"""
+import os
+import sys
+import json
+import time
+import pandas as pd
+import numpy as np
+from datetime import datetime, date, timedelta
+from typing import List, Dict, Tuple, Optional
+
+WORKSPACE = "/home/admin/.openclaw/workspace"
+SCREENER_DIR = f"{WORKSPACE}/stock-screener"
+FUBON_API_DIR = f"{WORKSPACE}/fubon_api"
+OUTPUT_DIR = f"{SCREENER_DIR}/output"
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+sys.path.insert(0, FUBON_API_DIR)
+from fubon_kline_sdk import FubonKlineSDK
+
+# 股票名稱對照表（常見藍籌/肥股）
+STOCK_NAMES = {
+    '2330': '台積電', '2317': '鴻海', '2454': '聯發科', '2382': '緯創', '2308': '台達電',
+    '2303': '聯電', '3034': '聯詠', '2357': '華碩', '3008': '大立光', '2327': '國巨',
+    '3481': '友達', '2353': '宏碁', '2345': '智邦', '2609': '陽明', '2610': '長榮',
+    '2323': '中壽', '2325': '矽品', '2344': '華邦電', '2352': '方正', '2360': '鴻準',
+    '2379': '瑞昱', '2383': '台光電', '2440': '太空梭', '2498': '宏達電', '3006': '順德',
+    '3014': '聯陽', '3031': '佰鴻', '3045': '凌耀', '3090': '日電硝', '3130': '一零',
+    '3149': '衡平', '3189': '景碩', '3231': '緯穎', '3257': '虹冠電', '3305': '聚積',
+    '3338': '新利虹', '3416': '龍燷', '3443': '創意', '3450': '聯亞', '3504': '昇陽',
+    '3532': '台勝科', '3545': '敦泰', '3567': '逸昌', '3576': '新日光', '3583': '辛耘',
+    '3587': '闊新', '3593': '保銓', '3594': '淂瑩', '3607': '谷林', '3617': '頎邦',
+    '3652': '力致', '3661': '世芯', '3665': '創家', '3673': 'TPK', '3682': '粵海',
+    '3698': '上海', '3702': '大聯大', '3706': '永道', '3711': '眾達', '3714': '富邦金',
+    '3740': '永固', '3800': '傳', '3838': '大', '4001': '中華', '4002': '中石化',
+    '4107': '美吾', '4137': '星', '4401': '大', '4414': '永', '4426': '大',
+    '4523': '大', '4549': '大', '4551': '大', '4562': '大', '4580': '大',
+    '4604': '大', '4702': '大', '4707': '大', '4720': '大', '4807': '大',
+    '4904': '大', '4930': '大', '4938': '大', '4952': '大', '4958': '大',
+    '4960': '大', '5009': '大', '5104': '大', '5120': '大', '5130': '大',
+    '5151': '大', '5203': '大', '5225': '大', '5234': '大', '5264': '大',
+    '5309': '大', '5387': '大', '5434': '大', '5469': '大', '5474': '大',
+    '5487': '大', '5511': '大', '5512': '大', '5522': '大', '5530': '大',
+    '5536': '大', '5607': '大', '5609': '大', '5701': '大', '5702': '大',
+    '5820': '大', '5876': '大', '5880': '大', '5903': '大', '5904': '大',
+    '5906': '大', '6005': '大', '6024': '大', '6026': '大', '6108': '大',
+    '6112': '大', '6115': '大', '6116': '大', '6120': '大', '6128': '大',
+    '6136': '大', '6147': '大', '6152': '大', '6153': '大', '6155': '大',
+    '6164': '大', '6165': '大', '6172': '大', '6174': '大', '6176': '大',
+    '6180': '大', '6182': '大', '6184': '大', '6185': '大', '6190': '大',
+    '6191': '大', '6192': '大', '6201': '大', '6202': '大', '6205': '大',
+    '6206': '大', '6208': '大', '6213': '大', '6214': '大', '6216': '大',
+    '6220': '大', '6221': '大', '6223': '大', '6225': '大', '6226': '大',
+    '6229': '大', '6230': '大', '6234': '大', '6235': '大', '6239': '大',
+    '6244': '大', '6257': '大', '6269': '大', '6270': '大', '6271': '大',
+    '6274': '大', '6275': '大', '6279': '大', '6281': '大', '6283': '大',
+    '6285': '大', '6288': '大', '6289': '大', '6290': '大', '6291': '大',
+    '6292': '大', '6293': '大', '6294': '大', '6505': '大', '6525': '大',
+    '6531': '大', '6533': '大', '6535': '大', '6541': '大', '6542': '大',
+    '6550': '大', '6560': '大', '6569': '大', '6570': '大', '6575': '大',
+    '6579': '大', '6581': '大', '6585': '大', '6590': '大', '6591': '大',
+    '6592': '大', '6594': '大', '6603': '大', '6625': '大', '6655': '大',
+    '6700': '大', '6706': '大', '6715': '大', '6721': '大', '6752': '大',
+    '6756': '大', '6806': '大', '6881': '大', '6889': '大', '2008': '高興昌',
+    '2007': '燁興', '3023': '信邦',
+}
+
+# 優先掃描清單（成交量大的熱門股）
+PRIORITY_STOCKS = [
+    '2330','2317','2454','2382','2308','2303','3034','2357','3008','2327',
+    '3481','2353','2345','2609','2610','2323','2325','2344','2352','2360',
+    '2379','2383','2440','2498','3006','3014','3031','3045','3090','3130',
+    '3149','3189','3231','3257','3305','3416','3443','3450','3504','3532',
+    '3545','3661','3673','3682','3711','3714','4958','4960','5009','6108',
+    '6116','6128','6153','6165','6176','6180','6182','6191','6201','6213',
+    '6221','6230','6269','6271','6277','6281','6285','6288','6291','6505',
+    '6525','6533','6550','6560','6569','6570','6575','6579','6581','6590',
+    '6591','6592','6700','6706','6715','6756','6806','6881','6889',
+    '2008','2007','3023',
+]
+
+# 全市場股票清單（備用）
+TWSE_STOCKS = [
+    '2330','2317','2454','2382','2308','2303','3034','2357','3008','2327',
+    '3481','2353','2345','2609','2610','2323','2325','2344','2352','2360',
+    '2379','2383','2440','2498','3006','3014','3031','3045','3090','3130',
+    '3149','3189','3231','3257','3305','3338','3416','3443','3450','3504',
+    '3532','3545','3567','3576','3583','3587','3593','3594','3607','3617',
+    '3652','3661','3665','3673','3682','3698','3702','3706','3711','3714',
+    '3740','3800','3838','4001','4002','4107','4137','4401','4414','4426',
+    '4523','4549','4551','4562','4580','4604','4702','4707','4720','4807',
+    '4904','4930','4938','4952','4958','4960','5009','5104','5120','5130',
+    '5151','5203','5225','5234','5264','5309','5387','5434','5469','5474',
+    '5487','5511','5512','5522','5530','5536','5607','5609','5701','5702',
+    '5820','5876','5880','5903','5904','5906','6005','6024','6026','6108',
+    '6112','6115','6116','6120','6128','6136','6147','6152','6153','6155',
+    '6164','6165','6172','6174','6176','6180','6182','6184','6185','6190',
+    '6191','6192','6201','6202','6205','6206','6208','6213','6214','6216',
+    '6220','6221','6223','6225','6226','6229','6230','6234','6235','6239',
+    '6244','6257','6269','6270','6271','6274','6275','6279','6281','6283',
+    '6285','6288','6289','6290','6291','6292','6293','6294','6505','6525',
+    '6531','6533','6535','6541','6542','6550','6560','6569','6570','6575',
+    '6579','6581','6585','6590','6591','6592','6594','6603','6625','6655',
+    '6700','6706','6715','6721','6752','6756','6806','6881','6889',
+    '8011','8016','8021','8033','8039','8046','8050','8069','8070','8081',
+    '8101','8105','8110','8114','8121','8147','8150','8163','8171','8176',
+    '8183','8200','8210','8213','8215','8226','8234','8249','8255','8261',
+    '8271','8277','8285','8289','8299','8303','8306','8341','8349','8354',
+    '8358','8367','8374','8383','8401','8410','8415','8420','8422','8426',
+    '8430','8442','8454','8462','8463','8464','8473','8478','8482','8495',
+    '8506','8905','8906','8916','8917','8927','8930','8931','8932','8933',
+    '8934','8935','8936','8937','8938','8941','8942','8996','9904','9905',
+    '9910','9911','9914','9917','9921','9924','9925','9928','9930','9931',
+    '9933','9934','9935','9937','9938','9939','9940','9941','9942','9943',
+    '9944','9945','9946','9950','9955','9956','9958',
+    '2008','2007','3023',
+]
+
+
+def log(msg: str):
+    print(f"[{datetime.now().strftime('%H:%M:%S')}] {msg}")
+
+
+def get_stock_data_fubon(client: FubonKlineSDK, symbol: str, days: int = 40) -> Optional[pd.DataFrame]:
+    """使用富邦API獲取股票日K數據"""
+    try:
+        end_date = '2026-04-01'
+        start_date = '2026-01-15'  # 往前多取一些確保有足夠數據
+        
+        data = client.get_historical_candles(symbol, start_date, end_date, 'D')
+        if not data or len(data) < 25:
+            return None
+        
+        # 富邦API返回 newest-first，需翻轉為 oldest-first
+        data = list(reversed(data))
+        
+        df = pd.DataFrame(data)
+        df['date'] = pd.to_datetime(df['date'])
+        df = df.sort_values('date').reset_index(drop=True)
+        df['close'] = df['close'].astype(float)
+        df['volume'] = df['volume'].astype(float)
+        df['open'] = df['open'].astype(float)
+        df['high'] = df['high'].astype(float)
+        df['low'] = df['low'].astype(float)
+        
+        # 只取最近 days 筆
+        if len(df) > days:
+            df = df.tail(days).reset_index(drop=True)
+        
+        return df
+    except Exception as e:
+        log(f"  ⚠️ {symbol} 資料取得失敗: {e}")
+        return None
+
+
+def analyze_strategy_a(df: pd.DataFrame) -> Optional[Dict]:
+    """
+    分析股票是否符合新策略A的5個進場條件
+    
+    條件：
+    1. 5MA < 20MA
+    2. 兩線價差（20MA-5MA）連三日縮小
+    3. 20MA > 5MA 且 兩線價差 < 1%
+    4. 最近交易日：兩線價差 < 1%
+    5. 連三日量增（今日 > 昨日 > 前日 > 大前日）
+    
+    Returns: 分析結果字典 或 None
+    """
+    if df is None or len(df) < 25:
+        return None
+    
+    # 取最近25根日K
+    df = df.tail(25).reset_index(drop=True)
+    
+    close_arr = df['close'].values
+    volume_arr = df['volume'].values
+    dates_arr = df['date'].dt.strftime('%Y-%m-%d').values
+    
+    n = len(close_arr)
+    
+    # 計算每日MA5、MA20、價差%
+    ma5_list = []
+    ma20_list = []
+    gap_list = []
+    
+    for i in range(n):
+        # MA5: 近5日收盤均值（i-4 到 i）
+        ma5 = close_arr[max(0, i-4):i+1].mean()
+        # MA20: 近20日收盤均值（i-19 到 i）
+        ma20 = close_arr[max(0, i-19):i+1].mean()
+        
+        ma5_list.append(ma5)
+        ma20_list.append(ma20)
+        gap_pct = (ma20 - ma5) / ma20 * 100 if ma20 > 0 else 0
+        gap_list.append(gap_pct)
+    
+    # 最近4天: index n-4(大前日), n-3(前日), n-2(昨日), n-1(今日)
+    idx_d3 = n - 4  # 大前日
+    idx_d2 = n - 3  # 前日
+    idx_d1 = n - 2  # 昨日
+    idx_d0 = n - 1  # 今日
+    
+    if idx_d3 < 0:
+        return None
+    
+    # 最新值
+    ma5_latest = ma5_list[idx_d0]
+    ma20_latest = ma20_list[idx_d0]
+    gap_latest = gap_list[idx_d0]
+    
+    # 近4日價差序列
+    gap_d3 = gap_list[idx_d3]  # 大前日
+    gap_d2 = gap_list[idx_d2]  # 前日
+    gap_d1 = gap_list[idx_d1]  # 昨日
+    gap_d0 = gap_list[idx_d0]  # 今日
+    
+    # 近4日成交量
+    vol_d3 = volume_arr[idx_d3]  # 大前日
+    vol_d2 = volume_arr[idx_d2]  # 前日
+    vol_d1 = volume_arr[idx_d1]  # 昨日
+    vol_d0 = volume_arr[idx_d0]  # 今日
+    
+    # === 評估5條件 ===
+    # 條件1：5MA < 20MA
+    cond1 = ma5_latest < ma20_latest
+    
+    # 條件2：兩線價差連三日縮小（大前日→前日→昨日→今日皆逐日縮小）
+    cond2 = (gap_d2 < gap_d3) and (gap_d1 < gap_d2) and (gap_d0 < gap_d1)
+    
+    # 條件3：20MA > 5MA 且 兩線價差 < 1%（方向未翻轉）
+    cond3 = cond1 and (gap_latest < 1.0)
+    
+    # 條件4：最近交易日：兩線價差 < 1%
+    cond4 = gap_latest < 1.0
+    
+    # 條件5：連三日量增（今日 > 昨日 > 前日 > 大前日）
+    cond5 = (vol_d0 > vol_d1) and (vol_d1 > vol_d2) and (vol_d2 > vol_d3)
+    
+    # === 計算交易計劃 ===
+    entry_price = close_arr[idx_d0]
+    target_price = round(ma20_latest, 2)
+    stop_loss = round(entry_price * 0.97, 2)
+    target_pct = (target_price - entry_price) / entry_price * 100
+    
+    result = {
+        'date': dates_arr[idx_d0],
+        'close': round(entry_price, 2),
+        'ma5': round(ma5_latest, 2),
+        'ma20': round(ma20_latest, 2),
+        'gap_pct': round(gap_latest, 3),
+        'gap_d3': round(gap_d3, 3),
+        'gap_d2': round(gap_d2, 3),
+        'gap_d1': round(gap_d1, 3),
+        'gap_d0': round(gap_d0, 3),
+        'cond1': cond1,   # MA5 < MA20
+        'cond2': cond2,   # 連三日收斂
+        'cond3': cond3,   # 差<1%且方向未翻
+        'cond4': cond4,   # 今日差<1%
+        'cond5': cond5,   # 量增3日
+        'vol_today': int(vol_d0),
+        'vol_yesterday': int(vol_d1),
+        'vol_2day': int(vol_d2),
+        'vol_3day': int(vol_d3),
+        'cond_count': sum([cond1, cond2, cond3, cond4, cond5]),
+        'entry_price': round(entry_price, 2),
+        'target_price': target_price,
+        'stop_loss': stop_loss,
+        'target_pct': round(target_pct, 2),
+    }
+    
+    return result
+
+
+def main():
+    today = '2026-04-01'
+    log("=" * 70)
+    log(f"新策略A篩選器啟動（{today} 盤後）— 富邦API專用")
+    log("=" * 70)
+    
+    # === 登入富邦 ===
+    log("正在登入富邦帳戶...")
+    client = FubonKlineSDK()
+    if not client.login():
+        log("❌ 富邦登入失敗，程式終止")
+        return
+    log("✅ 富邦登入成功")
+    
+    # === 讀取候選股清單 ===
+    # 優先用 result_4_kline_volume 的輸出
+    result_file = f"{OUTPUT_DIR}/fixed_batch_results_20260401_202256.json"
+    candidates = []
+    
+    if os.path.exists(result_file):
+        try:
+            with open(result_file) as f:
+                data = json.load(f)
+                candidates_raw = data.get('strategies', {}).get('result_4_kline_volume', [])
+                if candidates_raw:
+                    candidates = [c.get('stock_code') or c.get('symbol') or c.get('code') for c in candidates_raw]
+                    log(f"從 result_4_kline_volume 載入 {len(candidates)} 檔候選")
+        except Exception as e:
+            log(f"⚠️ 讀取 result_4 失敗: {e}")
+    
+    # 如果候選不足，使用優先清單
+    if len(candidates) < 5:
+        candidates = PRIORITY_STOCKS
+        log(f"使用優先掃描清單：{len(candidates)} 檔")
+    
+    # 去重
+    seen = set()
+    unique_candidates = []
+    for c in candidates:
+        if c not in seen:
+            seen.add(c)
+            unique_candidates.append(c)
+    candidates = unique_candidates
+    
+    log(f"共 {len(candidates)} 檔候選股票需要驗證")
+    
+    # === 分析每一檔 ===
+    passed = []      # 完全符合（5/5條件）
+    near_miss = []   # 接近符合（3-4/5條件）
+    failed = []      # 分析失敗
+    fetch_failed = []  # 資料取得失敗
+    
+    total = len(candidates)
+    
+    for i, symbol in enumerate(candidates):
+        log(f"[{i+1:3d}/{total}] 分析 {symbol}...")
+        
+        df = get_stock_data_fubon(client, symbol, days=40)
+        
+        if df is None:
+            fetch_failed.append({'symbol': symbol, 'name': STOCK_NAMES.get(symbol, symbol), 'reason': '富邦API資料取得失敗'})
+            log(f"  ⚠️ {symbol} 資料取得失敗")
+            continue
+        
+        result = analyze_strategy_a(df)
+        
+        if result is None:
+            failed.append({'symbol': symbol, 'name': STOCK_NAMES.get(symbol, symbol)})
+            continue
+        
+        name = STOCK_NAMES.get(symbol, symbol)
+        result['symbol'] = symbol
+        result['name'] = name
+        
+        cnt = result['cond_count']
+        gap = result['gap_pct']
+        
+        if cnt == 5:
+            passed.append(result)
+            log(f"  ✅ {symbol} {name} 完全符合！({cnt}/5) 價差:{gap:.3f}%")
+        elif cnt >= 3:
+            near_miss.append(result)
+            missing = []
+            if not result['cond1']: missing.append('MA5≥MA20')
+            if not result['cond2']: missing.append('三日未收斂')
+            if not result['cond3']: missing.append('差≥1%')
+            if not result['cond4']: missing.append('今日差≥1%')
+            if not result['cond5']: missing.append('量未增3日')
+            log(f"  🔸 {symbol} {name} 接近({cnt}/5) 缺:{','.join(missing)}")
+        else:
+            log(f"  ❌ {symbol} {name} ({cnt}/5)")
+        
+        time.sleep(0.3)  # 避免API限速
+    
+    # === 登出 ===
+    client.logout()
+    log("✅ 已登出富邦")
+    
+    # === 產出報告 ===
+    print()
+    print("=" * 100)
+    print(f"【新策略A篩選結果 {today}】（富邦API）")
+    print("=" * 100)
+    print()
+    
+    # 完全符合
+    if not passed:
+        print("📊 完全符合新策略A的標的：0 檔")
+        print()
+    else:
+        print(f"📊 完全符合新策略A的標的：{len(passed)} 檔")
+        print()
+        header = f"{'代碼':<6} {'名稱':<8} {'現價':>8} {'MA5':>8} {'MA20':>8} {'兩線差%':>8} {'三日收斂':>8} {'差<1%':>6} {'量增3日':>8} {'進場價':>8} {'目標':>8} {'停損':>8}"
+        print(header)
+        print("-" * 100)
+        for r in sorted(passed, key=lambda x: x['gap_pct']):
+            print(f"{r['symbol']:<6} {r['name']:<8} {r['close']:>8.2f} {r['ma5']:>8.2f} {r['ma20']:>8.2f} "
+                  f"{r['gap_pct']:>8.3f} {'✅' if r['cond2'] else '❌':>8} {'✅' if r['cond4'] else '❌':>6} "
+                  f"{'✅' if r['cond5'] else '❌':>8} {r['entry_price']:>8.2f} {r['target_price']:>8.2f} {r['stop_loss']:>8.2f}")
+    print()
+    
+    # 接近符合
+    if not near_miss:
+        print("📊 接近符合（缺1-2條件）：0 檔")
+    else:
+        print(f"📊 接近符合（缺1-2條件）：{len(near_miss)} 檔")
+        print()
+        header2 = f"{'代碼':<6} {'名稱':<8} {'現價':>8} {'兩線差%':>8} {'滿足':>5} {'缺失條件':<30}"
+        print(header2)
+        print("-" * 80)
+        for r in sorted(near_miss, key=lambda x: (-x['cond_count'], x['gap_pct'])):
+            missing = []
+            if not r['cond1']: missing.append('MA5≥MA20')
+            if not r['cond2']: missing.append('三日未收斂')
+            if not r['cond3']: missing.append('差≥1%')
+            if not r['cond4']: missing.append('今日差≥1%')
+            if not r['cond5']: missing.append('量未增3日')
+            missing_str = ','.join(missing) if missing else '-'
+            print(f"{r['symbol']:<6} {r['name']:<8} {r['close']:>8.2f} {r['gap_pct']:>8.3f} {r['cond_count']:>5}/5  {missing_str:<30}")
+    print()
+    
+    # 資料取得失敗
+    if fetch_failed:
+        print(f"⚠️ 資料取得失敗（富邦API）：{len(fetch_failed)} 檔")
+        for r in fetch_failed:
+            print(f"  {r['symbol']:<6} {r['name']:<8} → {r['reason']}")
+        print()
+    
+    # 策略說明
+    print("=" * 100)
+    print("【策略說明】")
+    print("新策略A進場條件（需同時滿足5條件）：")
+    print("  1. 5日均線在20日均線下方（5MA < 20MA）")
+    print("  2. 兩線價差（20MA-5MA）連三日縮小")
+    print("  3. 20MA > 5MA（方向未翻轉）且兩線價差 < 1%")
+    print("  4. 最近交易日：兩線價差 < 1%")
+    print("  5. 連三日量增（今日 > 昨日 > 前日 > 大前日）")
+    print()
+    print("出场：價格反彈至 MA20 獲利了結")
+    print("停損：進場價 -3%")
+    print("=" * 100)
+    
+    # 保存JSON結果
+    output_data = {
+        'date': today,
+        'timestamp': datetime.now().isoformat(),
+        'total_screened': total,
+        'passed_count': len(passed),
+        'near_miss_count': len(near_miss),
+        'fetch_failed_count': len(fetch_failed),
+        'passed': passed,
+        'near_miss': near_miss,
+        'fetch_failed': fetch_failed,
+    }
+    
+    out_file = f"{OUTPUT_DIR}/strategy_a_fubon_results_{today.replace('-','')}_{datetime.now().strftime('%H%M%S')}.json"
+    with open(out_file, 'w', encoding='utf-8') as f:
+        json.dump(output_data, f, ensure_ascii=False, indent=2)
+    log(f"📁 結果已保存：{out_file}")
+    
+    return output_data
+
+
+if __name__ == '__main__':
+    main()

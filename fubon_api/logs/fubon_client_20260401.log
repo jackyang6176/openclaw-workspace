@@ -1,0 +1,2046 @@
+[2026-04-01 09:05:14] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-04-01 09:05:14] [INFO] ✅ 配置載入成功
+[2026-04-01 09:05:14] [INFO] ======================================================================
+[2026-04-01 09:05:14] [INFO] 執行登入...
+[2026-04-01 09:05:14] [INFO] 用戶：H120193488
+[2026-04-01 09:05:14] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-04-01 09:05:14] [INFO] ✅ 登入成功！
+[2026-04-01 09:05:14] [INFO] 帳戶資訊：
+[2026-04-01 09:05:14] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-04-01 09:05:14] [INFO] ✅ 行情連線初始化成功
+[2026-04-01 09:05:14] [INFO] ======================================================================
+[2026-04-01 09:05:14] [INFO] 查詢帳戶餘額...
+[2026-04-01 09:05:15] [INFO] 餘額查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: BankRemain {
+    branch_no: "20214",
+    account: "408322",
+    currency: "TWD",
+    balance: 30000,
+    available_balance: 30000,
+}
+}
+[2026-04-01 09:05:15] [INFO] ✅ 餘額查詢成功
+[2026-04-01 09:05:15] [INFO] ======================================================================
+[2026-04-01 09:05:15] [INFO] 查詢股票行情：1453
+[2026-04-01 09:05:15] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "1453",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 12.15,
+    unit: 1000,
+    update_time: "09:04:37.425",
+    limitup_price: 13.35,
+    limitdown_price: 10.95,
+    open_price: 12.4,
+    high_price: 12.4,
+    low_price: 12.4,
+    last_price: 12.4,
+    total_volume: 2,
+    total_transaction: 0,
+    total_value: 24800,
+    last_size: 2,
+    last_transaction: 0,
+    last_value: 24800,
+    bid_price: 12.2,
+    bid_volume: 1,
+    ask_price: 12.45,
+    ask_volume: 5,
+}
+}
+[2026-04-01 09:05:15] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:05:15] [INFO] ======================================================================
+[2026-04-01 09:05:15] [INFO] 查詢股票行情：2027
+[2026-04-01 09:05:15] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2027",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 36.85,
+    unit: 1000,
+    update_time: "09:05:14.609",
+    limitup_price: 40.5,
+    limitdown_price: 33.2,
+    open_price: 37.25,
+    high_price: 37.25,
+    low_price: 36.6,
+    last_price: 36.75,
+    total_volume: 3978,
+    total_transaction: 0,
+    total_value: 147183650,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 36750,
+    bid_price: 36.75,
+    bid_volume: 44,
+    ask_price: 36.85,
+    ask_volume: 146,
+}
+}
+[2026-04-01 09:05:15] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:05:15] [INFO] ======================================================================
+[2026-04-01 09:05:15] [INFO] 查詢股票行情：2440
+[2026-04-01 09:05:15] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2440",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 0,
+    reference_price: 14.05,
+    unit: 1000,
+    update_time: "09:04:33.702",
+    limitup_price: 15.45,
+    limitdown_price: 12.65,
+    open_price: 14,
+    high_price: 14,
+    low_price: 14,
+    last_price: 14,
+    total_volume: 1,
+    total_transaction: 0,
+    total_value: 14000,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 14000,
+    bid_price: 14,
+    bid_volume: 6,
+    ask_price: 14.1,
+    ask_volume: 3,
+}
+}
+[2026-04-01 09:05:15] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:05:15] [INFO] ======================================================================
+[2026-04-01 09:05:15] [INFO] 查詢股票行情：3652
+[2026-04-01 09:05:15] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3652",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 26.65,
+    unit: 1000,
+    update_time: "09:04:02.291",
+    limitup_price: 29.3,
+    limitdown_price: 24,
+    open_price: 27.15,
+    high_price: 27.15,
+    low_price: 27,
+    last_price: 27,
+    total_volume: 2,
+    total_transaction: 0,
+    total_value: 54150,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 27000,
+    bid_price: 27,
+    bid_volume: 1,
+    ask_price: 27.2,
+    ask_volume: 1,
+}
+}
+[2026-04-01 09:05:15] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:05:15] [INFO] ======================================================================
+[2026-04-01 09:05:15] [INFO] 查詢股票行情：3532
+[2026-04-01 09:05:15] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3532",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 130.5,
+    unit: 1000,
+    update_time: "09:05:05.788",
+    limitup_price: 143.5,
+    limitdown_price: 117.5,
+    open_price: 137,
+    high_price: 137,
+    low_price: 135.5,
+    last_price: 136,
+    total_volume: 146,
+    total_transaction: 0,
+    total_value: 19976500,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 136000,
+    bid_price: 136,
+    bid_volume: 7,
+    ask_price: 136.5,
+    ask_volume: 4,
+}
+}
+[2026-04-01 09:05:15] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:05:15] [INFO] ======================================================================
+[2026-04-01 09:05:15] [INFO] 查詢持倉（未實現損益）...
+[2026-04-01 09:05:15] [INFO] 持倉查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: []
+}
+[2026-04-01 09:05:15] [INFO] ✅ 持倉查詢成功
+[2026-04-01 09:05:15] [INFO] ✅ 已登出
+[2026-04-01 09:11:50] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-04-01 09:11:50] [INFO] ✅ 配置載入成功
+[2026-04-01 09:11:50] [INFO] ======================================================================
+[2026-04-01 09:11:50] [INFO] 執行登入...
+[2026-04-01 09:11:50] [INFO] 用戶：H120193488
+[2026-04-01 09:11:50] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-04-01 09:11:51] [INFO] ✅ 登入成功！
+[2026-04-01 09:11:51] [INFO] 帳戶資訊：
+[2026-04-01 09:11:51] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-04-01 09:11:51] [INFO] ✅ 行情連線初始化成功
+[2026-04-01 09:12:07] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-04-01 09:12:07] [INFO] ✅ 配置載入成功
+[2026-04-01 09:12:07] [INFO] ======================================================================
+[2026-04-01 09:12:07] [INFO] 執行登入...
+[2026-04-01 09:12:07] [INFO] 用戶：H120193488
+[2026-04-01 09:12:07] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-04-01 09:12:08] [INFO] ✅ 登入成功！
+[2026-04-01 09:12:08] [INFO] 帳戶資訊：
+[2026-04-01 09:12:08] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-04-01 09:12:08] [INFO] ✅ 行情連線初始化成功
+[2026-04-01 09:12:29] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-04-01 09:12:29] [INFO] ✅ 配置載入成功
+[2026-04-01 09:12:29] [INFO] ======================================================================
+[2026-04-01 09:12:29] [INFO] 執行登入...
+[2026-04-01 09:12:29] [INFO] 用戶：H120193488
+[2026-04-01 09:12:29] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-04-01 09:12:30] [INFO] ✅ 登入成功！
+[2026-04-01 09:12:30] [INFO] 帳戶資訊：
+[2026-04-01 09:12:30] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-04-01 09:12:30] [INFO] ✅ 行情連線初始化成功
+[2026-04-01 09:13:27] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-04-01 09:13:27] [INFO] ✅ 配置載入成功
+[2026-04-01 09:13:27] [INFO] ======================================================================
+[2026-04-01 09:13:27] [INFO] 執行登入...
+[2026-04-01 09:13:27] [INFO] 用戶：H120193488
+[2026-04-01 09:13:27] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-04-01 09:13:28] [INFO] ✅ 登入成功！
+[2026-04-01 09:13:28] [INFO] 帳戶資訊：
+[2026-04-01 09:13:28] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-04-01 09:13:28] [INFO] ✅ 行情連線初始化成功
+[2026-04-01 09:14:57] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-04-01 09:14:57] [INFO] ✅ 配置載入成功
+[2026-04-01 09:14:57] [INFO] ======================================================================
+[2026-04-01 09:14:57] [INFO] 執行登入...
+[2026-04-01 09:14:57] [INFO] 用戶：H120193488
+[2026-04-01 09:14:57] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-04-01 09:14:58] [INFO] ✅ 登入成功！
+[2026-04-01 09:14:58] [INFO] 帳戶資訊：
+[2026-04-01 09:14:58] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-04-01 09:14:58] [INFO] ✅ 行情連線初始化成功
+[2026-04-01 09:33:27] [INFO] ✅ 配置載入成功
+[2026-04-01 09:33:28] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-04-01 09:33:28] [INFO] ======================================================================
+[2026-04-01 09:33:28] [INFO] 執行登入...
+[2026-04-01 09:33:28] [INFO] 用戶：H120193488
+[2026-04-01 09:33:28] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-04-01 09:33:28] [INFO] ✅ 登入成功！
+[2026-04-01 09:33:28] [INFO] 帳戶資訊：
+[2026-04-01 09:33:28] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-04-01 09:33:28] [INFO] ✅ 行情連線初始化成功
+[2026-04-01 09:33:28] [INFO] ======================================================================
+[2026-04-01 09:33:28] [INFO] 查詢股票行情：1453
+[2026-04-01 09:33:28] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "1453",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 12.15,
+    unit: 1000,
+    update_time: "09:29:57.937",
+    limitup_price: 13.35,
+    limitdown_price: 10.95,
+    open_price: 12.4,
+    high_price: 12.4,
+    low_price: 12.4,
+    last_price: 12.4,
+    total_volume: 5,
+    total_transaction: 0,
+    total_value: 62000,
+    last_size: 3,
+    last_transaction: 0,
+    last_value: 37200,
+    bid_price: 12.3,
+    bid_volume: 3,
+    ask_price: 12.4,
+    ask_volume: 4,
+}
+}
+[2026-04-01 09:33:28] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:33:28] [INFO] ======================================================================
+[2026-04-01 09:33:28] [INFO] 查詢股票行情：2027
+[2026-04-01 09:33:28] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2027",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 36.85,
+    unit: 1000,
+    update_time: "09:33:28.803",
+    limitup_price: 40.5,
+    limitdown_price: 33.2,
+    open_price: 37.25,
+    high_price: 37.25,
+    low_price: 36.6,
+    last_price: 36.85,
+    total_volume: 8153,
+    total_transaction: 0,
+    total_value: 300865150,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 36850,
+    bid_price: 36.8,
+    bid_volume: 160,
+    ask_price: 36.85,
+    ask_volume: 304,
+}
+}
+[2026-04-01 09:33:28] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:33:28] [INFO] ======================================================================
+[2026-04-01 09:33:28] [INFO] 查詢股票行情：2440
+[2026-04-01 09:33:28] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2440",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 0,
+    reference_price: 14.05,
+    unit: 1000,
+    update_time: "09:32:38.913",
+    limitup_price: 15.45,
+    limitdown_price: 12.65,
+    open_price: 14,
+    high_price: 14.25,
+    low_price: 14,
+    last_price: 14.1,
+    total_volume: 45,
+    total_transaction: 0,
+    total_value: 639400,
+    last_size: 2,
+    last_transaction: 0,
+    last_value: 28200,
+    bid_price: 14.05,
+    bid_volume: 10,
+    ask_price: 14.25,
+    ask_volume: 7,
+}
+}
+[2026-04-01 09:33:28] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:33:28] [INFO] ======================================================================
+[2026-04-01 09:33:28] [INFO] 查詢股票行情：3652
+[2026-04-01 09:33:29] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3652",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 26.65,
+    unit: 1000,
+    update_time: "09:31:50.391",
+    limitup_price: 29.3,
+    limitdown_price: 24,
+    open_price: 27.15,
+    high_price: 27.15,
+    low_price: 26.5,
+    last_price: 27.05,
+    total_volume: 8,
+    total_transaction: 0,
+    total_value: 214000,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 27050,
+    bid_price: 26.6,
+    bid_volume: 1,
+    ask_price: 27.05,
+    ask_volume: 2,
+}
+}
+[2026-04-01 09:33:29] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:33:29] [INFO] ======================================================================
+[2026-04-01 09:33:29] [INFO] 查詢股票行情：3532
+[2026-04-01 09:33:29] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3532",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 130.5,
+    unit: 1000,
+    update_time: "09:33:04.939",
+    limitup_price: 143.5,
+    limitdown_price: 117.5,
+    open_price: 137,
+    high_price: 137,
+    low_price: 135.5,
+    last_price: 136.5,
+    total_volume: 289,
+    total_transaction: 0,
+    total_value: 39452500,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 136500,
+    bid_price: 136,
+    bid_volume: 18,
+    ask_price: 136.5,
+    ask_volume: 3,
+}
+}
+[2026-04-01 09:33:29] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:33:29] [INFO] ======================================================================
+[2026-04-01 09:33:29] [INFO] 查詢持倉（未實現損益）...
+[2026-04-01 09:33:29] [INFO] 持倉查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: []
+}
+[2026-04-01 09:33:29] [INFO] ✅ 持倉查詢成功
+[2026-04-01 09:33:29] [INFO] ✅ 已登出
+[2026-04-01 09:34:55] [INFO] ✅ 配置載入成功
+[2026-04-01 09:34:56] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-04-01 09:34:56] [INFO] ======================================================================
+[2026-04-01 09:34:56] [INFO] 執行登入...
+[2026-04-01 09:34:56] [INFO] 用戶：H120193488
+[2026-04-01 09:34:56] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-04-01 09:34:56] [INFO] ✅ 登入成功！
+[2026-04-01 09:34:56] [INFO] 帳戶資訊：
+[2026-04-01 09:34:56] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-04-01 09:34:56] [INFO] ✅ 行情連線初始化成功
+[2026-04-01 09:34:56] [INFO] ======================================================================
+[2026-04-01 09:34:56] [INFO] 查詢股票行情：1453
+[2026-04-01 09:34:56] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "1453",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 12.15,
+    unit: 1000,
+    update_time: "09:34:49.902",
+    limitup_price: 13.35,
+    limitdown_price: 10.95,
+    open_price: 12.4,
+    high_price: 12.4,
+    low_price: 12.4,
+    last_price: 12.4,
+    total_volume: 6,
+    total_transaction: 0,
+    total_value: 74400,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 12400,
+    bid_price: 12.3,
+    bid_volume: 3,
+    ask_price: 12.4,
+    ask_volume: 3,
+}
+}
+[2026-04-01 09:34:56] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:34:56] [INFO] ======================================================================
+[2026-04-01 09:34:56] [INFO] 查詢股票行情：2027
+[2026-04-01 09:34:56] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2027",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 36.85,
+    unit: 1000,
+    update_time: "09:34:45.159",
+    limitup_price: 40.5,
+    limitdown_price: 33.2,
+    open_price: 37.25,
+    high_price: 37.25,
+    low_price: 36.6,
+    last_price: 36.8,
+    total_volume: 8175,
+    total_transaction: 0,
+    total_value: 301675400,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 36800,
+    bid_price: 36.8,
+    bid_volume: 179,
+    ask_price: 36.85,
+    ask_volume: 299,
+}
+}
+[2026-04-01 09:34:56] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:34:56] [INFO] ======================================================================
+[2026-04-01 09:34:56] [INFO] 查詢股票行情：2440
+[2026-04-01 09:34:57] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2440",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 0,
+    reference_price: 14.05,
+    unit: 1000,
+    update_time: "09:34:24.618",
+    limitup_price: 15.45,
+    limitdown_price: 12.65,
+    open_price: 14,
+    high_price: 14.3,
+    low_price: 14,
+    last_price: 14.25,
+    total_volume: 55,
+    total_transaction: 0,
+    total_value: 782100,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 14250,
+    bid_price: 14.1,
+    bid_volume: 1,
+    ask_price: 14.35,
+    ask_volume: 1,
+}
+}
+[2026-04-01 09:34:57] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:34:57] [INFO] ======================================================================
+[2026-04-01 09:34:57] [INFO] 查詢股票行情：3652
+[2026-04-01 09:34:57] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3652",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 26.65,
+    unit: 1000,
+    update_time: "09:31:50.391",
+    limitup_price: 29.3,
+    limitdown_price: 24,
+    open_price: 27.15,
+    high_price: 27.15,
+    low_price: 26.5,
+    last_price: 27.05,
+    total_volume: 8,
+    total_transaction: 0,
+    total_value: 214000,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 27050,
+    bid_price: 26.6,
+    bid_volume: 1,
+    ask_price: 27.05,
+    ask_volume: 2,
+}
+}
+[2026-04-01 09:34:57] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:34:57] [INFO] ======================================================================
+[2026-04-01 09:34:57] [INFO] 查詢股票行情：3532
+[2026-04-01 09:34:57] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3532",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 130.5,
+    unit: 1000,
+    update_time: "09:34:45.235",
+    limitup_price: 143.5,
+    limitdown_price: 117.5,
+    open_price: 137,
+    high_price: 137,
+    low_price: 135.5,
+    last_price: 136,
+    total_volume: 308,
+    total_transaction: 0,
+    total_value: 42037500,
+    last_size: 9,
+    last_transaction: 0,
+    last_value: 1224000,
+    bid_price: 135.5,
+    bid_volume: 13,
+    ask_price: 136.5,
+    ask_volume: 5,
+}
+}
+[2026-04-01 09:34:57] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:34:57] [INFO] ======================================================================
+[2026-04-01 09:34:57] [INFO] 查詢持倉（未實現損益）...
+[2026-04-01 09:34:57] [INFO] 持倉查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: []
+}
+[2026-04-01 09:34:57] [INFO] ✅ 持倉查詢成功
+[2026-04-01 09:34:57] [INFO] ✅ 已登出
+[2026-04-01 09:35:51] [INFO] ✅ 配置載入成功
+[2026-04-01 09:35:51] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-04-01 09:35:51] [INFO] ======================================================================
+[2026-04-01 09:35:51] [INFO] 執行登入...
+[2026-04-01 09:35:51] [INFO] 用戶：H120193488
+[2026-04-01 09:35:51] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-04-01 09:35:52] [INFO] ✅ 登入成功！
+[2026-04-01 09:35:52] [INFO] 帳戶資訊：
+[2026-04-01 09:35:52] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-04-01 09:35:52] [INFO] ✅ 行情連線初始化成功
+[2026-04-01 09:35:52] [INFO] ======================================================================
+[2026-04-01 09:35:52] [INFO] 查詢股票行情：1453
+[2026-04-01 09:35:52] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "1453",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 12.15,
+    unit: 1000,
+    update_time: "09:34:49.902",
+    limitup_price: 13.35,
+    limitdown_price: 10.95,
+    open_price: 12.4,
+    high_price: 12.4,
+    low_price: 12.4,
+    last_price: 12.4,
+    total_volume: 6,
+    total_transaction: 0,
+    total_value: 74400,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 12400,
+    bid_price: 12.3,
+    bid_volume: 3,
+    ask_price: 12.4,
+    ask_volume: 3,
+}
+}
+[2026-04-01 09:35:52] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:35:52] [INFO] ======================================================================
+[2026-04-01 09:35:52] [INFO] 查詢股票行情：2027
+[2026-04-01 09:35:52] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2027",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 36.85,
+    unit: 1000,
+    update_time: "09:35:52.580",
+    limitup_price: 40.5,
+    limitdown_price: 33.2,
+    open_price: 37.25,
+    high_price: 37.25,
+    low_price: 36.6,
+    last_price: 36.75,
+    total_volume: 8376,
+    total_transaction: 0,
+    total_value: 309071700,
+    last_size: 2,
+    last_transaction: 0,
+    last_value: 73500,
+    bid_price: 36.75,
+    bid_volume: 278,
+    ask_price: 36.8,
+    ask_volume: 122,
+}
+}
+[2026-04-01 09:35:52] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:35:52] [INFO] ======================================================================
+[2026-04-01 09:35:52] [INFO] 查詢股票行情：2440
+[2026-04-01 09:35:52] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2440",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 0,
+    reference_price: 14.05,
+    unit: 1000,
+    update_time: "09:35:19.774",
+    limitup_price: 15.45,
+    limitdown_price: 12.65,
+    open_price: 14,
+    high_price: 14.3,
+    low_price: 14,
+    last_price: 14.25,
+    total_volume: 55,
+    total_transaction: 0,
+    total_value: 782100,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 14250,
+    bid_price: 14.15,
+    bid_volume: 2,
+    ask_price: 14.35,
+    ask_volume: 8,
+}
+}
+[2026-04-01 09:35:52] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:35:52] [INFO] ======================================================================
+[2026-04-01 09:35:52] [INFO] 查詢股票行情：3652
+[2026-04-01 09:35:52] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3652",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 26.65,
+    unit: 1000,
+    update_time: "09:31:50.391",
+    limitup_price: 29.3,
+    limitdown_price: 24,
+    open_price: 27.15,
+    high_price: 27.15,
+    low_price: 26.5,
+    last_price: 27.05,
+    total_volume: 8,
+    total_transaction: 0,
+    total_value: 214000,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 27050,
+    bid_price: 26.6,
+    bid_volume: 1,
+    ask_price: 27.05,
+    ask_volume: 2,
+}
+}
+[2026-04-01 09:35:52] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:35:52] [INFO] ======================================================================
+[2026-04-01 09:35:52] [INFO] 查詢股票行情：3532
+[2026-04-01 09:35:53] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3532",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 130.5,
+    unit: 1000,
+    update_time: "09:35:51.041",
+    limitup_price: 143.5,
+    limitdown_price: 117.5,
+    open_price: 137,
+    high_price: 137,
+    low_price: 135,
+    last_price: 135,
+    total_volume: 316,
+    total_transaction: 0,
+    total_value: 43119500,
+    last_size: 5,
+    last_transaction: 0,
+    last_value: 675000,
+    bid_price: 135,
+    bid_volume: 16,
+    ask_price: 135.5,
+    ask_volume: 2,
+}
+}
+[2026-04-01 09:35:53] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:35:53] [INFO] ======================================================================
+[2026-04-01 09:35:53] [INFO] 查詢持倉（未實現損益）...
+[2026-04-01 09:35:53] [INFO] 持倉查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: []
+}
+[2026-04-01 09:35:53] [INFO] ✅ 持倉查詢成功
+[2026-04-01 09:35:53] [INFO] ✅ 已登出
+[2026-04-01 09:36:51] [INFO] ✅ 配置載入成功
+[2026-04-01 09:36:52] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-04-01 09:36:52] [INFO] ======================================================================
+[2026-04-01 09:36:52] [INFO] 執行登入...
+[2026-04-01 09:36:52] [INFO] 用戶：H120193488
+[2026-04-01 09:36:52] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-04-01 09:36:53] [INFO] ✅ 登入成功！
+[2026-04-01 09:36:53] [INFO] 帳戶資訊：
+[2026-04-01 09:36:53] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-04-01 09:36:53] [INFO] ✅ 行情連線初始化成功
+[2026-04-01 09:36:53] [INFO] ======================================================================
+[2026-04-01 09:36:53] [INFO] 查詢股票行情：1453
+[2026-04-01 09:36:53] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "1453",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 12.15,
+    unit: 1000,
+    update_time: "09:34:49.902",
+    limitup_price: 13.35,
+    limitdown_price: 10.95,
+    open_price: 12.4,
+    high_price: 12.4,
+    low_price: 12.4,
+    last_price: 12.4,
+    total_volume: 6,
+    total_transaction: 0,
+    total_value: 74400,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 12400,
+    bid_price: 12.3,
+    bid_volume: 3,
+    ask_price: 12.4,
+    ask_volume: 3,
+}
+}
+[2026-04-01 09:36:53] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:36:53] [INFO] ======================================================================
+[2026-04-01 09:36:53] [INFO] 查詢股票行情：2027
+[2026-04-01 09:36:53] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2027",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 36.85,
+    unit: 1000,
+    update_time: "09:36:50.935",
+    limitup_price: 40.5,
+    limitdown_price: 33.2,
+    open_price: 37.25,
+    high_price: 37.25,
+    low_price: 36.6,
+    last_price: 36.8,
+    total_volume: 8404,
+    total_transaction: 0,
+    total_value: 310101500,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 36800,
+    bid_price: 36.75,
+    bid_volume: 302,
+    ask_price: 36.8,
+    ask_volume: 115,
+}
+}
+[2026-04-01 09:36:53] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:36:53] [INFO] ======================================================================
+[2026-04-01 09:36:53] [INFO] 查詢股票行情：2440
+[2026-04-01 09:36:53] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2440",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 0,
+    reference_price: 14.05,
+    unit: 1000,
+    update_time: "09:36:33.228",
+    limitup_price: 15.45,
+    limitdown_price: 12.65,
+    open_price: 14,
+    high_price: 14.3,
+    low_price: 14,
+    last_price: 14.25,
+    total_volume: 55,
+    total_transaction: 0,
+    total_value: 782100,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 14250,
+    bid_price: 14.15,
+    bid_volume: 2,
+    ask_price: 14.3,
+    ask_volume: 2,
+}
+}
+[2026-04-01 09:36:53] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:36:53] [INFO] ======================================================================
+[2026-04-01 09:36:53] [INFO] 查詢股票行情：3652
+[2026-04-01 09:36:53] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3652",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 26.65,
+    unit: 1000,
+    update_time: "09:36:02.088",
+    limitup_price: 29.3,
+    limitdown_price: 24,
+    open_price: 27.15,
+    high_price: 27.15,
+    low_price: 26.5,
+    last_price: 27.05,
+    total_volume: 8,
+    total_transaction: 0,
+    total_value: 214000,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 27050,
+    bid_price: 26.6,
+    bid_volume: 1,
+    ask_price: 27,
+    ask_volume: 1,
+}
+}
+[2026-04-01 09:36:53] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:36:53] [INFO] ======================================================================
+[2026-04-01 09:36:53] [INFO] 查詢股票行情：3532
+[2026-04-01 09:36:53] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3532",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 130.5,
+    unit: 1000,
+    update_time: "09:36:51.961",
+    limitup_price: 143.5,
+    limitdown_price: 117.5,
+    open_price: 137,
+    high_price: 137,
+    low_price: 135,
+    last_price: 135,
+    total_volume: 320,
+    total_transaction: 0,
+    total_value: 43660500,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 135000,
+    bid_price: 135,
+    bid_volume: 15,
+    ask_price: 135.5,
+    ask_volume: 1,
+}
+}
+[2026-04-01 09:36:53] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:36:53] [INFO] ======================================================================
+[2026-04-01 09:36:53] [INFO] 查詢持倉（未實現損益）...
+[2026-04-01 09:36:53] [INFO] 持倉查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: []
+}
+[2026-04-01 09:36:53] [INFO] ✅ 持倉查詢成功
+[2026-04-01 09:36:53] [INFO] ✅ 已登出
+[2026-04-01 09:37:49] [INFO] ✅ 配置載入成功
+[2026-04-01 09:37:50] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-04-01 09:37:50] [INFO] ======================================================================
+[2026-04-01 09:37:50] [INFO] 執行登入...
+[2026-04-01 09:37:50] [INFO] 用戶：H120193488
+[2026-04-01 09:37:50] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-04-01 09:37:51] [INFO] ✅ 登入成功！
+[2026-04-01 09:37:51] [INFO] 帳戶資訊：
+[2026-04-01 09:37:51] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-04-01 09:37:51] [INFO] ✅ 行情連線初始化成功
+[2026-04-01 09:37:51] [INFO] ======================================================================
+[2026-04-01 09:37:51] [INFO] 查詢股票行情：1453
+[2026-04-01 09:37:51] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "1453",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 12.15,
+    unit: 1000,
+    update_time: "09:34:49.902",
+    limitup_price: 13.35,
+    limitdown_price: 10.95,
+    open_price: 12.4,
+    high_price: 12.4,
+    low_price: 12.4,
+    last_price: 12.4,
+    total_volume: 6,
+    total_transaction: 0,
+    total_value: 74400,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 12400,
+    bid_price: 12.3,
+    bid_volume: 3,
+    ask_price: 12.4,
+    ask_volume: 3,
+}
+}
+[2026-04-01 09:37:51] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:37:51] [INFO] ======================================================================
+[2026-04-01 09:37:51] [INFO] 查詢股票行情：2027
+[2026-04-01 09:37:51] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2027",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 36.85,
+    unit: 1000,
+    update_time: "09:37:49.567",
+    limitup_price: 40.5,
+    limitdown_price: 33.2,
+    open_price: 37.25,
+    high_price: 37.25,
+    low_price: 36.6,
+    last_price: 36.7,
+    total_volume: 8746,
+    total_transaction: 0,
+    total_value: 322669250,
+    last_size: 2,
+    last_transaction: 0,
+    last_value: 73400,
+    bid_price: 36.7,
+    bid_volume: 343,
+    ask_price: 36.75,
+    ask_volume: 182,
+}
+}
+[2026-04-01 09:37:51] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:37:51] [INFO] ======================================================================
+[2026-04-01 09:37:51] [INFO] 查詢股票行情：2440
+[2026-04-01 09:37:51] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2440",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 0,
+    reference_price: 14.05,
+    unit: 1000,
+    update_time: "09:37:18.241",
+    limitup_price: 15.45,
+    limitdown_price: 12.65,
+    open_price: 14,
+    high_price: 14.3,
+    low_price: 14,
+    last_price: 14.25,
+    total_volume: 55,
+    total_transaction: 0,
+    total_value: 782100,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 14250,
+    bid_price: 14.05,
+    bid_volume: 10,
+    ask_price: 14.3,
+    ask_volume: 9,
+}
+}
+[2026-04-01 09:37:51] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:37:51] [INFO] ======================================================================
+[2026-04-01 09:37:51] [INFO] 查詢股票行情：3652
+[2026-04-01 09:37:51] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3652",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 26.65,
+    unit: 1000,
+    update_time: "09:36:02.088",
+    limitup_price: 29.3,
+    limitdown_price: 24,
+    open_price: 27.15,
+    high_price: 27.15,
+    low_price: 26.5,
+    last_price: 27.05,
+    total_volume: 8,
+    total_transaction: 0,
+    total_value: 214000,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 27050,
+    bid_price: 26.6,
+    bid_volume: 1,
+    ask_price: 27,
+    ask_volume: 1,
+}
+}
+[2026-04-01 09:37:51] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:37:51] [INFO] ======================================================================
+[2026-04-01 09:37:51] [INFO] 查詢股票行情：3532
+[2026-04-01 09:37:51] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3532",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 130.5,
+    unit: 1000,
+    update_time: "09:37:33.349",
+    limitup_price: 143.5,
+    limitdown_price: 117.5,
+    open_price: 137,
+    high_price: 137,
+    low_price: 135,
+    last_price: 135,
+    total_volume: 321,
+    total_transaction: 0,
+    total_value: 43795500,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 135000,
+    bid_price: 135,
+    bid_volume: 17,
+    ask_price: 135.5,
+    ask_volume: 2,
+}
+}
+[2026-04-01 09:37:51] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:37:51] [INFO] ======================================================================
+[2026-04-01 09:37:51] [INFO] 查詢持倉（未實現損益）...
+[2026-04-01 09:37:51] [INFO] 持倉查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: []
+}
+[2026-04-01 09:37:51] [INFO] ✅ 持倉查詢成功
+[2026-04-01 09:37:51] [INFO] ✅ 已登出
+[2026-04-01 09:40:07] [INFO] ✅ 配置載入成功
+[2026-04-01 09:40:08] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-04-01 09:40:08] [INFO] ======================================================================
+[2026-04-01 09:40:08] [INFO] 執行登入...
+[2026-04-01 09:40:08] [INFO] 用戶：H120193488
+[2026-04-01 09:40:08] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-04-01 09:40:09] [INFO] ✅ 登入成功！
+[2026-04-01 09:40:09] [INFO] 帳戶資訊：
+[2026-04-01 09:40:09] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-04-01 09:40:09] [INFO] ✅ 行情連線初始化成功
+[2026-04-01 09:40:09] [INFO] ======================================================================
+[2026-04-01 09:40:09] [INFO] 查詢股票行情：1453
+[2026-04-01 09:40:09] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "1453",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 12.15,
+    unit: 1000,
+    update_time: "09:34:49.902",
+    limitup_price: 13.35,
+    limitdown_price: 10.95,
+    open_price: 12.4,
+    high_price: 12.4,
+    low_price: 12.4,
+    last_price: 12.4,
+    total_volume: 6,
+    total_transaction: 0,
+    total_value: 74400,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 12400,
+    bid_price: 12.3,
+    bid_volume: 3,
+    ask_price: 12.4,
+    ask_volume: 3,
+}
+}
+[2026-04-01 09:40:09] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:40:09] [INFO] ======================================================================
+[2026-04-01 09:40:09] [INFO] 查詢股票行情：2027
+[2026-04-01 09:40:09] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2027",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 36.85,
+    unit: 1000,
+    update_time: "09:40:06.254",
+    limitup_price: 40.5,
+    limitdown_price: 33.2,
+    open_price: 37.25,
+    high_price: 37.25,
+    low_price: 36.6,
+    last_price: 36.8,
+    total_volume: 9159,
+    total_transaction: 0,
+    total_value: 337839950,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 36800,
+    bid_price: 36.75,
+    bid_volume: 91,
+    ask_price: 36.8,
+    ask_volume: 21,
+}
+}
+[2026-04-01 09:40:09] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:40:09] [INFO] ======================================================================
+[2026-04-01 09:40:09] [INFO] 查詢股票行情：2440
+[2026-04-01 09:40:09] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2440",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 0,
+    reference_price: 14.05,
+    unit: 1000,
+    update_time: "09:39:58.346",
+    limitup_price: 15.45,
+    limitdown_price: 12.65,
+    open_price: 14,
+    high_price: 14.3,
+    low_price: 14,
+    last_price: 14.25,
+    total_volume: 56,
+    total_transaction: 0,
+    total_value: 796350,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 14250,
+    bid_price: 14.05,
+    bid_volume: 10,
+    ask_price: 14.25,
+    ask_volume: 2,
+}
+}
+[2026-04-01 09:40:09] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:40:09] [INFO] ======================================================================
+[2026-04-01 09:40:09] [INFO] 查詢股票行情：3652
+[2026-04-01 09:40:09] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3652",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 26.65,
+    unit: 1000,
+    update_time: "09:38:26.857",
+    limitup_price: 29.3,
+    limitdown_price: 24,
+    open_price: 27.15,
+    high_price: 27.15,
+    low_price: 26.5,
+    last_price: 27.05,
+    total_volume: 8,
+    total_transaction: 0,
+    total_value: 214000,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 27050,
+    bid_price: 26.6,
+    bid_volume: 1,
+    ask_price: 27,
+    ask_volume: 1,
+}
+}
+[2026-04-01 09:40:09] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:40:09] [INFO] ======================================================================
+[2026-04-01 09:40:09] [INFO] 查詢股票行情：3532
+[2026-04-01 09:40:09] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3532",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 130.5,
+    unit: 1000,
+    update_time: "09:40:07.345",
+    limitup_price: 143.5,
+    limitdown_price: 117.5,
+    open_price: 137,
+    high_price: 137,
+    low_price: 135,
+    last_price: 135.5,
+    total_volume: 326,
+    total_transaction: 0,
+    total_value: 44473000,
+    last_size: 2,
+    last_transaction: 0,
+    last_value: 271000,
+    bid_price: 135.5,
+    bid_volume: 2,
+    ask_price: 136,
+    ask_volume: 5,
+}
+}
+[2026-04-01 09:40:09] [INFO] ✅ 行情查詢成功
+[2026-04-01 09:40:09] [INFO] ======================================================================
+[2026-04-01 09:40:09] [INFO] 查詢持倉（未實現損益）...
+[2026-04-01 09:40:09] [INFO] 持倉查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: []
+}
+[2026-04-01 09:40:09] [INFO] ✅ 持倉查詢成功
+[2026-04-01 09:40:09] [INFO] ✅ 已登出
+[2026-04-01 10:06:04] [INFO] ✅ 配置載入成功
+[2026-04-01 10:06:04] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-04-01 10:06:04] [INFO] ======================================================================
+[2026-04-01 10:06:04] [INFO] 執行登入...
+[2026-04-01 10:06:04] [INFO] 用戶：H120193488
+[2026-04-01 10:06:04] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-04-01 10:06:05] [INFO] ✅ 登入成功！
+[2026-04-01 10:06:05] [INFO] 帳戶資訊：
+[2026-04-01 10:06:05] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-04-01 10:06:05] [INFO] ✅ 行情連線初始化成功
+[2026-04-01 10:06:05] [INFO] ======================================================================
+[2026-04-01 10:06:05] [INFO] 查詢股票行情：1453
+[2026-04-01 10:06:05] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "1453",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 12.15,
+    unit: 1000,
+    update_time: "10:04:07.251",
+    limitup_price: 13.35,
+    limitdown_price: 10.95,
+    open_price: 12.4,
+    high_price: 12.4,
+    low_price: 12.4,
+    last_price: 12.4,
+    total_volume: 6,
+    total_transaction: 0,
+    total_value: 74400,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 12400,
+    bid_price: 12.35,
+    bid_volume: 1,
+    ask_price: 12.4,
+    ask_volume: 3,
+}
+}
+[2026-04-01 10:06:05] [INFO] ✅ 行情查詢成功
+[2026-04-01 10:06:17] [INFO] ✅ 配置載入成功
+[2026-04-01 10:06:18] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-04-01 10:06:18] [INFO] ======================================================================
+[2026-04-01 10:06:18] [INFO] 執行登入...
+[2026-04-01 10:06:18] [INFO] 用戶：H120193488
+[2026-04-01 10:06:18] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-04-01 10:06:19] [INFO] ✅ 登入成功！
+[2026-04-01 10:06:19] [INFO] 帳戶資訊：
+[2026-04-01 10:06:19] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-04-01 10:06:19] [INFO] ✅ 行情連線初始化成功
+[2026-04-01 10:06:19] [INFO] ======================================================================
+[2026-04-01 10:06:19] [INFO] 查詢股票行情：1453
+[2026-04-01 10:06:19] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "1453",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 12.15,
+    unit: 1000,
+    update_time: "10:04:07.251",
+    limitup_price: 13.35,
+    limitdown_price: 10.95,
+    open_price: 12.4,
+    high_price: 12.4,
+    low_price: 12.4,
+    last_price: 12.4,
+    total_volume: 6,
+    total_transaction: 0,
+    total_value: 74400,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 12400,
+    bid_price: 12.35,
+    bid_volume: 1,
+    ask_price: 12.4,
+    ask_volume: 3,
+}
+}
+[2026-04-01 10:06:19] [INFO] ✅ 行情查詢成功
+[2026-04-01 10:06:19] [INFO] ======================================================================
+[2026-04-01 10:06:19] [INFO] 查詢股票行情：2027
+[2026-04-01 10:06:19] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2027",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 36.85,
+    unit: 1000,
+    update_time: "10:06:08.635",
+    limitup_price: 40.5,
+    limitdown_price: 33.2,
+    open_price: 37.25,
+    high_price: 37.25,
+    low_price: 36.6,
+    last_price: 36.95,
+    total_volume: 11365,
+    total_transaction: 0,
+    total_value: 419080800,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 36950,
+    bid_price: 36.9,
+    bid_volume: 54,
+    ask_price: 36.95,
+    ask_volume: 55,
+}
+}
+[2026-04-01 10:06:19] [INFO] ✅ 行情查詢成功
+[2026-04-01 10:06:19] [INFO] ======================================================================
+[2026-04-01 10:06:19] [INFO] 查詢股票行情：2440
+[2026-04-01 10:06:19] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2440",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 0,
+    reference_price: 14.05,
+    unit: 1000,
+    update_time: "10:03:50.853",
+    limitup_price: 15.45,
+    limitdown_price: 12.65,
+    open_price: 14,
+    high_price: 14.3,
+    low_price: 14,
+    last_price: 14.25,
+    total_volume: 73,
+    total_transaction: 0,
+    total_value: 1038300,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 14250,
+    bid_price: 14.2,
+    bid_volume: 2,
+    ask_price: 14.25,
+    ask_volume: 12,
+}
+}
+[2026-04-01 10:06:19] [INFO] ✅ 行情查詢成功
+[2026-04-01 10:06:19] [INFO] ======================================================================
+[2026-04-01 10:06:19] [INFO] 查詢股票行情：3652
+[2026-04-01 10:06:19] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3652",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 26.65,
+    unit: 1000,
+    update_time: "10:05:36.536",
+    limitup_price: 29.3,
+    limitdown_price: 24,
+    open_price: 27.15,
+    high_price: 27.15,
+    low_price: 26.5,
+    last_price: 26.95,
+    total_volume: 10,
+    total_transaction: 0,
+    total_value: 267900,
+    last_size: 1,
+    last_transaction: 0,
+    last_value: 26950,
+    bid_price: 26.8,
+    bid_volume: 1,
+    ask_price: 26.95,
+    ask_volume: 1,
+}
+}
+[2026-04-01 10:06:19] [INFO] ✅ 行情查詢成功
+[2026-04-01 10:06:19] [INFO] ======================================================================
+[2026-04-01 10:06:19] [INFO] 查詢股票行情：3532
+[2026-04-01 10:06:19] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3532",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 130.5,
+    unit: 1000,
+    update_time: "10:06:17.220",
+    limitup_price: 143.5,
+    limitdown_price: 117.5,
+    open_price: 137,
+    high_price: 137,
+    low_price: 135,
+    last_price: 135.5,
+    total_volume: 394,
+    total_transaction: 0,
+    total_value: 53672500,
+    last_size: 2,
+    last_transaction: 0,
+    last_value: 271000,
+    bid_price: 135,
+    bid_volume: 11,
+    ask_price: 135.5,
+    ask_volume: 3,
+}
+}
+[2026-04-01 10:06:19] [INFO] ✅ 行情查詢成功
+[2026-04-01 10:06:19] [INFO] ======================================================================
+[2026-04-01 10:06:19] [INFO] 查詢持倉（未實現損益）...
+[2026-04-01 10:06:19] [INFO] 持倉查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: []
+}
+[2026-04-01 10:06:19] [INFO] ✅ 持倉查詢成功
+[2026-04-01 13:56:07] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-04-01 13:56:07] [INFO] ✅ 配置載入成功
+[2026-04-01 13:56:07] [INFO] ======================================================================
+[2026-04-01 13:56:07] [INFO] 執行登入...
+[2026-04-01 13:56:07] [INFO] 用戶：H120193488
+[2026-04-01 13:56:07] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-04-01 13:56:07] [INFO] ✅ 登入成功！
+[2026-04-01 13:56:07] [INFO] 帳戶資訊：
+[2026-04-01 13:56:07] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-04-01 13:56:07] [INFO] ✅ 行情連線初始化成功
+[2026-04-01 13:56:07] [INFO] ======================================================================
+[2026-04-01 13:56:07] [INFO] 查詢股票行情：1453
+[2026-04-01 13:56:08] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "1453",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 12.15,
+    unit: 1000,
+    update_time: "13:30:00.000",
+    limitup_price: 13.35,
+    limitdown_price: 10.95,
+    open_price: 12.4,
+    high_price: 12.75,
+    low_price: 12,
+    last_price: 12.05,
+    total_volume: 170,
+    total_transaction: 0,
+    total_value: 2117700,
+    last_size: 3,
+    last_transaction: 0,
+    last_value: 36150,
+    bid_price: 12.05,
+    bid_volume: 9,
+    ask_price: 12.15,
+    ask_volume: 1,
+}
+}
+[2026-04-01 13:56:08] [INFO] ✅ 行情查詢成功
+[2026-04-01 13:56:08] [INFO] ======================================================================
+[2026-04-01 13:56:08] [INFO] 查詢股票行情：2027
+[2026-04-01 13:56:08] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2027",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 36.85,
+    unit: 1000,
+    update_time: "13:30:00.000",
+    limitup_price: 40.5,
+    limitdown_price: 33.2,
+    open_price: 37.25,
+    high_price: 37.25,
+    low_price: 36.6,
+    last_price: 36.95,
+    total_volume: 27558,
+    total_transaction: 0,
+    total_value: 1015851950,
+    last_size: 1139,
+    last_transaction: 0,
+    last_value: 42086050,
+    bid_price: 36.9,
+    bid_volume: 488,
+    ask_price: 36.95,
+    ask_volume: 244,
+}
+}
+[2026-04-01 13:56:08] [INFO] ✅ 行情查詢成功
+[2026-04-01 13:56:08] [INFO] ======================================================================
+[2026-04-01 13:56:08] [INFO] 查詢股票行情：2440
+[2026-04-01 13:56:08] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2440",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 0,
+    reference_price: 14.05,
+    unit: 1000,
+    update_time: "13:30:00.000",
+    limitup_price: 15.45,
+    limitdown_price: 12.65,
+    open_price: 14,
+    high_price: 14.45,
+    low_price: 14,
+    last_price: 14.15,
+    total_volume: 270,
+    total_transaction: 0,
+    total_value: 3827000,
+    last_size: 25,
+    last_transaction: 0,
+    last_value: 353750,
+    bid_price: 14.05,
+    bid_volume: 14,
+    ask_price: 14.15,
+    ask_volume: 11,
+}
+}
+[2026-04-01 13:56:08] [INFO] ✅ 行情查詢成功
+[2026-04-01 13:56:08] [INFO] ======================================================================
+[2026-04-01 13:56:08] [INFO] 查詢股票行情：3652
+[2026-04-01 13:56:08] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3652",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 26.65,
+    unit: 1000,
+    update_time: "13:30:00.000",
+    limitup_price: 29.3,
+    limitdown_price: 24,
+    open_price: 27.15,
+    high_price: 27.15,
+    low_price: 26.5,
+    last_price: 26.9,
+    total_volume: 24,
+    total_transaction: 0,
+    total_value: 644350,
+    last_size: 2,
+    last_transaction: 0,
+    last_value: 53800,
+    bid_price: 26.85,
+    bid_volume: 3,
+    ask_price: 26.95,
+    ask_volume: 1,
+}
+}
+[2026-04-01 13:56:08] [INFO] ✅ 行情查詢成功
+[2026-04-01 13:56:08] [INFO] ======================================================================
+[2026-04-01 13:56:08] [INFO] 查詢股票行情：3532
+[2026-04-01 13:56:08] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3532",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 130.5,
+    unit: 1000,
+    update_time: "13:30:00.000",
+    limitup_price: 143.5,
+    limitdown_price: 117.5,
+    open_price: 137,
+    high_price: 137,
+    low_price: 133,
+    last_price: 135,
+    total_volume: 917,
+    total_transaction: 0,
+    total_value: 123878500,
+    last_size: 78,
+    last_transaction: 0,
+    last_value: 10530000,
+    bid_price: 134.5,
+    bid_volume: 25,
+    ask_price: 135,
+    ask_volume: 8,
+}
+}
+[2026-04-01 13:56:08] [INFO] ✅ 行情查詢成功
+[2026-04-01 13:56:08] [INFO] ======================================================================
+[2026-04-01 13:56:08] [INFO] 查詢持倉（未實現損益）...
+[2026-04-01 13:56:08] [INFO] 持倉查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: [UnrealizedData {
+    date: "2026/04/01",
+    branch_no: "20214",
+    account: "408322",
+    stock_no: "1453",
+    buy_sell: Buy,
+    order_type: Stock,
+    cost_price: 12.65,
+    tradable_qty: 1000,
+    today_qty: 1000,
+    unrealized_profit: 0,
+    unrealized_loss: 676,
+}]
+}
+[2026-04-01 13:56:08] [INFO] ✅ 持倉查詢成功
+[2026-04-01 13:56:08] [INFO] ✅ 已登出
+[2026-04-01 13:56:26] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-04-01 13:56:26] [INFO] ✅ 配置載入成功
+[2026-04-01 13:56:26] [INFO] ======================================================================
+[2026-04-01 13:56:26] [INFO] 執行登入...
+[2026-04-01 13:56:26] [INFO] 用戶：H120193488
+[2026-04-01 13:56:26] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-04-01 13:56:26] [INFO] ✅ 登入成功！
+[2026-04-01 13:56:26] [INFO] 帳戶資訊：
+[2026-04-01 13:56:26] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-04-01 13:56:27] [INFO] ✅ 行情連線初始化成功
+[2026-04-01 13:56:27] [INFO] ✅ 已登出
+[2026-04-01 13:57:00] [INFO] ✅ SDK 初始化成功 (版本：2.2.8)
+[2026-04-01 13:57:00] [INFO] ✅ 配置載入成功
+[2026-04-01 13:57:00] [INFO] ======================================================================
+[2026-04-01 13:57:00] [INFO] 執行登入...
+[2026-04-01 13:57:00] [INFO] 用戶：H120193488
+[2026-04-01 13:57:00] [INFO] 憑證：/home/admin/.env/H120193488.pfx
+[2026-04-01 13:57:01] [INFO] ✅ 登入成功！
+[2026-04-01 13:57:01] [INFO] 帳戶資訊：
+[2026-04-01 13:57:01] [INFO]   帳戶 1：Account {
+    name: "楊聖幟",
+    branch_no: "20214",
+    account: "408322",
+    account_type: "stock",
+}
+[2026-04-01 13:57:01] [INFO] ✅ 行情連線初始化成功
+[2026-04-01 13:57:01] [INFO] ======================================================================
+[2026-04-01 13:57:01] [INFO] 查詢股票行情：1453
+[2026-04-01 13:57:01] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "1453",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 12.15,
+    unit: 1000,
+    update_time: "13:30:00.000",
+    limitup_price: 13.35,
+    limitdown_price: 10.95,
+    open_price: 12.4,
+    high_price: 12.75,
+    low_price: 12,
+    last_price: 12.05,
+    total_volume: 170,
+    total_transaction: 0,
+    total_value: 2117700,
+    last_size: 3,
+    last_transaction: 0,
+    last_value: 36150,
+    bid_price: 12.05,
+    bid_volume: 9,
+    ask_price: 12.15,
+    ask_volume: 1,
+}
+}
+[2026-04-01 13:57:01] [INFO] ✅ 行情查詢成功
+[2026-04-01 13:57:02] [INFO] ======================================================================
+[2026-04-01 13:57:02] [INFO] 查詢股票行情：2027
+[2026-04-01 13:57:02] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2027",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 36.85,
+    unit: 1000,
+    update_time: "13:30:00.000",
+    limitup_price: 40.5,
+    limitdown_price: 33.2,
+    open_price: 37.25,
+    high_price: 37.25,
+    low_price: 36.6,
+    last_price: 36.95,
+    total_volume: 27558,
+    total_transaction: 0,
+    total_value: 1015851950,
+    last_size: 1139,
+    last_transaction: 0,
+    last_value: 42086050,
+    bid_price: 36.9,
+    bid_volume: 488,
+    ask_price: 36.95,
+    ask_volume: 244,
+}
+}
+[2026-04-01 13:57:02] [INFO] ✅ 行情查詢成功
+[2026-04-01 13:57:02] [INFO] ======================================================================
+[2026-04-01 13:57:02] [INFO] 查詢股票行情：2440
+[2026-04-01 13:57:02] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "2440",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 0,
+    reference_price: 14.05,
+    unit: 1000,
+    update_time: "13:30:00.000",
+    limitup_price: 15.45,
+    limitdown_price: 12.65,
+    open_price: 14,
+    high_price: 14.45,
+    low_price: 14,
+    last_price: 14.15,
+    total_volume: 270,
+    total_transaction: 0,
+    total_value: 3827000,
+    last_size: 25,
+    last_transaction: 0,
+    last_value: 353750,
+    bid_price: 14.05,
+    bid_volume: 14,
+    ask_price: 14.15,
+    ask_volume: 11,
+}
+}
+[2026-04-01 13:57:02] [INFO] ✅ 行情查詢成功
+[2026-04-01 13:57:02] [INFO] ======================================================================
+[2026-04-01 13:57:02] [INFO] 查詢股票行情：3652
+[2026-04-01 13:57:02] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3652",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 26.65,
+    unit: 1000,
+    update_time: "13:30:00.000",
+    limitup_price: 29.3,
+    limitdown_price: 24,
+    open_price: 27.15,
+    high_price: 27.15,
+    low_price: 26.5,
+    last_price: 26.9,
+    total_volume: 24,
+    total_transaction: 0,
+    total_value: 644350,
+    last_size: 2,
+    last_transaction: 0,
+    last_value: 53800,
+    bid_price: 26.85,
+    bid_volume: 3,
+    ask_price: 26.95,
+    ask_volume: 1,
+}
+}
+[2026-04-01 13:57:02] [INFO] ✅ 行情查詢成功
+[2026-04-01 13:57:02] [INFO] ======================================================================
+[2026-04-01 13:57:02] [INFO] 查詢股票行情：3532
+[2026-04-01 13:57:02] [INFO] 行情查詢結果：Result {
+  is_success: True,
+  message: None,
+  data: SymbolQuote {
+    market: "TAIEX",
+    symbol: "3532",
+    istib_or_psb: false,
+    market_type: Common,
+    status: 15,
+    reference_price: 130.5,
+    unit: 1000,
+    update_time: "13:30:00.000",
+    limitup_price: 143.5,
+    limitdown_price: 117.5,
+    open_price: 137,
+    high_price: 137,
+    low_price: 133,
+    last_price: 135,
+    total_volume: 917,
+    total_transaction: 0,
+    total_value: 123878500,
+    last_size: 78,
+    last_transaction: 0,
+    last_value: 10530000,
+    bid_price: 134.5,
+    bid_volume: 25,
+    ask_price: 135,
+    ask_volume: 8,
+}
+}
+[2026-04-01 13:57:02] [INFO] ✅ 行情查詢成功
+[2026-04-01 13:57:02] [INFO] ✅ 已登出
