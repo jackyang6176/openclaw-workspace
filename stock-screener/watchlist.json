@@ -1,0 +1,69 @@
+{
+  "holdings": {
+    "00655L": {
+      "name": "國泰A50正2",
+      "entry_price": 0,
+      "entry_date": ""
+    }
+  },
+  "watchlist": [
+    {
+      "code": "2008",
+      "name": "高興昌",
+      "added_date": "2026-04-01",
+      "last_seen": "2026-04-01",
+      "days_in_list": 0,
+      "pattern": "hammer",
+      "entry_reason": "MA20邊緣+爆量6.3x",
+      "today_change_pct": -0.18,
+      "ma_dist_pct": -2.4,
+      "vol_ratio": 6.3,
+      "last_price": 0,
+      "is_holding": false
+    },
+    {
+      "code": "2007",
+      "name": "燁興",
+      "added_date": "2026-04-01",
+      "last_seen": "2026-04-01",
+      "days_in_list": 0,
+      "pattern": "bullish_engulfing",
+      "entry_reason": "MA20邊緣+多頭吞噬",
+      "today_change_pct": -1.46,
+      "ma_dist_pct": -0.85,
+      "vol_ratio": 1.7,
+      "last_price": 0,
+      "is_holding": false
+    },
+    {
+      "code": "3023",
+      "name": "信邦",
+      "added_date": "2026-04-01",
+      "last_seen": "2026-04-01",
+      "days_in_list": 0,
+      "pattern": "bullish_engulfing",
+      "entry_reason": "MA20突破+放量2.44x",
+      "today_change_pct": -1.76,
+      "ma_dist_pct": 2.52,
+      "vol_ratio": 2.44,
+      "last_price": 0,
+      "is_holding": false
+    },
+    {
+      "code": "3008",
+      "name": "大立光",
+      "added_date": "2026-04-01",
+      "last_seen": "2026-04-01",
+      "days_in_list": 0,
+      "pattern": "hammer",
+      "entry_reason": "錘子型態",
+      "today_change_pct": -1.15,
+      "ma_dist_pct": -5.17,
+      "vol_ratio": 1.0,
+      "last_price": 0,
+      "is_holding": false
+    }
+  ],
+  "last_updated": "2026-04-01T08:56:56.483111",
+  "removed_last": []
+}
