@@ -1,0 +1,115 @@
+{
+  "timestamp": "2026-04-02T11:52:48.094931",
+  "quotes": {
+    "2008": {
+      "price": 27.1,
+      "volume": 8,
+      "change": -0.1,
+      "change_pct": -0.37,
+      "high": 27.1,
+      "low": 27.05,
+      "open": 27.1,
+      "reference": 27.2
+    },
+    "2007": {
+      "price": 8.1,
+      "volume": 120,
+      "change": 0.0,
+      "change_pct": 0.0,
+      "high": 8.14,
+      "low": 8.05,
+      "open": 8.13,
+      "reference": 8.1
+    },
+    "3023": {
+      "price": 261.5,
+      "volume": 1407,
+      "change": 2.0,
+      "change_pct": 0.77,
+      "high": 265.5,
+      "low": 258.5,
+      "open": 261.5,
+      "reference": 259.5
+    },
+    "3008": {
+      "price": 2145.0,
+      "volume": 284,
+      "change": -45.0,
+      "change_pct": -2.05,
+      "high": 2215.0,
+      "low": 2140.0,
+      "open": 2215.0,
+      "reference": 2190.0
+    }
+  },
+  "entries": [
+    {
+      "date": "2026-04-01",
+      "close": 259.5,
+      "ma5": 255.3,
+      "ma20": 246.72,
+      "gap_pct": -3.476,
+      "gap_d3": -6.07,
+      "gap_d2": -4.25,
+      "gap_d1": -3.993,
+      "gap_d0": -3.476,
+      "cond1": false,
+      "cond2": false,
+      "cond3": false,
+      "cond4": true,
+      "cond5": false,
+      "cond_count": 1,
+      "confidence": 1.0,
+      "entry_price": 259.5,
+      "target_price": 246.72,
+      "stop_loss": 251.72,
+      "vol_today": 2797876,
+      "vol_yesterday": 6507018,
+      "vol_2day": 1725645,
+      "vol_3day": 3581920,
+      "symbol": "3023",
+      "name": "信邦",
+      "current_price": 261.5,
+      "ma20_dist_pct": 5.991
+    }
+  ],
+  "observations": [
+    {
+      "symbol": "2008",
+      "name": "高興昌",
+      "price": 27.1,
+      "ma20_dist_pct": -3.49,
+      "confidence": 0.14,
+      "cond_count": 1,
+      "gap_pct": 1.148
+    },
+    {
+      "symbol": "2007",
+      "name": "燁興",
+      "price": 8.1,
+      "ma20_dist_pct": -0.613,
+      "confidence": 0.514,
+      "cond_count": 1,
+      "gap_pct": -0.871
+    },
+    {
+      "symbol": "3023",
+      "name": "信邦",
+      "price": 261.5,
+      "ma20_dist_pct": 5.991,
+      "confidence": 1.0,
+      "cond_count": 1,
+      "gap_pct": -3.476
+    },
+    {
+      "symbol": "3008",
+      "name": "大立光",
+      "price": 2145.0,
+      "ma20_dist_pct": -6.505,
+      "confidence": 0.14,
+      "cond_count": 1,
+      "gap_pct": 4.5
+    }
+  ],
+  "sell_actions": []
+}

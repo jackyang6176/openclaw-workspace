@@ -1,0 +1,56 @@
+{
+  "timestamp": "2026-04-02T11:51:05.544085",
+  "quotes": {
+    "2008": {
+      "price": 0.0,
+      "volume": 0,
+      "change": 0,
+      "change_pct": 0,
+      "high": 0.0,
+      "low": 0.0,
+      "open": 0.0,
+      "raw": {}
+    },
+    "2007": {
+      "price": 0.0,
+      "volume": 0,
+      "change": 0,
+      "change_pct": 0,
+      "high": 0.0,
+      "low": 0.0,
+      "open": 0.0,
+      "raw": {}
+    },
+    "3023": {
+      "price": 0.0,
+      "volume": 0,
+      "change": 0,
+      "change_pct": 0,
+      "high": 0.0,
+      "low": 0.0,
+      "open": 0.0,
+      "raw": {}
+    },
+    "3008": {
+      "price": 0.0,
+      "volume": 0,
+      "change": 0,
+      "change_pct": 0,
+      "high": 0.0,
+      "low": 0.0,
+      "open": 0.0,
+      "raw": {}
+    }
+  },
+  "entries": [
+    {
+      "date": "2026-04-01",
+      "close": 259.5,
+      "ma5": 255.3,
+      "ma20": 246.72,
+      "gap_pct": -3.476,
+      "gap_d3": -6.07,
+      "gap_d2": -4.25,
+      "gap_d1": -3.993,
+      "gap_d0": -3.476,
+      "cond1": 

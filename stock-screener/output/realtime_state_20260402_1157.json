@@ -1,0 +1,85 @@
+{
+  "timestamp": "2026-04-02T11:57:41.611145",
+  "quotes": {
+    "2008": {
+      "price": 27.1,
+      "volume": 8,
+      "change": -0.1,
+      "change_pct": -0.37,
+      "high": 27.1,
+      "low": 27.05,
+      "open": 27.1,
+      "reference": 27.2
+    },
+    "2007": {
+      "price": 8.09,
+      "volume": 123,
+      "change": -0.01,
+      "change_pct": -0.12,
+      "high": 8.14,
+      "low": 8.05,
+      "open": 8.13,
+      "reference": 8.1
+    },
+    "3023": {
+      "price": 259.5,
+      "volume": 1456,
+      "change": 0.0,
+      "change_pct": 0.0,
+      "high": 265.5,
+      "low": 258.5,
+      "open": 261.5,
+      "reference": 259.5
+    },
+    "3008": {
+      "price": 2145.0,
+      "volume": 285,
+      "change": -45.0,
+      "change_pct": -2.05,
+      "high": 2215.0,
+      "low": 2140.0,
+      "open": 2215.0,
+      "reference": 2190.0
+    }
+  },
+  "entries": [],
+  "observations": [
+    {
+      "symbol": "2008",
+      "name": "高興昌",
+      "price": 27.1,
+      "ma20_dist_pct": -3.49,
+      "confidence": 0.14,
+      "cond_count": 1,
+      "gap_pct": 1.148
+    },
+    {
+      "symbol": "2007",
+      "name": "燁興",
+      "price": 8.09,
+      "ma20_dist_pct": -0.736,
+      "confidence": 0.0,
+      "cond_count": 1,
+      "gap_pct": -0.871
+    },
+    {
+      "symbol": "3023",
+      "name": "信邦",
+      "price": 259.5,
+      "ma20_dist_pct": 5.18,
+      "confidence": 0.0,
+      "cond_count": 1,
+      "gap_pct": -3.476
+    },
+    {
+      "symbol": "3008",
+      "name": "大立光",
+      "price": 2145.0,
+      "ma20_dist_pct": -6.505,
+      "confidence": 0.14,
+      "cond_count": 1,
+      "gap_pct": 4.5
+    }
+  ],
+  "sell_actions": []
+}

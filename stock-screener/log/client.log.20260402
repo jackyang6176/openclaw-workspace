@@ -1,0 +1,28 @@
+[2026-04-02 11:51:06.433343980 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-02 11:51:06.494093714 +08:00 INFO] this account require 2fa
+[2026-04-02 11:51:06.704590395 +08:00 INFO] [future_option_mapping]: 155.276929ms
+[2026-04-02 11:51:06.759243062 +08:00 INFO] [future_option_mapping]: 52.583254ms
+[2026-04-02 11:51:06.881658850 +08:00 INFO] [future_option_mapping]: 122.13068ms
+[2026-04-02 11:51:06.944416929 +08:00 INFO] [future_option_mapping]: 54.118883ms
+[2026-04-02 11:51:11.867789383 +08:00 INFO] [logout] user manually logout
+[2026-04-02 11:52:48.962109352 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-02 11:52:49.030027993 +08:00 INFO] this account require 2fa
+[2026-04-02 11:52:49.274538633 +08:00 INFO] [future_option_mapping]: 180.381419ms
+[2026-04-02 11:52:49.337658823 +08:00 INFO] [future_option_mapping]: 61.23166ms
+[2026-04-02 11:52:49.477801278 +08:00 INFO] [future_option_mapping]: 139.901858ms
+[2026-04-02 11:52:49.548264630 +08:00 INFO] [future_option_mapping]: 62.487855ms
+[2026-04-02 11:52:54.492434720 +08:00 INFO] [logout] user manually logout
+[2026-04-02 11:57:42.501838975 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-02 11:57:42.563942094 +08:00 INFO] this account require 2fa
+[2026-04-02 11:57:42.775664820 +08:00 INFO] [future_option_mapping]: 156.125551ms
+[2026-04-02 11:57:42.830225249 +08:00 INFO] [future_option_mapping]: 52.899861ms
+[2026-04-02 11:57:42.955641462 +08:00 INFO] [future_option_mapping]: 125.181192ms
+[2026-04-02 11:57:43.017057562 +08:00 INFO] [future_option_mapping]: 54.165301ms
+[2026-04-02 11:57:47.918578662 +08:00 INFO] [logout] user manually logout
+[2026-04-02 14:04:31.003789274 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-02 14:04:31.066314120 +08:00 INFO] this account require 2fa
+[2026-04-02 14:04:31.278244947 +08:00 INFO] [future_option_mapping]: 155.969907ms
+[2026-04-02 14:04:31.332882036 +08:00 INFO] [future_option_mapping]: 53.031411ms
+[2026-04-02 14:04:31.456256112 +08:00 INFO] [future_option_mapping]: 123.168125ms
+[2026-04-02 14:04:31.518178595 +08:00 INFO] [future_option_mapping]: 54.10482ms
+[2026-04-02 14:04:57.866870841 +08:00 INFO] [logout] user manually logout

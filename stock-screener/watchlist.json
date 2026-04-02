@@ -8,6 +8,28 @@
   },
   "watchlist": [
     {
+      "code": "2382",
+      "name": "緯創",
+      "added_date": "2026-04-02",
+      "last_seen": "2026-04-02",
+      "days_in_list": 0,
+      "pattern": "strategy_a_converge",
+      "entry_reason": "新策略A-兩線收斂0.332%<1%,MA5<MA20,三日量增",
+      "today_change_pct": 0,
+      "ma_dist_pct": 0.332,
+      "vol_ratio": 0,
+      "last_price": 290.5,
+      "ma5": 285.2,
+      "ma20": 286.15,
+      "gap_pct": 0.332,
+      "entry_price": 290.5,
+      "target_price": 286.15,
+      "stop_loss": 281.78,
+      "is_holding": false,
+      "strategy": "新策略A",
+      "note": "2026-04-02完全符合5/5條件"
+    },
+    {
       "code": "2008",
       "name": "高興昌",
       "added_date": "2026-04-01",
@@ -64,6 +86,6 @@
       "is_holding": false
     }
   ],
-  "last_updated": "2026-04-01T08:56:56.483111",
+  "last_updated": "2026-04-02T14:05:00",
   "removed_last": []
 }

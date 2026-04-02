@@ -1,0 +1,325 @@
+[2026-04-02 08:55:17.257682883 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 08:55:25.562500251 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 08:55:51.371337484 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 08:55:51.442410593 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 08:55:51.507280692 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, MarketData, StockTrading}
+[2026-04-02 08:55:51.690453764 +08:00 INFO] [future_option_mapping]: 183.106668ms
+[2026-04-02 08:55:51.753758620 +08:00 INFO] [future_option_mapping]: 61.770535ms
+[2026-04-02 08:55:51.896940192 +08:00 INFO] [future_option_mapping]: 142.978485ms
+[2026-04-02 08:55:51.966955306 +08:00 INFO] [future_option_mapping]: 62.873261ms
+[2026-04-02 08:56:12.514884735 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 08:56:12.578172701 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 08:56:12.634296890 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, MarketData, StockTrading}
+[2026-04-02 08:56:12.792085396 +08:00 INFO] [future_option_mapping]: 157.722653ms
+[2026-04-02 08:56:12.847350620 +08:00 INFO] [future_option_mapping]: 53.533599ms
+[2026-04-02 08:56:12.971937806 +08:00 INFO] [future_option_mapping]: 124.341149ms
+[2026-04-02 08:56:13.035672870 +08:00 INFO] [future_option_mapping]: 55.643676ms
+[2026-04-02 08:56:22.095594673 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 08:56:22.160723964 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 08:56:22.224510080 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {MarketData, StockAccounting, StockTrading}
+[2026-04-02 08:56:22.406193024 +08:00 INFO] [future_option_mapping]: 181.609359ms
+[2026-04-02 08:56:22.469743385 +08:00 INFO] [future_option_mapping]: 61.737736ms
+[2026-04-02 08:56:22.610637673 +08:00 INFO] [future_option_mapping]: 140.669486ms
+[2026-04-02 08:56:22.680803174 +08:00 INFO] [future_option_mapping]: 63.782839ms
+[2026-04-02 08:56:28.426124401 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 08:56:28.484173316 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 08:56:28.540465796 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, StockTrading, MarketData}
+[2026-04-02 08:56:28.697459242 +08:00 INFO] [future_option_mapping]: 156.787196ms
+[2026-04-02 08:56:28.753148441 +08:00 INFO] [future_option_mapping]: 53.338989ms
+[2026-04-02 08:56:28.880937196 +08:00 INFO] [future_option_mapping]: 127.526746ms
+[2026-04-02 08:56:28.943879649 +08:00 INFO] [future_option_mapping]: 54.766628ms
+[2026-04-02 08:56:36.087188406 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 08:56:36.151987486 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 08:56:36.215808320 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockTrading, StockAccounting, MarketData}
+[2026-04-02 08:56:36.396620568 +08:00 INFO] [future_option_mapping]: 180.740537ms
+[2026-04-02 08:56:36.459529015 +08:00 INFO] [future_option_mapping]: 61.341307ms
+[2026-04-02 08:56:36.601507224 +08:00 INFO] [future_option_mapping]: 141.752049ms
+[2026-04-02 08:56:36.672562324 +08:00 INFO] [future_option_mapping]: 63.48333ms
+[2026-04-02 08:56:36.673453203 +08:00 INFO] [get inventories] account=Account { branch_no: "20214", account: "408322", account_type: "stock", name: "楊聖幟" }
+[2026-04-02 08:56:36.745943751 +08:00 INFO] [inventory_result]: 72.45372ms
+[2026-04-02 08:56:42.835883411 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 08:56:42.892472114 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 08:56:42.948053841 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {MarketData, StockAccounting, StockTrading}
+[2026-04-02 08:56:43.103548793 +08:00 INFO] [future_option_mapping]: 155.41981ms
+[2026-04-02 08:56:43.158470557 +08:00 INFO] [future_option_mapping]: 53.059344ms
+[2026-04-02 08:56:43.283027237 +08:00 INFO] [future_option_mapping]: 124.325629ms
+[2026-04-02 08:56:43.345650877 +08:00 INFO] [future_option_mapping]: 55.818328ms
+[2026-04-02 08:56:48.394978367 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 08:56:48.460334092 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 08:56:48.524970427 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, MarketData, StockTrading}
+[2026-04-02 08:56:48.706389900 +08:00 INFO] [future_option_mapping]: 181.348304ms
+[2026-04-02 08:56:48.769183524 +08:00 INFO] [future_option_mapping]: 60.993752ms
+[2026-04-02 08:56:48.910563837 +08:00 INFO] [future_option_mapping]: 141.168176ms
+[2026-04-02 08:56:48.982569197 +08:00 INFO] [future_option_mapping]: 63.743186ms
+[2026-04-02 08:57:25.428466940 +08:00 INFO] [apikey_dma_login] personal_id="H120193488"
+[2026-04-02 08:57:33.035586425 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 08:57:33.092821462 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 08:57:33.148358705 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockTrading, MarketData, StockAccounting}
+[2026-04-02 08:57:33.303971722 +08:00 INFO] [future_option_mapping]: 155.532582ms
+[2026-04-02 08:57:33.358782491 +08:00 INFO] [future_option_mapping]: 52.909336ms
+[2026-04-02 08:57:33.483402027 +08:00 INFO] [future_option_mapping]: 124.393326ms
+[2026-04-02 08:57:33.545837668 +08:00 INFO] [future_option_mapping]: 55.384088ms
+[2026-04-02 08:58:36.937379211 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 08:58:36.994019999 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 08:58:37.050193732 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, MarketData, StockTrading}
+[2026-04-02 08:58:37.206796029 +08:00 INFO] [future_option_mapping]: 156.527208ms
+[2026-04-02 08:58:37.261940398 +08:00 INFO] [future_option_mapping]: 53.249578ms
+[2026-04-02 08:58:37.387454204 +08:00 INFO] [future_option_mapping]: 125.277985ms
+[2026-04-02 08:58:37.450235595 +08:00 INFO] [future_option_mapping]: 55.038872ms
+[2026-04-02 08:58:56.425090383 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 08:58:56.490936037 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 08:58:56.555598549 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockTrading, MarketData, StockAccounting}
+[2026-04-02 08:58:56.736809380 +08:00 INFO] [future_option_mapping]: 181.137742ms
+[2026-04-02 08:58:56.800646470 +08:00 INFO] [future_option_mapping]: 61.766317ms
+[2026-04-02 08:58:56.942014529 +08:00 INFO] [future_option_mapping]: 140.881196ms
+[2026-04-02 08:58:57.013879412 +08:00 INFO] [future_option_mapping]: 63.206226ms
+[2026-04-02 08:59:11.141026114 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 08:59:11.206506430 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 08:59:11.270713295 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockTrading, MarketData, StockAccounting}
+[2026-04-02 08:59:11.452512675 +08:00 INFO] [future_option_mapping]: 181.715114ms
+[2026-04-02 08:59:11.515671954 +08:00 INFO] [future_option_mapping]: 61.492496ms
+[2026-04-02 08:59:11.656676519 +08:00 INFO] [future_option_mapping]: 140.802051ms
+[2026-04-02 08:59:11.727216378 +08:00 INFO] [future_option_mapping]: 63.942324ms
+[2026-04-02 08:59:21.334172575 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 08:59:21.391164545 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 08:59:21.446988779 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, StockTrading, MarketData}
+[2026-04-02 08:59:21.601992916 +08:00 INFO] [future_option_mapping]: 154.931147ms
+[2026-04-02 08:59:21.656697176 +08:00 INFO] [future_option_mapping]: 52.72858ms
+[2026-04-02 08:59:21.781031362 +08:00 INFO] [future_option_mapping]: 124.057579ms
+[2026-04-02 08:59:21.843359083 +08:00 INFO] [future_option_mapping]: 54.106426ms
+[2026-04-02 08:59:21.844212867 +08:00 INFO] [place_order] account=Account { branch_no: "20214", account: "408322", account_type: "stock", name: "楊聖幟" },order=Order { oxtp: NewOrder, market_type: Common, sess: None, date: None, buy_sell: Sell, stock_no: "1453", price_type: Market, price: None, quantity: 1000, time_in_force: ROD, order_type: Stock, user_def: None }, is_async=false
+[2026-04-02 08:59:33.364431546 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 08:59:33.428864001 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 08:59:33.492439465 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, StockTrading, MarketData}
+[2026-04-02 08:59:33.673223061 +08:00 INFO] [future_option_mapping]: 180.691718ms
+[2026-04-02 08:59:33.736548249 +08:00 INFO] [future_option_mapping]: 61.234001ms
+[2026-04-02 08:59:33.876919025 +08:00 INFO] [future_option_mapping]: 140.149262ms
+[2026-04-02 08:59:33.946740495 +08:00 INFO] [future_option_mapping]: 62.93927ms
+[2026-04-02 08:59:40.095290427 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 08:59:40.160006424 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 08:59:40.224964040 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, StockTrading, MarketData}
+[2026-04-02 08:59:40.407475884 +08:00 INFO] [future_option_mapping]: 182.446216ms
+[2026-04-02 08:59:40.470967705 +08:00 INFO] [future_option_mapping]: 61.92665ms
+[2026-04-02 08:59:40.612759790 +08:00 INFO] [future_option_mapping]: 141.517353ms
+[2026-04-02 08:59:40.684663425 +08:00 INFO] [future_option_mapping]: 64.448583ms
+[2026-04-02 08:59:50.388654544 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 08:59:50.453671884 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 08:59:50.517879326 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockTrading, MarketData, StockAccounting}
+[2026-04-02 08:59:50.699905478 +08:00 INFO] [future_option_mapping]: 181.958593ms
+[2026-04-02 08:59:50.763151503 +08:00 INFO] [future_option_mapping]: 61.680413ms
+[2026-04-02 08:59:50.906439464 +08:00 INFO] [future_option_mapping]: 142.920807ms
+[2026-04-02 08:59:50.978000162 +08:00 INFO] [future_option_mapping]: 63.425814ms
+[2026-04-02 08:59:51.044876644 +08:00 INFO] [query_symbol_quote]: 66.048577ms
+[2026-04-02 08:59:51.106787839 +08:00 INFO] [query_symbol_quote]: 61.514242ms
+[2026-04-02 08:59:51.168351791 +08:00 INFO] [query_symbol_quote]: 61.422108ms
+[2026-04-02 08:59:51.230030587 +08:00 INFO] [query_symbol_quote]: 61.565845ms
+[2026-04-02 08:59:51.291610517 +08:00 INFO] [query_symbol_quote]: 61.44179ms
+[2026-04-02 08:59:51.353108143 +08:00 INFO] [query_symbol_quote]: 61.397085ms
+[2026-04-02 08:59:51.414743499 +08:00 INFO] [query_symbol_quote]: 61.572275ms
+[2026-04-02 08:59:51.476182017 +08:00 INFO] [query_symbol_quote]: 61.371797ms
+[2026-04-02 09:00:13.138294981 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:00:13.199676330 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:00:13.256195999 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {MarketData, StockAccounting, StockTrading}
+[2026-04-02 09:00:13.411656953 +08:00 INFO] [future_option_mapping]: 155.392659ms
+[2026-04-02 09:00:13.467231483 +08:00 INFO] [future_option_mapping]: 53.600892ms
+[2026-04-02 09:00:13.596997837 +08:00 INFO] [future_option_mapping]: 129.54439ms
+[2026-04-02 09:00:13.659938499 +08:00 INFO] [future_option_mapping]: 54.937423ms
+[2026-04-02 09:00:29.818681347 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:00:29.874991462 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:00:29.934632282 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {MarketData, StockTrading, StockAccounting}
+[2026-04-02 09:00:30.100137569 +08:00 INFO] [future_option_mapping]: 165.419195ms
+[2026-04-02 09:00:30.167019087 +08:00 INFO] [future_option_mapping]: 64.922196ms
+[2026-04-02 09:00:30.328991522 +08:00 INFO] [future_option_mapping]: 161.761286ms
+[2026-04-02 09:00:30.409728712 +08:00 INFO] [future_option_mapping]: 72.336044ms
+[2026-04-02 09:00:38.067317485 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:00:38.129877263 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:00:38.185313540 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {MarketData, StockAccounting, StockTrading}
+[2026-04-02 09:00:38.342653094 +08:00 INFO] [future_option_mapping]: 157.267702ms
+[2026-04-02 09:00:38.397418487 +08:00 INFO] [future_option_mapping]: 53.129667ms
+[2026-04-02 09:00:38.526812473 +08:00 INFO] [future_option_mapping]: 129.169551ms
+[2026-04-02 09:00:38.589626429 +08:00 INFO] [future_option_mapping]: 55.848482ms
+[2026-04-02 09:00:45.816019537 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:00:45.887310731 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:00:45.963136354 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockTrading, MarketData, StockAccounting}
+[2026-04-02 09:00:46.175384191 +08:00 INFO] [future_option_mapping]: 212.183787ms
+[2026-04-02 09:00:46.245011216 +08:00 INFO] [future_option_mapping]: 67.70615ms
+[2026-04-02 09:00:46.455911944 +08:00 INFO] [future_option_mapping]: 210.638913ms
+[2026-04-02 09:00:46.528584311 +08:00 INFO] [future_option_mapping]: 64.559574ms
+[2026-04-02 09:00:54.095412567 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:00:54.160887883 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:00:54.225622220 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, StockTrading, MarketData}
+[2026-04-02 09:00:54.409452285 +08:00 INFO] [future_option_mapping]: 183.757535ms
+[2026-04-02 09:00:54.473396578 +08:00 INFO] [future_option_mapping]: 62.22281ms
+[2026-04-02 09:00:54.617667145 +08:00 INFO] [future_option_mapping]: 143.996321ms
+[2026-04-02 09:00:54.689515732 +08:00 INFO] [future_option_mapping]: 64.045268ms
+[2026-04-02 09:01:03.410744698 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:01:03.476864767 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:01:03.542206001 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, StockTrading, MarketData}
+[2026-04-02 09:01:03.706234065 +08:00 INFO] [future_option_mapping]: 163.959912ms
+[2026-04-02 09:01:03.760911844 +08:00 INFO] [future_option_mapping]: 52.927986ms
+[2026-04-02 09:01:03.892499239 +08:00 INFO] [future_option_mapping]: 131.336971ms
+[2026-04-02 09:01:03.955706208 +08:00 INFO] [future_option_mapping]: 55.431814ms
+[2026-04-02 09:01:10.847116181 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:01:10.912437170 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:01:10.976828306 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, StockTrading, MarketData}
+[2026-04-02 09:01:11.158759640 +08:00 INFO] [future_option_mapping]: 181.851471ms
+[2026-04-02 09:01:11.222526678 +08:00 INFO] [future_option_mapping]: 61.862835ms
+[2026-04-02 09:01:11.369323101 +08:00 INFO] [future_option_mapping]: 146.537619ms
+[2026-04-02 09:01:11.440845173 +08:00 INFO] [future_option_mapping]: 63.500295ms
+[2026-04-02 09:01:19.862248459 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:01:19.927051215 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:01:20.001569164 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {MarketData, StockAccounting, StockTrading}
+[2026-04-02 09:01:20.182835828 +08:00 INFO] [future_option_mapping]: 181.192294ms
+[2026-04-02 09:01:20.246059814 +08:00 INFO] [future_option_mapping]: 61.380796ms
+[2026-04-02 09:01:20.390502405 +08:00 INFO] [future_option_mapping]: 144.199841ms
+[2026-04-02 09:01:20.462969249 +08:00 INFO] [future_option_mapping]: 64.040316ms
+[2026-04-02 09:01:34.328383769 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:01:34.413389291 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:01:34.477677883 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, StockTrading, MarketData}
+[2026-04-02 09:01:34.660438223 +08:00 INFO] [future_option_mapping]: 182.68769ms
+[2026-04-02 09:01:34.723981117 +08:00 INFO] [future_option_mapping]: 61.616984ms
+[2026-04-02 09:01:34.878101587 +08:00 INFO] [future_option_mapping]: 153.900223ms
+[2026-04-02 09:01:34.949174024 +08:00 INFO] [future_option_mapping]: 64.566207ms
+[2026-04-02 09:01:51.514354598 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:01:51.571597804 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:01:51.627724671 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {MarketData, StockAccounting, StockTrading}
+[2026-04-02 09:01:51.798300303 +08:00 INFO] [future_option_mapping]: 170.514299ms
+[2026-04-02 09:01:51.855545967 +08:00 INFO] [future_option_mapping]: 55.565021ms
+[2026-04-02 09:01:51.984497633 +08:00 INFO] [future_option_mapping]: 128.740002ms
+[2026-04-02 09:01:52.047351900 +08:00 INFO] [future_option_mapping]: 55.831251ms
+[2026-04-02 09:02:01.782759349 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:02:01.839765041 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:02:01.895400488 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockTrading, StockAccounting, MarketData}
+[2026-04-02 09:02:02.057013806 +08:00 INFO] [future_option_mapping]: 161.537928ms
+[2026-04-02 09:02:02.114865543 +08:00 INFO] [future_option_mapping]: 56.234204ms
+[2026-04-02 09:02:02.259556475 +08:00 INFO] [future_option_mapping]: 144.492853ms
+[2026-04-02 09:02:02.338354742 +08:00 INFO] [future_option_mapping]: 71.364736ms
+[2026-04-02 09:02:11.014559466 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:02:11.099361863 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:02:11.170014416 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {MarketData, StockAccounting, StockTrading}
+[2026-04-02 09:02:11.356110778 +08:00 INFO] [future_option_mapping]: 186.010451ms
+[2026-04-02 09:02:11.420131455 +08:00 INFO] [future_option_mapping]: 62.177468ms
+[2026-04-02 09:02:11.566190030 +08:00 INFO] [future_option_mapping]: 145.830923ms
+[2026-04-02 09:02:11.639230321 +08:00 INFO] [future_option_mapping]: 65.068745ms
+[2026-04-02 09:02:21.100751807 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:02:21.165504352 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:02:21.229030048 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, MarketData, StockTrading}
+[2026-04-02 09:02:21.410817465 +08:00 INFO] [future_option_mapping]: 181.718531ms
+[2026-04-02 09:02:21.474360396 +08:00 INFO] [future_option_mapping]: 61.817437ms
+[2026-04-02 09:02:21.622807761 +08:00 INFO] [future_option_mapping]: 148.107782ms
+[2026-04-02 09:02:21.694377016 +08:00 INFO] [future_option_mapping]: 63.2808ms
+[2026-04-02 09:03:13.147049828 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:03:13.204257531 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:03:13.260172228 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {MarketData, StockTrading, StockAccounting}
+[2026-04-02 09:03:13.416571062 +08:00 INFO] [future_option_mapping]: 156.331066ms
+[2026-04-02 09:03:13.471227203 +08:00 INFO] [future_option_mapping]: 53.014289ms
+[2026-04-02 09:03:13.598935106 +08:00 INFO] [future_option_mapping]: 127.469285ms
+[2026-04-02 09:03:13.660926930 +08:00 INFO] [future_option_mapping]: 55.354704ms
+[2026-04-02 09:03:32.366437425 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:03:32.431374491 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:03:32.495724861 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, StockTrading, MarketData}
+[2026-04-02 09:03:32.677452910 +08:00 INFO] [future_option_mapping]: 181.662154ms
+[2026-04-02 09:03:32.741243744 +08:00 INFO] [future_option_mapping]: 61.550652ms
+[2026-04-02 09:03:32.891618962 +08:00 INFO] [future_option_mapping]: 150.07307ms
+[2026-04-02 09:03:32.983451075 +08:00 INFO] [future_option_mapping]: 84.23693ms
+[2026-04-02 09:03:45.141938182 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:03:45.198860577 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:03:45.267172798 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, StockTrading, MarketData}
+[2026-04-02 09:03:45.425313513 +08:00 INFO] [future_option_mapping]: 157.947841ms
+[2026-04-02 09:03:45.480384783 +08:00 INFO] [future_option_mapping]: 53.384673ms
+[2026-04-02 09:03:45.609100261 +08:00 INFO] [future_option_mapping]: 128.438474ms
+[2026-04-02 09:03:45.671077293 +08:00 INFO] [future_option_mapping]: 55.248442ms
+[2026-04-02 09:03:45.799194828 +08:00 INFO] [place_order] account=Account { branch_no: "20214", account: "408322", account_type: "stock", name: "楊聖幟" },order=Order { oxtp: NewOrder, market_type: Common, sess: None, date: None, buy_sell: Sell, stock_no: "1453", price_type: Limit, price: Some("12.10"), quantity: 1000, time_in_force: ROD, order_type: Stock, user_def: None }, is_async=false
+[2026-04-02 09:03:45.888318940 +08:00 INFO] [place_order]: 89.140133ms
+[2026-04-02 09:04:52.230297884 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:04:52.294996948 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:04:52.358839367 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockTrading, StockAccounting, MarketData}
+[2026-04-02 09:04:52.541379755 +08:00 INFO] [future_option_mapping]: 182.463327ms
+[2026-04-02 09:04:52.604879624 +08:00 INFO] [future_option_mapping]: 61.611844ms
+[2026-04-02 09:04:52.747156293 +08:00 INFO] [future_option_mapping]: 142.036836ms
+[2026-04-02 09:04:52.818315200 +08:00 INFO] [future_option_mapping]: 63.681561ms
+[2026-04-02 09:05:43.568084833 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:05:43.624713735 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:05:43.680053605 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {MarketData, StockAccounting, StockTrading}
+[2026-04-02 09:05:43.836510732 +08:00 INFO] [future_option_mapping]: 156.384534ms
+[2026-04-02 09:05:43.891223301 +08:00 INFO] [future_option_mapping]: 53.122587ms
+[2026-04-02 09:05:44.017724091 +08:00 INFO] [future_option_mapping]: 126.251035ms
+[2026-04-02 09:05:44.082626735 +08:00 INFO] [future_option_mapping]: 55.52322ms
+[2026-04-02 09:05:44.260749121 +08:00 INFO] [query_symbol_quote]: 53.38591ms
+[2026-04-02 09:05:44.313710736 +08:00 INFO] [query_symbol_quote]: 52.798509ms
+[2026-04-02 09:05:44.368468218 +08:00 INFO] [query_symbol_quote]: 54.621903ms
+[2026-04-02 09:05:44.421644309 +08:00 INFO] [query_symbol_quote]: 53.051332ms
+[2026-04-02 09:05:44.474862398 +08:00 INFO] [query_symbol_quote]: 53.12352ms
+[2026-04-02 09:05:44.475136901 +08:00 INFO] [place_order] account=Account { branch_no: "20214", account: "408322", account_type: "stock", name: "楊聖幟" },order=Order { oxtp: NewOrder, market_type: Common, sess: None, date: None, buy_sell: Buy, stock_no: "2382", price_type: Limit, price: Some("289"), quantity: 1000, time_in_force: ROD, order_type: Stock, user_def: None }, is_async=false
+[2026-04-02 09:05:58.341417799 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:05:58.406682208 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:05:58.470994184 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {MarketData, StockTrading, StockAccounting}
+[2026-04-02 09:05:58.653055342 +08:00 INFO] [future_option_mapping]: 181.989144ms
+[2026-04-02 09:05:58.717209700 +08:00 INFO] [future_option_mapping]: 62.201199ms
+[2026-04-02 09:05:58.862101282 +08:00 INFO] [future_option_mapping]: 144.620262ms
+[2026-04-02 09:05:58.933295857 +08:00 INFO] [future_option_mapping]: 64.198113ms
+[2026-04-02 09:06:11.555156091 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:06:11.621396607 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:06:11.687890621 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockTrading, MarketData, StockAccounting}
+[2026-04-02 09:06:11.871232268 +08:00 INFO] [future_option_mapping]: 183.266001ms
+[2026-04-02 09:06:11.935286009 +08:00 INFO] [future_option_mapping]: 62.46242ms
+[2026-04-02 09:06:12.082653107 +08:00 INFO] [future_option_mapping]: 147.164497ms
+[2026-04-02 09:06:12.155068195 +08:00 INFO] [future_option_mapping]: 64.30085ms
+[2026-04-02 09:06:12.282428939 +08:00 INFO] [bank remain] account=Account { branch_no: "20214", account: "408322", account_type: "stock", name: "楊聖幟" }
+[2026-04-02 09:06:12.751838960 +08:00 INFO] [bank remain]: 469.382276ms
+[2026-04-02 09:06:28.828308588 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:06:28.885164832 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:06:28.940923688 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, StockTrading, MarketData}
+[2026-04-02 09:06:29.097539617 +08:00 INFO] [future_option_mapping]: 156.540072ms
+[2026-04-02 09:06:29.152799134 +08:00 INFO] [future_option_mapping]: 53.256603ms
+[2026-04-02 09:06:29.278870285 +08:00 INFO] [future_option_mapping]: 125.826561ms
+[2026-04-02 09:06:29.342749453 +08:00 INFO] [future_option_mapping]: 55.690207ms
+[2026-04-02 09:06:29.474380225 +08:00 INFO] [get_order_results] account=Account { branch_no: "20214", account: "408322", account_type: "stock", name: "楊聖幟" }
+[2026-04-02 09:06:29.526859306 +08:00 INFO] [order_result]: 52.442024ms
+[2026-04-02 09:06:29.527109184 +08:00 INFO] [bank remain] account=Account { branch_no: "20214", account: "408322", account_type: "stock", name: "楊聖幟" }
+[2026-04-02 09:06:29.975010116 +08:00 INFO] [bank remain]: 447.872074ms
+[2026-04-02 09:06:45.633235492 +08:00 INFO] [apikey_login] personal_id="H120193488"
+[2026-04-02 09:06:45.698679636 +08:00 INFO] API Key account requires certificate validation
+[2026-04-02 09:06:45.762527062 +08:00 INFO] [apikey_login] Loaded permissions from XPSAZBIZS: {StockAccounting, MarketData, StockTrading}
+[2026-04-02 09:06:45.945398705 +08:00 INFO] [future_option_mapping]: 182.796795ms
+[2026-04-02 09:06:46.009117852 +08:00 INFO] [future_option_mapping]: 62.018004ms
+[2026-04-02 09:06:46.153817009 +08:00 INFO] [future_option_mapping]: 144.486518ms
+[2026-04-02 09:06:46.228601688 +08:00 INFO] [future_option_mapping]: 67.530515ms
+[2026-04-02 09:06:46.357617321 +08:00 INFO] [get_order_results] account=Account { branch_no: "20214", account: "408322", account_type: "stock", name: "楊聖幟" }
+[2026-04-02 09:06:46.417821781 +08:00 INFO] [order_result]: 60.182235ms
+[2026-04-02 09:06:46.418056111 +08:00 INFO] [get inventories] account=Account { branch_no: "20214", account: "408322", account_type: "stock", name: "楊聖幟" }
+[2026-04-02 09:06:46.485840985 +08:00 INFO] [inventory_result]: 67.765912ms
+[2026-04-02 09:06:46.485971559 +08:00 INFO] [bank remain] account=Account { branch_no: "20214", account: "408322", account_type: "stock", name: "楊聖幟" }
+[2026-04-02 09:06:46.980187668 +08:00 INFO] [bank remain]: 494.172714ms
+[2026-04-02 11:51:31.479281109 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-02 11:51:31.548680340 +08:00 INFO] this account require 2fa
+[2026-04-02 11:51:31.794534128 +08:00 INFO] [future_option_mapping]: 181.654805ms
+[2026-04-02 11:51:31.857691920 +08:00 INFO] [future_option_mapping]: 61.420917ms
+[2026-04-02 11:51:31.998372189 +08:00 INFO] [future_option_mapping]: 140.408739ms
+[2026-04-02 11:51:32.069513587 +08:00 INFO] [future_option_mapping]: 63.93831ms
+[2026-04-02 11:51:36.721096852 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-02 11:51:36.781426625 +08:00 INFO] this account require 2fa
+[2026-04-02 11:51:36.992264138 +08:00 INFO] [future_option_mapping]: 155.278645ms
+[2026-04-02 11:51:37.046785732 +08:00 INFO] [future_option_mapping]: 52.926434ms
+[2026-04-02 11:51:37.170521290 +08:00 INFO] [future_option_mapping]: 123.52047ms
+[2026-04-02 11:51:37.232340574 +08:00 INFO] [future_option_mapping]: 55.086342ms
+[2026-04-02 11:56:03.520953688 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-02 11:56:03.590268953 +08:00 INFO] this account require 2fa
+[2026-04-02 11:56:03.834460661 +08:00 INFO] [future_option_mapping]: 180.66059ms
+[2026-04-02 11:56:03.897720149 +08:00 INFO] [future_option_mapping]: 61.469515ms
+[2026-04-02 11:56:04.041012115 +08:00 INFO] [future_option_mapping]: 143.067548ms
+[2026-04-02 11:56:04.114508721 +08:00 INFO] [future_option_mapping]: 65.240579ms
+[2026-04-02 11:56:04.345121535 +08:00 INFO] [logout] user manually logout
+[2026-04-02 11:56:34.074756439 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-02 11:56:34.135801125 +08:00 INFO] this account require 2fa
+[2026-04-02 11:56:34.348573782 +08:00 INFO] [future_option_mapping]: 156.648344ms
+[2026-04-02 11:56:34.403453550 +08:00 INFO] [future_option_mapping]: 53.165853ms
+[2026-04-02 11:56:34.528596356 +08:00 INFO] [future_option_mapping]: 124.870408ms
+[2026-04-02 11:56:34.591661912 +08:00 INFO] [future_option_mapping]: 56.018727ms
+[2026-04-02 11:57:04.023535215 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-02 11:57:04.091720473 +08:00 INFO] this account require 2fa
+[2026-04-02 11:57:04.336864646 +08:00 INFO] [future_option_mapping]: 181.041731ms
+[2026-04-02 11:57:04.400168535 +08:00 INFO] [future_option_mapping]: 61.603269ms
+[2026-04-02 11:57:04.542884348 +08:00 INFO] [future_option_mapping]: 142.492472ms
+[2026-04-02 11:57:04.613893116 +08:00 INFO] [future_option_mapping]: 63.368564ms
+[2026-04-02 11:57:06.547167740 +08:00 INFO] [logout] user manually logout

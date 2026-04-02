@@ -1,0 +1,162 @@
+{
+  "timestamp": "2026-04-02T13:05:55.367538",
+  "quotes": {
+    "2440": {
+      "price": 14.2,
+      "volume": 110,
+      "open": 14.15,
+      "high": 14.25,
+      "low": 13.95,
+      "reference": 14.15
+    },
+    "3652": {
+      "price": 26.55,
+      "volume": 24,
+      "open": 26.9,
+      "high": 26.9,
+      "low": 26.55,
+      "reference": 26.9
+    },
+    "3532": {
+      "price": 131,
+      "volume": 902,
+      "open": 136,
+      "high": 137.5,
+      "low": 129.5,
+      "reference": 135
+    },
+    "1453": {
+      "price": 12.25,
+      "volume": 38,
+      "open": 12.15,
+      "high": 12.45,
+      "low": 12.15,
+      "reference": 12.05
+    },
+    "2027": {
+      "price": 38.55,
+      "volume": 54318,
+      "open": 37.3,
+      "high": 38.75,
+      "low": 37.05,
+      "reference": 36.95
+    },
+    "2008": {
+      "price": 27.2,
+      "volume": 9,
+      "open": 27.1,
+      "high": 27.2,
+      "low": 27.05,
+      "reference": 27.2
+    },
+    "2007": {
+      "price": 8.06,
+      "volume": 147,
+      "open": 8.13,
+      "high": 8.14,
+      "low": 8.05,
+      "reference": 8.1
+    },
+    "3023": {
+      "price": 263.5,
+      "volume": 2048,
+      "open": 261.5,
+      "high": 265.5,
+      "low": 258.5,
+      "reference": 259.5
+    },
+    "3008": {
+      "price": 2145,
+      "volume": 325,
+      "open": 2215,
+      "high": 2215,
+      "low": 2140,
+      "reference": 2190
+    }
+  },
+  "entries": [],
+  "observations": [
+    {
+      "symbol": "2440",
+      "name": "特宏亨",
+      "price": 14.2,
+      "ma5": 14.34,
+      "ma20": 14.69,
+      "gap_pct": 2.42,
+      "ma20_dist_pct": -3.37
+    },
+    {
+      "symbol": "3652",
+      "name": "衡成正",
+      "price": 26.55,
+      "ma5": 26.91,
+      "ma20": 27.08,
+      "gap_pct": 0.62,
+      "ma20_dist_pct": -1.95
+    },
+    {
+      "symbol": "3532",
+      "name": "翔名",
+      "price": 131,
+      "ma5": 138.7,
+      "ma20": 133.25,
+      "gap_pct": -4.09,
+      "ma20_dist_pct": -1.69
+    },
+    {
+      "symbol": "1453",
+      "name": "和大",
+      "price": 12.25,
+      "ma5": 12.23,
+      "ma20": 12.32,
+      "gap_pct": 0.73,
+      "ma20_dist_pct": -0.57
+    },
+    {
+      "symbol": "2027",
+      "name": "食品",
+      "price": 38.55,
+      "ma5": 36.76,
+      "ma20": 36.94,
+      "gap_pct": 0.47,
+      "ma20_dist_pct": 4.37
+    },
+    {
+      "symbol": "2008",
+      "name": "高興昌",
+      "price": 27.2,
+      "ma5": 27.76,
+      "ma20": 28.08,
+      "gap_pct": 1.15,
+      "ma20_dist_pct": -3.14
+    },
+    {
+      "symbol": "2007",
+      "name": "燁興",
+      "price": 8.06,
+      "ma5": 8.23,
+      "ma20": 8.15,
+      "gap_pct": -0.87,
+      "ma20_dist_pct": -1.16
+    },
+    {
+      "symbol": "3023",
+      "name": "信邦",
+      "price": 263.5,
+      "ma5": 255.3,
+      "ma20": 246.72,
+      "gap_pct": -3.48,
+      "ma20_dist_pct": 6.8
+    },
+    {
+      "symbol": "3008",
+      "name": "大立光",
+      "price": 2145,
+      "ma5": 2191.0,
+      "ma20": 2294.25,
+      "gap_pct": 4.5,
+      "ma20_dist_pct": -6.51
+    }
+  ],
+  "sell_actions": []
+}

@@ -1,0 +1,19 @@
+{
+  "date": "2026-04-01",
+  "timestamp": "2026-04-02T14:04:57.867073",
+  "total_screened": 92,
+  "passed_count": 1,
+  "near_miss_count": 7,
+  "fetch_failed_count": 34,
+  "passed": [
+    {
+      "date": "2026-04-01",
+      "close": 290.5,
+      "ma5": 285.2,
+      "ma20": 286.15,
+      "gap_pct": 0.332,
+      "gap_d3": 1.035,
+      "gap_d2": 0.62,
+      "gap_d1": 0.551,
+      "gap_d0": 0.332,
+      "cond1": 

@@ -4,3 +4,38 @@
 [2026-04-01 09:09:26.447690874 +08:00 INFO] [future_option_mapping]: 53.41869ms
 [2026-04-01 09:09:26.575230086 +08:00 INFO] [future_option_mapping]: 127.284279ms
 [2026-04-01 09:09:26.638521732 +08:00 INFO] [future_option_mapping]: 54.043697ms
+[2026-04-01 20:54:08.494942119 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-01 20:54:08.557577202 +08:00 INFO] this account require 2fa
+[2026-04-01 20:54:08.770727475 +08:00 INFO] [future_option_mapping]: 156.889225ms
+[2026-04-01 20:54:08.826115838 +08:00 INFO] [future_option_mapping]: 53.526256ms
+[2026-04-01 20:54:08.952046880 +08:00 INFO] [future_option_mapping]: 125.712729ms
+[2026-04-01 20:54:09.015905195 +08:00 INFO] [future_option_mapping]: 55.638361ms
+[2026-04-01 20:54:09.262504411 +08:00 INFO] [logout] user manually logout
+[2026-04-01 20:54:21.861591284 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-01 20:54:21.932069120 +08:00 INFO] this account require 2fa
+[2026-04-01 20:54:22.178212510 +08:00 INFO] [future_option_mapping]: 181.721915ms
+[2026-04-01 20:54:22.242077895 +08:00 INFO] [future_option_mapping]: 62.235087ms
+[2026-04-01 20:54:22.385872904 +08:00 INFO] [future_option_mapping]: 143.597537ms
+[2026-04-01 20:54:22.456227970 +08:00 INFO] [future_option_mapping]: 63.636236ms
+[2026-04-01 20:54:22.698517477 +08:00 INFO] [logout] user manually logout
+[2026-04-01 20:54:29.849019553 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-01 20:54:29.918727788 +08:00 INFO] this account require 2fa
+[2026-04-01 20:54:30.164227517 +08:00 INFO] [future_option_mapping]: 181.131408ms
+[2026-04-01 20:54:30.227630543 +08:00 INFO] [future_option_mapping]: 61.657252ms
+[2026-04-01 20:54:30.371383711 +08:00 INFO] [future_option_mapping]: 143.453927ms
+[2026-04-01 20:54:30.442442996 +08:00 INFO] [future_option_mapping]: 63.973156ms
+[2026-04-01 20:54:30.676403548 +08:00 INFO] [logout] user manually logout
+[2026-04-01 20:56:47.603406118 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-01 20:56:47.668470770 +08:00 INFO] this account require 2fa
+[2026-04-01 20:56:47.882555645 +08:00 INFO] [future_option_mapping]: 157.430804ms
+[2026-04-01 20:56:47.937783520 +08:00 INFO] [future_option_mapping]: 53.639736ms
+[2026-04-01 20:56:48.063059637 +08:00 INFO] [future_option_mapping]: 125.084641ms
+[2026-04-01 20:56:48.125091912 +08:00 INFO] [future_option_mapping]: 55.667073ms
+[2026-04-01 20:57:15.074012216 +08:00 INFO] [logout] user manually logout
+[2026-04-01 20:57:54.420791931 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-01 20:57:54.491519945 +08:00 INFO] this account require 2fa
+[2026-04-01 20:57:54.737781078 +08:00 INFO] [future_option_mapping]: 181.614807ms
+[2026-04-01 20:57:54.800923693 +08:00 INFO] [future_option_mapping]: 61.470128ms
+[2026-04-01 20:57:54.943396702 +08:00 INFO] [future_option_mapping]: 142.211778ms
+[2026-04-01 20:57:55.014804690 +08:00 INFO] [future_option_mapping]: 63.928377ms
+[2026-04-01 20:57:55.589825375 +08:00 INFO] [logout] user manually logout

@@ -1,0 +1,76 @@
+[2026-04-01 09:11:50.640946186 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-01 09:11:50.701735303 +08:00 INFO] this account require 2fa
+[2026-04-01 09:11:50.915969238 +08:00 INFO] [future_option_mapping]: 157.835763ms
+[2026-04-01 09:11:50.971140939 +08:00 INFO] [future_option_mapping]: 53.508835ms
+[2026-04-01 09:11:51.100611693 +08:00 INFO] [future_option_mapping]: 129.263512ms
+[2026-04-01 09:11:51.162962708 +08:00 INFO] [future_option_mapping]: 55.560941ms
+[2026-04-01 09:12:07.502665659 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-01 09:12:07.566569419 +08:00 INFO] this account require 2fa
+[2026-04-01 09:12:07.779902977 +08:00 INFO] [future_option_mapping]: 157.305268ms
+[2026-04-01 09:12:07.835221597 +08:00 INFO] [future_option_mapping]: 53.441663ms
+[2026-04-01 09:12:07.962735884 +08:00 INFO] [future_option_mapping]: 127.298248ms
+[2026-04-01 09:12:08.025995564 +08:00 INFO] [future_option_mapping]: 55.696695ms
+[2026-04-01 09:12:08.205386635 +08:00 INFO] [query_symbol_quote]: 53.466617ms
+[2026-04-01 09:12:29.658391413 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-01 09:12:29.728343546 +08:00 INFO] this account require 2fa
+[2026-04-01 09:12:29.988869311 +08:00 INFO] [future_option_mapping]: 196.679732ms
+[2026-04-01 09:12:30.051854246 +08:00 INFO] [future_option_mapping]: 61.331466ms
+[2026-04-01 09:12:30.194442637 +08:00 INFO] [future_option_mapping]: 142.391603ms
+[2026-04-01 09:12:30.265062349 +08:00 INFO] [future_option_mapping]: 62.096458ms
+[2026-04-01 09:12:30.462631274 +08:00 INFO] [query_symbol_quote]: 62.184026ms
+[2026-04-01 09:12:30.524186543 +08:00 INFO] [query_symbol_quote]: 61.220912ms
+[2026-04-01 09:12:30.585170814 +08:00 INFO] [query_symbol_quote]: 60.88816ms
+[2026-04-01 10:06:04.945541840 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-01 10:06:05.014674878 +08:00 INFO] this account require 2fa
+[2026-04-01 10:06:05.260908512 +08:00 INFO] [future_option_mapping]: 181.847582ms
+[2026-04-01 10:06:05.324320169 +08:00 INFO] [future_option_mapping]: 61.653131ms
+[2026-04-01 10:06:05.469231495 +08:00 INFO] [future_option_mapping]: 144.146505ms
+[2026-04-01 10:06:05.540579821 +08:00 INFO] [future_option_mapping]: 63.248188ms
+[2026-04-01 10:06:05.739385358 +08:00 INFO] [query_symbol_quote]: 61.555107ms
+[2026-04-01 10:06:18.743198664 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-01 10:06:18.811664028 +08:00 INFO] this account require 2fa
+[2026-04-01 10:06:19.057695525 +08:00 INFO] [future_option_mapping]: 181.489222ms
+[2026-04-01 10:06:19.121191177 +08:00 INFO] [future_option_mapping]: 61.827752ms
+[2026-04-01 10:06:19.263283421 +08:00 INFO] [future_option_mapping]: 141.873187ms
+[2026-04-01 10:06:19.334037908 +08:00 INFO] [future_option_mapping]: 64.307225ms
+[2026-04-01 10:06:19.531117503 +08:00 INFO] [query_symbol_quote]: 61.891357ms
+[2026-04-01 10:06:19.593292564 +08:00 INFO] [query_symbol_quote]: 61.719727ms
+[2026-04-01 10:06:19.655292376 +08:00 INFO] [query_symbol_quote]: 61.61135ms
+[2026-04-01 10:06:19.717528742 +08:00 INFO] [query_symbol_quote]: 61.875561ms
+[2026-04-01 10:06:19.779617760 +08:00 INFO] [query_symbol_quote]: 61.752552ms
+[2026-04-01 10:06:19.780097718 +08:00 INFO] [unrealized gains and loses] account=Account { branch_no: "20214", account: "408322", account_type: "stock", name: "楊聖幟" }
+[2026-04-01 10:06:19.862049995 +08:00 INFO] [inventory_stock_detail_result]: 81.913781ms
+[2026-04-01 10:25:05.621917880 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-01 10:25:05.681685150 +08:00 INFO] this account require 2fa
+[2026-04-01 10:25:05.892452774 +08:00 INFO] [future_option_mapping]: 154.925212ms
+[2026-04-01 10:25:05.947279016 +08:00 INFO] [future_option_mapping]: 53.023553ms
+[2026-04-01 10:25:06.073037756 +08:00 INFO] [future_option_mapping]: 125.551579ms
+[2026-04-01 10:25:06.136296044 +08:00 INFO] [future_option_mapping]: 54.776231ms
+[2026-04-01 10:25:06.137085580 +08:00 INFO] [bank remain] account=Account { branch_no: "20214", account: "408322", account_type: "stock", name: "楊聖幟" }
+[2026-04-01 10:25:06.612472902 +08:00 INFO] [bank remain]: 475.371043ms
+[2026-04-01 10:25:06.613861522 +08:00 INFO] [unrealized gains and loses] account=Account { branch_no: "20214", account: "408322", account_type: "stock", name: "楊聖幟" }
+[2026-04-01 10:25:06.687359152 +08:00 INFO] [inventory_stock_detail_result]: 73.47782ms
+[2026-04-01 10:25:17.207076061 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-01 10:25:17.277253266 +08:00 INFO] this account require 2fa
+[2026-04-01 10:25:17.523467926 +08:00 INFO] [future_option_mapping]: 181.65117ms
+[2026-04-01 10:25:17.586887936 +08:00 INFO] [future_option_mapping]: 61.768623ms
+[2026-04-01 10:25:17.729134962 +08:00 INFO] [future_option_mapping]: 142.037771ms
+[2026-04-01 10:25:17.799514433 +08:00 INFO] [future_option_mapping]: 62.682612ms
+[2026-04-01 10:25:17.862017055 +08:00 INFO] [query_symbol_quote]: 61.716199ms
+[2026-04-01 10:25:17.923543680 +08:00 INFO] [query_symbol_quote]: 61.318857ms
+[2026-04-01 10:25:17.984866564 +08:00 INFO] [query_symbol_quote]: 61.218596ms
+[2026-04-01 10:25:18.046093782 +08:00 INFO] [query_symbol_quote]: 61.135127ms
+[2026-04-01 10:25:18.108005416 +08:00 INFO] [query_symbol_quote]: 61.817345ms
+[2026-04-01 10:25:34.948193001 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-01 10:25:35.010794666 +08:00 INFO] this account require 2fa
+[2026-04-01 10:25:35.224517005 +08:00 INFO] [future_option_mapping]: 156.733947ms
+[2026-04-01 10:25:35.278994518 +08:00 INFO] [future_option_mapping]: 52.826006ms
+[2026-04-01 10:25:35.404538038 +08:00 INFO] [future_option_mapping]: 125.337547ms
+[2026-04-01 10:25:35.465820048 +08:00 INFO] [future_option_mapping]: 54.375167ms
+[2026-04-01 10:25:44.597623684 +08:00 INFO] [login] personal_id="H120193488"
+[2026-04-01 10:25:44.667151578 +08:00 INFO] this account require 2fa
+[2026-04-01 10:25:44.913793595 +08:00 INFO] [future_option_mapping]: 181.997158ms
+[2026-04-01 10:25:44.977102208 +08:00 INFO] [future_option_mapping]: 61.652432ms
+[2026-04-01 10:25:45.120754618 +08:00 INFO] [future_option_mapping]: 143.443025ms
+[2026-04-01 10:25:45.191505633 +08:00 INFO] [future_option_mapping]: 63.874644ms
+[2026-04-01 16:45:45.668870892 +08:00 INFO] [login] personal_id=""
