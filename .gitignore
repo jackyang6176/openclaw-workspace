@@ -51,3 +51,10 @@ etf_presentation_env/
 gmail_monitor/chrome-*/
 gmail_monitor/*.py
 gmail_monitor/*.png
+
+# Runtime logs
+log/*.log*
+log/*.log
+
+# Stock screener outputs
+stock-screener/output/*.json
