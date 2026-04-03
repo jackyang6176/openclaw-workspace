@@ -1,275 +1,278 @@
 #!/usr/bin/env python3
-"""
-台股盤中監控腳本 - 2026-04-01 11:37
-策略A：短線突破進場
-"""
+"""台股 MA5-MA20 黃金交叉前夕策略 - 盤中監控 v2"""
+import os, sys, math
+from datetime import datetime, timedelta, timezone
 
-import os
-import sys
-import datetime
-import requests
+# ── 路徑設定 ──────────────────────────────────────────────
+sys.path.insert(0, '/home/admin/.local/lib/python3.12/site-packages')
 
-# Load env
-env_path = "/home/admin/.env/fubon.env"
-for line in open(env_path):
-    if '=' in line and not line.startswith('#'):
-        k, v = line.strip().split('=', 1)
-        os.environ[k] = v.strip()
+from dotenv import load_dotenv
+load_dotenv('/home/admin/.env/fubon.env')
 
-from fubon_neo.sdk import FubonSDK, Order
-from fubon_neo._fubon_neo import BSAction, MarketType, TimeInForce, PriceType, OrderType
+from fubon_neo.sdk import FubonSDK
 
-ACCOUNT       = os.environ['ACCOUNT']
-ACCT_PASSWORD = os.environ['ACCT_PASSWORD']
-CERT_PATH     = os.environ['CERT_PATH']
-CERT_PASSWORD = os.environ['CERT_PASSWORD']
+# ── env ────────────────────────────────────────────────────
+api_key     = os.getenv('FUBON_API_KEY')
+cert_path   = os.getenv('CERT_PATH')
+cert_pwd    = os.getenv('CERT_PASSWORD')
+account     = os.getenv('ACCOUNT')
+acct_pwd    = os.getenv('ACCT_PASSWORD')
 
-# Targets
-STRATEGY_A = ['1453', '2027']
-WATCH_LIST  = ['2440', '3652', '3532']
-ALL_TARGETS = STRATEGY_A + WATCH_LIST
+# ── 觀察名單 ────────────────────────────────────────────────
+DEFAULT_WATCHLIST = [
+    '2330', '2454', '2317', '2303', '1301',
+    '2881', '2891', '2882', '2892', '2002',
+    '1216', '1101', '1102', '1303', '1326',
+    '1722', '2108', '2207', '2408', '3661',
+]
+WL_PATH = '/home/admin/.openclaw/workspace/watchlist_stocks.txt'
+watchlist = []
+if os.path.exists(WL_PATH):
+    with open(WL_PATH) as f:
+        for line in f:
+            code = line.strip()
+            if code and not code.startswith('#'):
+                watchlist.append(code)
+if not watchlist:
+    watchlist = DEFAULT_WATCHLIST
 
-BUY_LIMIT = 30000
-DEMO_MODE = False
-STOP_LOSS_PCT = -5.0
-TAKE_PROFIT_PCT = 10.0
+now_str = datetime.now().strftime('%H:%M:%S')
+print(f"[{now_str}] 開始掃描 {len(watchlist)} 檔股票...")
 
-print(f"[INIT] Account: {ACCOUNT}")
-print(f"[INIT] Demo: {DEMO_MODE}")
-print(f"[INIT] Buy Limit: NTD {BUY_LIMIT}")
-print(f"[INIT] Targets: {ALL_TARGETS}")
-
-# ==== LOGIN (using FubonSDK) ====
+# ── 登入 ────────────────────────────────────────────────────
 sdk = FubonSDK()
-login_resp = sdk.login(ACCOUNT, ACCT_PASSWORD, CERT_PATH, CERT_PASSWORD)
-print(f"[LOGIN] {login_resp.is_success}")
-if not login_resp.is_success:
-    print("🎯 盤中監控 | 系統錯誤 | 無法登入富邦帳戶")
+res = sdk.login(account, acct_pwd, cert_path, cert_pwd)
+if not res.is_success:
+    print(f"❌ 登入失敗: {res.message}")
     sys.exit(1)
-acct = login_resp.data[0]
-sdk.init_realtime()
-print(f"[ACCT] {acct}")
+account_info = res.data[0]
+print(f"✅ 登入成功: {account_info.name} ({account_info.account})")
 
-# ==== Historical Data (FinMind) for MA20 ====
-def get_finmind_prices(stock_no, days=40):
-    end   = datetime.date.today().strftime('%Y-%m-%d')
-    start = (datetime.date.today() - datetime.timedelta(days=days)).strftime('%Y-%m-%d')
-    url = 'https://api.finmindtrade.com/api/v4/data'
-    params = {
-        'dataset': 'TaiwanStockPrice',
-        'data_id': stock_no,
-        'start_date': start,
-        'end_date': end,
-    }
-    try:
-        resp = requests.get(url, params=params, timeout=10)
-        if resp.status_code == 200:
-            d = resp.json().get('data', [])
-            closes = [float(x['close']) for x in d]
-            return closes[-25:]
-    except Exception as e:
-        print(f"[WARN] FinMind {stock_no}: {e}")
-    return []
-
-# ==== Positions (using unrealized gains for price info) ====
+# ── 取持倉 ─────────────────────────────────────────────────
 def get_positions():
     try:
-        # unrealized_gains_and_loses: has stock_no, cost_price, unrealized_profit/loss
-        inv = sdk.accounting.unrealized_gains_and_loses(acct)
-        if inv and hasattr(inv, 'data') and inv.data:
-            return {str(p.stock_no): p for p in inv.data}
+        res = sdk.account.balance()
+        if not res.is_success:
+            return []
+        data = res.data
+        positions = []
+        if isinstance(data, list):
+            for item in data:
+                sym = getattr(item, 'symbol', None)
+                qty = getattr(item, 'quantity', None)
+                if sym and qty:
+                    try:
+                        q = int(qty)
+                    except:
+                        q = 0
+                    if q > 0:
+                        positions.append({
+                            'symbol':   sym,
+                            'quantity': q,
+                            'avg_cost': float(getattr(item, 'avg_cost', 0) or 0),
+                        })
+        return positions
     except Exception as e:
-        print(f"[WARN] Positions (unrealized): {e}")
-    # Fallback to inventories
-    try:
-        inv = sdk.accounting.inventories(acct)
-        if inv and hasattr(inv, 'data') and inv.data:
-            return {str(p.stock_no): p for p in inv.data}
-    except Exception as e:
-        print(f"[WARN] Positions (inventory): {e}")
-    return {}
+        print(f"   ⚠️ 取持倉失敗: {e}")
+    return []
 
-# ==== Realtime Quotes ====
-def get_quote(code):
-    try:
-        resp = sdk.stock.query_symbol_quote(acct, code)
-        if resp.is_success and resp.data:
-            d = resp.data
-            return {
-                'price': d.last_price,
-                'ref': d.reference_price,
-                'open': d.open_price,
-                'high': d.high_price,
-                'low': d.low_price,
-                'volume': d.total_volume,
-                'chg_pct': (d.last_price - d.reference_price) / d.reference_price * 100 if d.reference_price else 0,
-            }
-    except Exception as e:
-        print(f"[WARN] Quote {code}: {e}")
-    return None
-
-# ==== Place Order (using Order object) ====
-def place_order(code, price, qty):
-    if DEMO_MODE:
-        print(f"[DEMO] BUY {qty} @ {price}")
-        return "demo"
-    try:
-        order = Order(
-            buy_sell=BSAction.Buy,
-            symbol=code,
-            quantity=qty,
-            market_type=MarketType.Common,
-            price_type=PriceType.Limit,
-            time_in_force=TimeInForce.ROD,
-            order_type=OrderType.Stock,
-            price=str(price)  # price must be string
-        )
-        resp = sdk.stock.place_order(acct, order)
-        print(f"[ORDER] {code} x{qty} @ {price} => {resp}")
-        return str(resp)
-    except Exception as e:
-        print(f"[ERROR] Order: {e}")
-        return f"error: {e}"
-
-# ==== MAIN ====
 positions = get_positions()
-print(f"\n[POSITIONS] {list(positions.keys())}")
+print(f"   現有部位: {len(positions)} 檔")
 
-# Get MA20
-print(f"\n[MA20] Fetching...")
-candles = {}
-for code in ALL_TARGETS:
-    closes = get_finmind_prices(code)
-    ma20 = sum(closes[-20:]) / 20 if len(closes) >= 20 else None
-    candles[code] = {'closes': closes, 'ma20': ma20}
-    print(f"  {code}: {len(closes)} bars, MA20={ma20}")
+# ── 取報價 ─────────────────────────────────────────────────
+def get_quote(symbol):
+    try:
+        res = sdk.marketdata.rest_client.stock.intraday.quote(symbol=symbol)
+        if not res.is_success:
+            return None
+        d = res.data
+        if isinstance(d, list):
+            d = d[0] if d else {}
+        close = d.get('close', d.get('lastPrice', 0))
+        return {
+            'symbol':    symbol,
+            'close':     float(close) if close else 0,
+            'open':      float(d.get('open', 0) or 0),
+            'high':      float(d.get('high', 0) or 0),
+            'low':       float(d.get('low', 0) or 0),
+            'volume':    int(d.get('tradeVolume', d.get('volume', 0) or 0)),
+        }
+    except Exception as e:
+        return None
 
-# Get quotes
-print(f"\n[QUOTES] Fetching realtime...")
-quotes = {}
-for code in ALL_TARGETS:
-    q = get_quote(code)
-    quotes[code] = q
-    if q:
-        print(f"  {code}: price={q['price']} ref={q['ref']} chg={q['chg_pct']:.2f}% vol={q['volume']}")
+# ── 取日K（candles）─────────────────────────────
+def get_daily_candles(symbol, days=25):
+    try:
+        end_date = datetime.now(timezone.utc).date()
+        start_date = end_date - timedelta(days=days * 2)
+        res = sdk.marketdata.rest_client.stock.candles(
+            symbol=symbol,
+            start=f'{start_date.year}-{start_date.month:02d}-{start_date.day:02d}',
+            end=f'{end_date.year}-{end_date.month:02d}-{end_date.day:02d}',
+            duration='daily'
+        )
+        if not res.is_success:
+            return None
+        raw = res.data
+        if not isinstance(raw, list):
+            raw = [raw]
+        # 只取 close 欄位
+        closes = []
+        for c in raw:
+            cl = c.get('close')
+            if cl is not None:
+                try:
+                    closes.append(float(cl))
+                except:
+                    pass
+        # 取最近20個交易日
+        return closes[-20:] if len(closes) >= 20 else None
+    except Exception as e:
+        return None
 
-# ==== EVALUATE ====
-results = {}
-for code in ALL_TARGETS:
-    r = quotes.get(code, {})
-    cd = candles.get(code, {})
-    ma20 = cd.get('ma20')
-    price = r.get('price')
-    ref = r.get('ref')
-    chg_pct = r.get('chg_pct', 0)
-    volume = r.get('volume', 0)
+# ── 均線計算 ───────────────────────────────────────────────
+def calc_ma(vals, n):
+    if not vals or len(vals) < n:
+        return None
+    return sum(vals[-n:]) / n
 
-    dist_ma20 = (price - ma20) / ma20 * 100 if (price and ma20) else None
+# ── 評估信號 ───────────────────────────────────────────────
+def evaluate_signal(symbol, quote, candles):
+    """
+    策略A：MA5-MA20 黃金交叉前夕
+    1. MA5 < MA20
+    2. 價差(MA20-MA5) 連三日縮小
+    3. 當前價差 < 1%
+    """
+    if not quote or not candles or len(candles) < 22:
+        return None
 
-    # Strategy A confidence
-    conf = 0.0
-    cond1 = price and ma20 and price > ma20
-    cond2 = chg_pct and chg_pct > 0
-    cond3 = volume and volume > 0
+    price = quote['close']
+    if price <= 0:
+        return None
 
-    if cond1: conf += 0.30
-    if cond2: conf += 0.25
-    if cond3: conf += 0.15
-    if dist_ma20 and dist_ma20 > 0: conf += 0.25
-    conf = min(conf, 0.95)
+    ma5  = calc_ma(candles, 5)
+    ma20 = calc_ma(candles, 20)
+    if not ma5 or not ma20 or ma20 == 0:
+        return None
 
-    signal = 'WATCH'
-    if cond1 and cond2 and conf >= 0.70 and code in STRATEGY_A:
-        signal = 'BUY'
+    # 條件1
+    if ma5 >= ma20:
+        return None
 
-    results[code] = {
-        'price': price,
-        'ma20': ma20,
-        'dist_ma20': dist_ma20,
-        'chg_pct': chg_pct,
-        'volume': volume,
-        'confidence': conf,
-        'signal': signal,
-        'stop_loss': round(price * (1 + STOP_LOSS_PCT/100), 2) if price else None,
-        'take_profit': round(price * (1 + TAKE_PROFIT_PCT/100), 2) if price else None,
-        'ref': ref,
-        'entry_price': price,
-        'order_result': '',
+    # 條件2: 計算近4個交易日每日MA差值，確認連三日縮小
+    # 需要每天都重新計算MA5/MA20
+    daily_spreads = []
+    for offset in range(4):  # 0=4天前, 1=3天前, 2=2天前, 3=昨天
+        slice_end = 20 + offset
+        if len(candles) >= slice_end:
+            c_slice = candles[:slice_end]
+            m5  = calc_ma(c_slice, 5)
+            m20 = calc_ma(c_slice, 20)
+            if m5 and m20:
+                daily_spreads.append((m20 - m5) / m20 * 100)  # 百分比
+
+    if len(daily_spreads) < 4:
+        return None
+
+    # 檢查連三日縮小：index 1,2,3 都小於 index 0
+    shrinking = all(daily_spreads[i] < daily_spreads[0] for i in range(1, 4))
+    if not shrinking:
+        return None
+
+    # 條件3: 當前價差 < 1%
+    current_spread_pct = (ma20 - ma5) / ma20 * 100
+    if current_spread_pct >= 1.0:
+        return None
+
+    stop_loss  = round(price * 0.97, 2)
+    target     = round(ma20, 2)
+
+    # 信心度
+    confidence = 0.70
+    if current_spread_pct < 0.5:
+        confidence += 0.10
+    if price > ma5:
+        confidence += 0.10
+    confidence = min(confidence, 0.95)
+
+    return {
+        'symbol':      symbol,
+        'price':       price,
+        'ma5':         round(ma5, 2),
+        'ma20':        round(ma20, 2),
+        'spread_pct': round(current_spread_pct, 3),
+        'stop_loss':   stop_loss,
+        'target':      target,
+        'confidence':  confidence,
     }
-    print(f"[{code}] price={price} MA20={ma20} dist={dist_ma20} chg={chg_pct} conf={conf:.0%} sig={signal}")
 
-# ==== ORDERS ====
-print(f"\n[ORDERS]")
-for code in STRATEGY_A:
-    r = results[code]
-    if r['signal'] == 'BUY' and code not in positions:
-        price = r['price']
-        shares = min(1000, BUY_LIMIT // int(price))  # shares = 股數 (1000股=1張)
-        shares = shares // 1000 * 1000  # round down to 1000
-        if shares >= 1000 and not DEMO_MODE:
-            r['order_result'] = place_order(code, price, shares)
+# ── 主掃描 ───────────────────────────────────────────────
+entries, exits_stop, exits_tgt, watching = [], [], [], []
 
-# ==== POSITION MONITOR ====
-print(f"\n[POSITION MONITOR]")
-for code, pos in positions.items():
-    q = quotes.get(code, {})
-    price = q.get('price') if q else None
-    # unrealized_gains: cost_price; inventories: buy_value/buy_filled_qty
-    entry_price = 0
-    if hasattr(pos, 'cost_price') and pos.cost_price:
-        entry_price = float(pos.cost_price)
-    elif hasattr(pos, 'buy_value') and hasattr(pos, 'buy_filled_qty') and pos.buy_filled_qty:
-        entry_price = float(pos.buy_value) / float(pos.buy_filled_qty)
-    if price and entry_price > 0:
-        pnl_pct = (price - entry_price) / entry_price * 100
-        sl = round(entry_price * (1 + STOP_LOSS_PCT/100), 2)
-        tp = round(entry_price * (1 + TAKE_PROFIT_PCT/100), 2)
-        status = "正常"
-        if pnl_pct <= STOP_LOSS_PCT:
-            status = "⚠️ 停損觸發"
-        elif pnl_pct >= TAKE_PROFIT_PCT:
-            status = "🎯 停利觸發"
-        print(f"  {code}: entry={entry_price} cur={price} pnl={pnl_pct:.2f}% SL={sl} TP={tp} => {status}")
-        results[code]['pos_pnl'] = pnl_pct
-        results[code]['pos_status'] = status
+for code in watchlist:
+    quote   = get_quote(code)
+    candles = get_daily_candles(code, days=25)
 
-# ==== REPORT ====
-now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-print(f"\n{'='*50}")
-print(f"📊 盤中監控報告 | {now_str}")
-print(f"{'='*50}")
+    # 檢查是否在部位中
+    pos = next((p for p in positions if p['symbol'] == code), None)
 
-entries = [(c, r) for c, r in results.items() if r.get('signal') == 'BUY']
+    if pos:
+        price = quote['close'] if quote else 0
+        if price <= 0:
+            continue
+        avg_cost = pos['avg_cost']
+        stop     = round(avg_cost * 0.97, 2)
+        tgt_ma20 = round(calc_ma(candles, 20), 2) if candles else None
+
+        if price <= stop:
+            exits_stop.append({'symbol': code, 'price': price, 'entry': avg_cost, 'stop': stop})
+        elif tgt_ma20 and price >= tgt_ma20:
+            exits_tgt.append({'symbol': code, 'price': price, 'entry': avg_cost, 'target': tgt_ma20})
+        continue
+
+    # 評估進場
+    sig = evaluate_signal(code, quote, candles)
+    if sig:
+        if sig['confidence'] >= 0.70:
+            entries.append(sig)
+        else:
+            dist_pct = round((sig['ma20'] - sig['price']) / sig['ma20'] * 100, 2)
+            watching.append({'symbol': code, 'price': sig['price'],
+                             'ma5': sig['ma5'], 'ma20': sig['ma20'],
+                             'ma20_dist': dist_pct})
+
+# ── 輸出 ───────────────────────────────────────────────────
+now_str = datetime.now().strftime('%H:%M:%S')
+lines = []
+lines.append(f"⏰ {now_str} | 掃描 {len(watchlist)} 檔 | 部位 {len(positions)} 檔")
+
+if exits_stop:
+    lines.append("")
+    lines.append("🛑 【停損訊號】")
+    for e in exits_stop:
+        lines.append(f"   {e['symbol']} | 現價 {e['price']} | 進場 {e['entry']} | 停損價 {e['stop']} | 市價賣出（停損）")
+
+if exits_tgt:
+    lines.append("")
+    lines.append("🏠 【目標達成】")
+    for e in exits_tgt:
+        lines.append(f"   {e['symbol']} | 現價 {e['price']} | 進場 {e['entry']} | 目標 {e['target']} | 市價賣出（目標）")
+
 if entries:
-    for code, r in entries:
-        print(f"\n🎯 進場通知")
-        print(f"  代碼: {code}")
-        print(f"  進場價: {r['price']}")
-        print(f"  停損: {r['stop_loss']} ({STOP_LOSS_PCT}%)")
-        print(f"  目標: {r['take_profit']} (+{TAKE_PROFIT_PCT}%)")
-        print(f"  信心度: {r['confidence']:.0%}")
-        if r['order_result']:
-            print(f"  下單: {r['order_result']}")
-else:
-    print("\n👀 觀望")
-    for code, r in results.items():
-        ma_str = f"{r['ma20']:.2f}" if r['ma20'] else "N/A"
-        dist_str = f"{r['dist_ma20']:+.2f}%" if r['dist_ma20'] else "N/A"
-        print(f"  {code} | 現價: {r['price']} | MA20: {ma_str} | 距MA20: {dist_str} | 信心度: {r['confidence']:.0%}")
+    lines.append("")
+    lines.append("🎯 【進場訊號】")
+    for e in sorted(entries, key=lambda x: -x['confidence']):
+        lines.append(f"   {e['symbol']} | 進場 {e['price']} | 停損 {e['stop_loss']} | 目標 {e['target']} | 信心 {e['confidence']:.0%}")
 
-pos_items = [(c, r) for c, r in results.items() if c in positions]
-if pos_items:
-    print(f"\n📋 部位監控")
-    for code, r in pos_items:
-        pos = positions[code]
-        entry_price = float(pos.cost_price) if hasattr(pos, 'cost_price') and pos.cost_price else 0
-        if not entry_price and hasattr(pos, 'buy_value') and hasattr(pos, 'buy_filled_qty') and pos.buy_filled_qty:
-            entry_price = float(pos.buy_value) / float(pos.buy_filled_qty)
-        price = r['price']
-        pnl = r.get('pos_pnl', 0)
-        sl = round(entry_price * (1 + STOP_LOSS_PCT/100), 2)
-        tp = round(entry_price * (1 + TAKE_PROFIT_PCT/100), 2)
-        print(f"  {code} | 現價: {price} | 進場: {entry_price} | PnL: {pnl:.2f}% | 停損: {sl} | 目標: {tp} | {r.get('pos_status','正常')}")
+if watching:
+    lines.append("")
+    lines.append("👀 【觀望】")
+    for w in sorted(watching, key=lambda x: x['ma20_dist'])[:10]:
+        lines.append(f"   {w['symbol']} | 現價 {w['price']} | MA5 {w['ma5']} | MA20 {w['ma20']} | 距MA20 {w['ma20_dist']}%")
 
-sdk.logout()
-print(f"\n[DONE]")
+if not exits_stop and not exits_tgt and not entries and not watching:
+    lines.append("")
+    lines.append("📊 今日無特殊訊號，市場觀望為主。")
+
+print('\n'.join(lines))
