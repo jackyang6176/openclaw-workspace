@@ -58,3 +58,8 @@ log/*.log
 
 # Stock screener outputs
 stock-screener/output/*.json
+
+# Subdirectory logs
+fubon_api/log/
+fubon_api/logs/
+stock-screener/log/
