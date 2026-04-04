@@ -6,13 +6,14 @@
 import sys, json, time, os
 sys.path.insert(0, '/home/admin/.openclaw/workspace/fubon_sdk_complete')
 from fubon_complete import FubonComplete
+from datetime import date
 
 STATE_FILE  = "/tmp/scan_state.json"
 OUTPUT_FILE = "/tmp/strategy_a_daily.json"
-BATCH       = 5          # 每批幾檔
-DELAY       = 5          # 秒（安全延遲）
-GAP_LIMIT   = 2.0        # %（MA20-MA5 gap < 2%）
-REPORT_AT   = 50        # 每幾檔報告一次
+BATCH       = 5
+DELAY       = 5
+GAP_LIMIT   = 2.0
+REPORT_AT   = 50
 
 def load_state():
     if os.path.exists(STATE_FILE):
@@ -35,7 +36,6 @@ def analyze(sym, fc):
         m5 = sma5[-1]['sma']
         m20 = sma20[-1]['sma']
         gap = (m20 - m5) / m20 * 100
-
         gaps = []
         for offset in range(-4, 1):
             idx = len(sma20) + offset
@@ -44,7 +44,6 @@ def analyze(sym, fc):
                 m20d = sma20[idx]['sma']
                 if m20d > 0:
                     gaps.append((m20d - m5d) / m20d * 100)
-
         cond1 = m5 < m20
         cond2 = len(gaps) >= 3 and gaps[-1] < gaps[-2] < gaps[-3]
         cond3 = 0 < abs(gap) < GAP_LIMIT
@@ -60,7 +59,6 @@ def analyze(sym, fc):
         return None
 
 def main():
-    from datetime import date
     today = date.today()
     print(f"[{today}] === 全市場策略A掃描啟動 ===")
 
@@ -73,7 +71,6 @@ def main():
     results = state.get('results', [])
     all_symbols = state.get('all_symbols')
 
-    # 取股票代碼（只取一次）
     if not all_symbols:
         print("抓取股票代碼清單...")
         intraday = fc.sdk.marketdata.rest_client.stock.intraday
@@ -89,39 +86,38 @@ def main():
 
     all_symbols = state['all_symbols']
     remaining = [s for s in all_symbols if s not in done]
-
     print(f"待處理: {len(remaining)} 檔 ({len(all_symbols)-len(remaining)}/{len(all_symbols)}已完成)")
 
-    batch = remaining[:BATCH]
-    new_passed = []
-    for sym in batch:
-        r = analyze(sym, fc)
-        if r:
-            results.append(r)
-            if r['ok']:
-                new_passed.append(r)
-        done.add(sym)
-        done_count = len(done)
-        status = '✅' if r and r['ok'] else '⚠️' if r else '❌'
-        print(f"  {status} {sym}: gap={r['gap'] if r else 'N/A'}% ({done_count}/{len(all_symbols)})")
-        if done_count % REPORT_AT == 0:
-            print(f"  ...已處理 {done_count}/{len(all_symbols)}")
-        time.sleep(DELAY)
+    # 持續處理直到全部完成
+    while remaining:
+        batch = remaining[:BATCH]
+        for sym in batch:
+            r = analyze(sym, fc)
+            if r:
+                results.append(r)
+            done.add(sym)
+            done_count = len(done)
+            status = '✅' if r and r['ok'] else '⚠️' if r else '❌'
+            print(f"  {status} {sym}: gap={r['gap'] if r else 'N/A'}% ({done_count}/{len(all_symbols)})")
+            if done_count % REPORT_AT == 0:
+                print(f"  ...已處理 {done_count}/{len(all_symbols)}")
+            time.sleep(DELAY)
 
-    state['done'] = list(done)
-    state['results'] = results
-    save_state(state)
+        state['done'] = list(done)
+        state['results'] = results
+        save_state(state)
+        remaining = [s for s in all_symbols if s not in done]
 
     passed = [x for x in results if x['ok']]
     near = [x for x in results if not x['ok'] and x['confidence'] > 0]
 
-    print(f"\n[{today}] 進度 {len(done)}/{len(all_symbols)} | 符合3/3: {len(passed)}檔")
+    print(f"\n[{today}] 掃描完成！共 {len(done)}/{len(all_symbols)} 檔 | 符合3/3: {len(passed)}檔")
 
     if passed:
+        print(f"\n【完全符合 3/3 條件】({len(passed)}檔)")
         for p in passed:
             gs = '->'.join(str(g) for g in p['gap_seq'])
             print(f"  ✅ {p['code']}: MA5={p['ma5']} MA20={p['ma20']} gap={p['gap']}% [{gs}]")
-        # 輸出最終報告
         with open(OUTPUT_FILE, 'w') as f:
             json.dump({
                 'date': str(today),
@@ -133,12 +129,21 @@ def main():
         print(f"報告已存: {OUTPUT_FILE}")
     else:
         print("  今日無符合標的")
+        with open(OUTPUT_FILE, 'w') as f:
+            json.dump({
+                'date': str(today),
+                'total': len(all_symbols),
+                'scanned': len(done),
+                'passed': [],
+                'near': sorted(near, key=lambda x: -x['confidence'])[:20]
+            }, f, ensure_ascii=False, indent=2)
 
-    if len(done) >= len(all_symbols):
-        print("掃描完成！狀態已重置")
+    # 清除狀態（完成後重置）
+    if os.path.exists(STATE_FILE):
         os.remove(STATE_FILE)
 
     fc.logout()
+    print("掃描結束")
 
 if __name__ == "__main__":
     main()
