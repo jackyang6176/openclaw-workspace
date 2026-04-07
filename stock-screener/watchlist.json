@@ -215,7 +215,9 @@
       "vol_ratio": 2.02,
       "is_holding": false,
       "strategy": "策略A_5of5",
-      "note": "全市場掃描（2026-04-04）入選，gap=1.046%三日收斂"
+      "note": "全市場掃描（2026-04-04）入選，gap=1.046%三日收斂",
+      "alerted_entry": false,
+      "alerted_stop": false
     },
     {
       "code": "6606",
@@ -235,7 +237,9 @@
       "vol_ratio": 1.97,
       "is_holding": false,
       "strategy": "策略A_5of5",
-      "note": "全市場掃描（2026-04-04）入選，gap=1.672%三日收斂"
+      "note": "全市場掃描（2026-04-04）入選，gap=1.672%三日收斂",
+      "alerted_entry": false,
+      "alerted_stop": false
     },
     {
       "code": "2033",
@@ -255,7 +259,9 @@
       "vol_ratio": 1.84,
       "is_holding": false,
       "strategy": "策略A_5of5",
-      "note": "全市場掃描（2026-04-04）入選，gap=1.124%三日收斂"
+      "note": "全市場掃描（2026-04-04）入選，gap=1.124%三日收斂",
+      "alerted_entry": false,
+      "alerted_stop": false
     },
     {
       "code": "5388",
@@ -275,7 +281,9 @@
       "vol_ratio": 1.33,
       "is_holding": false,
       "strategy": "策略A_5of5",
-      "note": "全市場掃描（2026-04-04）入選，gap=0.682%三日收斂"
+      "note": "全市場掃描（2026-04-04）入選，gap=0.682%三日收斂",
+      "alerted_entry": false,
+      "alerted_stop": false
     }
   ],
   "last_updated": "2026-04-04T21:53:00",
