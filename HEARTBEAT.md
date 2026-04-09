@@ -10,6 +10,13 @@
 - [ ] 核查「高譚市守則」與「龍蝦工作綱領」的關聯性並歸檔
 - [ ] 每日備份該守則至pCloudDrive歸檔目錄，防止丟失
 
+### 📌 台股交易監控檢查（盤中每30分鐘）
+- [ ] 讀取 /tmp/trading_status.json（盤中監控結果）
+- [ ] 讀取 /tmp/premarket_status.json（開盤前準備結果）
+- [ ] 如有重要交易事件（進場/停損/目標觸發），使用 message tool 發送 Discord 通知到 1467170004477935811
+- [ ] 檢查 /tmp/scan_output.log 是否完成（全市場掃描）
+- [ ] 如掃描完成，讀取 /tmp/strategy_a_daily.json 並通知 Discord
+
 ### 📌 pCloudDrive 巢穴結構定期檢查任務（每30分鐘執行）
 - [ ] 檢查 ~/pCloudDrive/openclaw 巢穴目錄結構完整性（對照用戶提供的結構驗證）
 - [ ] 監控 bat-family/ 協調中心文件（README.md、communication-log.md 更新）
