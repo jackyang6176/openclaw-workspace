@@ -46,7 +46,7 @@ def analyze(sym, fc):
                     gaps.append((m20d - m5d) / m20d * 100)
         cond1 = m5 < m20
         cond2 = len(gaps) >= 3 and gaps[-1] < gaps[-2] < gaps[-3]
-        cond3 = 0 < abs(gap) < GAP_LIMIT
+        cond3 = gap > 0 and abs(gap) < GAP_LIMIT
         ok = cond1 and cond2 and cond3
         conf = (int(cond1) + int(cond2) + int(cond3)) / 3 * 100
         return {
