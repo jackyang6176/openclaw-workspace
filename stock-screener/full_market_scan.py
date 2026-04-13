@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
 """
 全市場策略A掃描器 - 收盤後版本
-每天 14:00 執行，掃描全市場 1591 檔
+每天 14:00 執行，掃描全市場 ~1591 檔
+
+【Rate Limit 規定】
+- Fugle API 限速：每分鐘約 10 次
+- 每檔需要 2 次請求（MA5 + MA20）
+- 建議：每 12 秒處理 1 檔（即每分鐘 5 檔）
 """
 import sys, json, time, os
 sys.path.insert(0, '/home/admin/.openclaw/workspace/fubon_sdk_complete')
 from fubon_complete import FubonComplete
-from datetime import date
+from datetime import date, datetime
 
 STATE_FILE  = "/tmp/scan_state.json"
 OUTPUT_FILE = "/tmp/strategy_a_daily.json"
-BATCH       = 5
-DELAY       = 5
+DELAY       = 12   # 每檔間隔秒數（避免 rate limit）
 GAP_LIMIT   = 2.0
 REPORT_AT   = 50
 
@@ -25,38 +29,49 @@ def save_state(state):
     with open(STATE_FILE, 'w') as f:
         json.dump(state, f, ensure_ascii=False)
 
-def analyze(sym, fc):
-    try:
-        sma5 = fc.get_sma(sym, 5)
-        sma20 = fc.get_sma(sym, 20)
-        if not sma5 or not sma20:
-            return None
-        if len(sma5) < 5 or len(sma20) < 20:
-            return None
-        m5 = sma5[-1]['sma']
-        m20 = sma20[-1]['sma']
-        gap = (m20 - m5) / m20 * 100
-        gaps = []
-        for offset in range(-4, 1):
-            idx = len(sma20) + offset
-            if 0 <= idx < len(sma5):
-                m5d = sma5[idx]['sma']
-                m20d = sma20[idx]['sma']
-                if m20d > 0:
-                    gaps.append((m20d - m5d) / m20d * 100)
-        cond1 = m5 < m20
-        cond2 = len(gaps) >= 3 and gaps[-1] < gaps[-2] < gaps[-3]
-        cond3 = gap > 0 and abs(gap) < GAP_LIMIT
-        ok = cond1 and cond2 and cond3
-        conf = (int(cond1) + int(cond2) + int(cond3)) / 3 * 100
-        return {
-            'code': sym, 'ma5': round(m5, 2), 'ma20': round(m20, 2),
-            'gap': round(gap, 3), 'gap_seq': [round(g, 2) for g in gaps[-4:]],
-            'cond1': cond1, 'cond2': cond2, 'cond3': cond3,
-            'confidence': round(conf, 1), 'ok': ok
-        }
-    except:
-        return None
+def analyze(sym, fc, retry=3):
+    """取得 SMA（含 rate limit 重試機制）"""
+    for attempt in range(retry):
+        try:
+            sma5 = fc.get_sma(sym, 5)
+            time.sleep(DELAY)
+            sma20 = fc.get_sma(sym, 20)
+            if not sma5 or not sma20:
+                return None
+            if len(sma5) < 5 or len(sma20) < 20:
+                return None
+            m5 = sma5[-1]['sma']
+            m20 = sma20[-1]['sma']
+            gap = (m20 - m5) / m20 * 100
+            gaps = []
+            for offset in range(-4, 1):
+                idx = len(sma20) + offset
+                if 0 <= idx < len(sma5):
+                    m5d = sma5[idx]['sma']
+                    m20d = sma20[idx]['sma']
+                    if m20d > 0:
+                        gaps.append((m20d - m5d) / m20d * 100)
+            cond1 = m5 < m20
+            cond2 = len(gaps) >= 3 and gaps[-1] < gaps[-2] < gaps[-3]
+            cond3 = gap > 0 and abs(gap) < GAP_LIMIT
+            ok = cond1 and cond2 and cond3
+            conf = (int(cond1) + int(cond2) + int(cond3)) / 3 * 100
+            return {
+                'code': sym, 'ma5': round(m5, 2), 'ma20': round(m20, 2),
+                'gap': round(gap, 3), 'gap_seq': [round(g, 2) for g in gaps[-4:]],
+                'cond1': cond1, 'cond2': cond2, 'cond3': cond3,
+                'confidence': round(conf, 1), 'ok': ok
+            }
+        except Exception as e:
+            if '429' in str(e) or 'rate' in str(e).lower():
+                wait = (attempt + 1) * 30
+                print(f"  ⚠️ {sym} rate limit，等待 {wait} 秒...")
+                time.sleep(wait)
+            else:
+                print(f"  ❌ {sym} 錯誤: {e}")
+                return None
+    print(f"  ❌ {sym} 多次失敗，跳過")
+    return None
 
 def main():
     today = date.today()
@@ -90,8 +105,7 @@ def main():
 
     # 持續處理直到全部完成
     while remaining:
-        batch = remaining[:BATCH]
-        for sym in batch:
+        for sym in remaining[:20]:  # 每輪處理20檔
             r = analyze(sym, fc)
             if r:
                 results.append(r)
@@ -101,7 +115,7 @@ def main():
             print(f"  {status} {sym}: gap={r['gap'] if r else 'N/A'}% ({done_count}/{len(all_symbols)})")
             if done_count % REPORT_AT == 0:
                 print(f"  ...已處理 {done_count}/{len(all_symbols)}")
-            time.sleep(DELAY)
+            time.sleep(DELAY)  # 每檔間隔（避免 rate limit）
 
         state['done'] = list(done)
         state['results'] = results

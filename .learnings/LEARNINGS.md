@@ -1,46 +1,37 @@
-# Learnings Log
-
-Self-improvement learnings for OpenClaw workspace.
-
-Format: [LRN-YYYYMMDD-XXX] category
+# LEARNINGS.md - 重要教訓記錄
 
 ---
 
-## [LRN-20260227-001] best_practice
+## ⚠️ MA5/MA20 計算（這個已經強調三次了！）
 
-**Logged**: 2026-02-27T21:46:00+08:00
-**Priority**: high
-**Status**: resolved
-**Area**: config
+**錯誤認知（我之前的理解）：**
+- 需要從 TWSE 下載 20 天歷史資料
+- 在本地計算 MA20
 
-### Summary
-Cron jobs must explicitly specify model in payload to avoid default model fallback
+**正確認知：**
+- Fubon SDK `technical.sma(symbol, period=20)` **直接回傳 MA5、MA20**
+- TWSE 只需要用來取得股票清單 + 今日收盤價
+- 流程應該是：
+  1. TWSE 取得全市場股票清單 + 今日收盤價
+  2. 每檔調用 Fubon SDK `technical.sma()` 取得 MA5、MA20
+  3. 用 SDK 回傳的資料計算 gap 和策略條件
 
-### Details
-When creating cron jobs with `sessionTarget: "isolated"`, the `sessions_spawn.model` parameter may not be correctly passed to subagents. This causes the job to use a default model (qwen3.5-plus) instead of the specified model (kimi-k2.5), leading to content filter errors.
+**為什麼我會犯這個錯：**
+- 把「需要歷史資料來計算 MA20」和「Fubon SDK 提供 SMA API」搞混了
+- 應該：SDK 直接給你計算好的 SMA，不需要自己存歷史
 
-### Suggested Action
-Always include explicit model specification in cron job payload:
-```json
-{
-  "payload": {
-    "kind": "agentTurn",
-    "message": "...",
-    "model": "bailian/kimi-k2.5",  // Must specify here
-    "timeoutSeconds": 300
-  }
-}
-```
-
-### Resolution
-- **Resolved**: 2026-02-27T21:56:00+08:00
-- **Fix**: Added `agents.defaults.subagents.model: "bailian/kimi-k2.5"` to openclaw.json
-- **Verification**: Subagent test confirmed correct model usage
-
-### Metadata
-- Source: error
-- Related Files: MEMORY.md, SYSTEM_STATUS.md, openclaw.json
-- Tags: cron, model, subagent
-- Promoted To: AGENTS.md, SYSTEM_STATUS.md
+**防止再犯：**
+- 每次設計篩選系統前，先看一次 `fubon_sdk_llm_guide.md`
+- 記住：Fubon SDK 已經幫你算好了，不要自己重算
 
 ---
+
+## 台股交易單位（2026-04-11）
+
+**錯誤：** 說「每次買入上限 TWD 5,000」
+
+**正確：** 台股最小交易單位是「張」（1張=1000股），根據可用餘額計算可買張數
+
+---
+
+_每次犯錯都是成長的機會。但同樣的錯不能犯第二次。_

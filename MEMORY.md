@@ -126,9 +126,38 @@ _作者：阿福_
 ---
 
 ## 資料來源規定（2026-04-01）
-- **嚴格禁止使用 Yahoo Finance** 作為資料來源（數據常錯誤）
-- 允許：富邦 API（主要）、FinMind API（MA20備援）
-- 若富邦 API 取不到資料，應說「資料取得失敗」，不可自行替換為 Yahoo Finance
+- **嚴格禁止使用 Yahoo Finance**（數據常錯誤）
+- **嚴格禁止使用 FinMind API**（少爺指示停用，2026-04-13）
+- **允許使用 Fugle API**（富邦 SDK 內建），但需注意 rate limit，每分鐘建議限速 10 檔以內
+- 允許：富邦 API（主要）
+- 若富邦 API 取不到資料，應說「資料取得失敗」，不可自行替換為其他資料源
+
+---
+
+## ⚠️ 重要教訓（這些不是建議，是命令）
+
+### MA5/MA20 計算方式（2026-04-13 再次強調）
+- **Fubon SDK `technical.sma()` API 直接回傳 MA5、MA20**，不需要自己計算！
+- TWSE 只需要用來取得**股票清單 + 今日收盤價**
+- **不需要存 20 天歷史資料**，SDK 直接給你
+- 之前犯過兩次這個錯誤，請記住：
+  - ❌ 自己存歷史算 MA20
+  - ✅ 直接 call `sdk.marketdata.rest_client.stock.technical.sma(symbol=code, period=20)
+
+### TWSE API 使用方式（正確用法）
+- URL: `https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date={YYYYMMDD}&type=ALL&response=json`
+- 只用來取得**股票清單 + 今日收盤價**（一次取得全市場）
+- TWSE 的 `/exchangeReport/STOCK_DAY_ALL` 只有當日資料，沒有歷史
+- **歷史 MA 由 Fubon SDK 提供**，不要搞混
+
+### 過濾股票邏輯（必須記住）
+- 納入：00/02 開頭（ETF）、1-9 開頭 4-6 位數（上市櫃股票）
+- 排除：權證、牛熊證、中國A股、興櫃等
+
+### Rate Limit 處理
+- 歷史行情 API（SMA/KDJ/RSI/MACD）: **60 次/分鐘**（每檔間隔 1 秒）
+- 遇到 429 錯誤 → 等候 1 分鐘後重試
+- 日內行情/行情快照: 300 次/分鐘
 
 
 ---
@@ -140,7 +169,8 @@ _作者：阿福_
 
 ### MA20 計算
 - MA20 = 前 20 交易日收盤均價（不需40天）
-- 資料來源：富邦 API historical.candles，from=春節後首個交易日
+- **直接使用富邦 SDK `technical.sma(period=20)` API**，SDK 直接回傳 MA5、MA20，**不需要自己儲存歷史資料計算**
+- 資料來源：富邦 API
 
 ### 停損規則
 - 停損：**-5%**（剛性），不隨便修改
