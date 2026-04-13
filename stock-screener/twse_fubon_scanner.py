@@ -99,6 +99,7 @@ def get_fubon_sma_with_retry(fc, code, period=20):
     for attempt in range(RETRIES):
         try:
             sma = fc.get_sma(code, period)
+            # 每呼叫一次 API，間隔 1 秒（歷史行情 rate limit: 60/min）
             time.sleep(DELAY)
             if sma and len(sma) >= period:
                 return sma
