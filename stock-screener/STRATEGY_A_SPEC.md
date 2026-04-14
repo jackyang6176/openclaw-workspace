@@ -15,11 +15,12 @@ _最後更新：2026-04-14_
 
 | # | 條件 | 說明 |
 |---|------|------|
-| 1 | MA5 斜率 > 0 | MA5 在過去 3 天往上走（斜率為正，向上攻擊）|
+| 1 | MA5 斜率 > 0 | MA5 在**最近3個交易日**連續上升（向上攻擊）|
 | 2 | Gap < 2% | (MA20 - MA5) / MA20 < 2% |
 | 3 | Gap 三日縮小 | MA5 逐漸逼近 MA20（差距越來越小）|
-| 4 | 成交量連三日放大 | 絕對值逐日增加（今日 > 昨日 > 前日 > 大前日）|
-| 5 | K < 25 且 D < 25 | 超跌狀態（KDJ 指標兩個值都低於 25）|
+| 4 | 成交量連三日放大 | **最近4個交易日**絕對值逐日增加（今日 > 昨日 > 前日 > 大前日）|
+| 4b | 日均成交張數 >= 1000 | **過去4天日平均成交量** >= 1000 張（使用 candles volume 計算）|
+| 5 | K < 25 且 D < 25 | **最近3個交易日**每天都 K<25 且 D<25（超跌狀態）|
 
 ---
 
@@ -64,15 +65,47 @@ _最後更新：2026-04-14_
 
 | # | API | 取得的資料 |
 |---|-----|---------|
-| API 1 | `sdk.marketdata.rest_client.stock.technical.sma(period=5)` | MA5 值（需要 3-4 天歷史判斷斜率）|
-| API 2 | `sdk.marketdata.rest_client.stock.technical.sma(period=20)` | MA20 值 |
-| API 3 | `sdk.marketdata.rest_client.stock.technical.kdj()` | K 值和 D 值 |
-| API 4 | `sdk.marketdata.rest_client.stock.historical.candles()` | 成交量（需要 4 天歷史）|
+| API 1 | `sdk.marketdata.rest_client.stock.technical.sma(period=5, from, to)` | MA5 值陣列（取 10 天，回傳8-10筆，取最近3個交易日）|
+| API 2 | `sdk.marketdata.rest_client.stock.technical.sma(period=20, from, to)` | MA20 值 |
+| API 3 | `sdk.marketdata.rest_client.stock.technical.kdj(from, to)` | K/D 值陣列（取 10 天，回傳8-10筆，取最近3個交易日）|
+| API 4 | `sdk.marketdata.rest_client.stock.historical.candles(from, to)` | 成交量（取 10 天，回傳8-10筆，取最近4個交易日計算日均量）|
+
+> ⚠️ 注意：candles 的 `volume` 欄位是**股數**（非張數）。
+> 1 張 = 1000 股，所以 1000 張 = 1,000,000 股。
+> 日均量計算：sum(最近4天volume) / 4
 | Rate Limit | **60 次/分鐘**（每呼叫間隔 ≥ 1 秒）|
 | 每檔呼叫 | **4 次**（sma5 + sma20 + kdj + candles）|
 
-> ⚠️ 注意：SMA/KDJ/RSI/MACD 屬於「技術指標」，Rate Limit 60 次/分鐘。
-> candles 屬於「歷史行情」，Rate Limit 也是 60 次/分鐘。
+#### 資料取法
+
+```python
+# 一次取 10 天，取「最近 3-4 個交易日」來判斷
+data = api.sma(period=5, from='2026-04-01', to='2026-04-14')
+
+# 取陣列最後3筆 = 最近3個交易日
+recent_3 = data[-3:]
+
+# MA5 斜率：三天連續上升
+ma5_day1 = recent_3[0]['sma']   # 三天前
+ma5_day2 = recent_3[1]['sma']   # 兩天前
+ma5_day3 = recent_3[2]['sma']   # 今天
+slope_positive = (ma5_day3 > ma5_day2 > ma5_day1)
+
+# KDJ：每天都 K<25 且 D<25
+all_kd_below_25 = all(
+    kdj['k'] < 25 and kdj['d'] < 25
+    for kdj in recent_3_kdj
+)
+
+# 成交量：日均張數 >= 1000
+# candles volume 是股數，1張=1000股
+recent_4_volumes = [candle['volume'] for candle in candles_data[-4:]]
+avg_volume_shares = sum(recent_4_volumes) / 4
+avg_volume_lots = avg_volume_shares / 1000
+volume_sufficient = (avg_volume_lots >= 1000)
+```
+
+> ⚠️ 注意：一次取 10 天，再用**陣列最後 3-4 筆**取「最近交易日」，可避免長假問題。
 
 ---
 
@@ -114,11 +147,12 @@ _最後更新：2026-04-14_
 
 | 項目 | 說明 |
 |------|------|
-| 執行時間 | 每日 14:00 後（收盤後）|
+| **執行時間** | 每日 **14:30**（收盤後，設定 Cron Job）|
 | 股票範圍 | 上市櫃股票 + ETF（~1,316 檔）|
 | 每檔 API 呼叫 | **4 次**（sma5 + sma20 + kdj + candles）|
 | 每呼叫間隔 | **1 秒**（遵守 Rate Limit）|
 | 預計總耗時 | ~88 分鐘（1,316 檔 × 4 次 × 1 秒）|
+| **輸出** | 追蹤清單（每日更新，供下一交易日參考）|
 
 ---
 
