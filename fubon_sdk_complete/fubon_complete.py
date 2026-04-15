@@ -86,13 +86,17 @@ class FubonComplete:
     # 技術分析 API（SDK原生）
     # ========================
 
-    def get_sma(self, symbol: str, period: int = 20, timeframe: str = "D") -> Optional[list]:
+    def get_sma(self, symbol: str, period: int = 20, timeframe: str = "D", from_date: str = None, to_date: str = None) -> Optional[list]:
         """取得均線（SMA）- 直接用 SDK technical.sma"""
         if not self.connected:
             return None
         try:
             tech = self.sdk.marketdata.rest_client.stock.technical
-            result = tech.sma(symbol=symbol, period=period, timeframe=timeframe)
+            kwargs = {"symbol": symbol, "period": period, "timeframe": timeframe}
+            if from_date and to_date:
+                kwargs["from"] = from_date
+                kwargs["to"] = to_date
+            result = tech.sma(**kwargs)
             if result and "data" in result:
                 return result["data"]
         except Exception as e:
@@ -139,17 +143,38 @@ class FubonComplete:
             print(f"MACD 錯誤: {e}")
         return None
 
-    def get_kdj(self, symbol: str, rPeriod: int = 9, kPeriod: int = 3, dPeriod: int = 3, timeframe: str = "D") -> Optional[dict]:
-        """取得 KDJ"""
+    def get_kdj(self, symbol: str, rPeriod: int = 9, kPeriod: int = 3, dPeriod: int = 3, timeframe: str = "D", from_date: str = None, to_date: str = None) -> Optional[list]:
+        """取得 KDJ - 直接用 SDK technical.kdj，回傳陣列"""
         if not self.connected:
             return None
         try:
             tech = self.sdk.marketdata.rest_client.stock.technical
-            result = tech.kdj(symbol=symbol, rPeriod=rPeriod, kPeriod=kPeriod, dPeriod=dPeriod, timeframe=timeframe)
+            kwargs = {"symbol": symbol, "rPeriod": rPeriod, "kPeriod": kPeriod, "dPeriod": dPeriod, "timeframe": timeframe}
+            if from_date and to_date:
+                kwargs["from"] = from_date
+                kwargs["to"] = to_date
+            result = tech.kdj(**kwargs)
             if result and "data" in result:
-                return result["data"][-1]
+                return result["data"]
         except Exception as e:
             print(f"KDJ 錯誤: {e}")
+        return None
+
+    def get_candles(self, symbol: str, timeframe: str = "D", from_date: str = None, to_date: str = None, fields: str = "open,high,low,close,volume") -> Optional[list]:
+        """取得歷史K線（含成交量）- 直接用 SDK historical.candles"""
+        if not self.connected:
+            return None
+        try:
+            hist = self.sdk.marketdata.rest_client.stock.historical
+            kwargs = {"symbol": symbol, "timeframe": timeframe, "fields": fields}
+            if from_date and to_date:
+                kwargs["from"] = from_date
+                kwargs["to"] = to_date
+            result = hist.candles(**kwargs)
+            if result and "data" in result:
+                return result["data"]
+        except Exception as e:
+            print(f"Candles 錯誤: {e}")
         return None
 
     def get_bb(self, symbol: str, period: int = 20, std: int = 2, timeframe: str = "D") -> Optional[dict]:
