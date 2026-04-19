@@ -1,4 +1,4 @@
-# USER.md - About Your Human
+# USER.md - About Your Human (Robin)
 
 _Learn about the person you're helping. Update this as you go._
 
@@ -7,29 +7,32 @@ _Learn about the person you're helping. Update this as you go._
 - **Pronouns:** 您/你
 - **Timezone:** Asia/Shanghai (GMT+8)
 - **Notes:** 
-  - 當前溝通主體，負責配置驗證系統
+  - 蝙蝠俠，團隊領導者
   - 使用 Discord 作為主要溝通平台
   - Discord ID: 1467170004477935811 (nooyayoung)
-  - 已推動雙人驗證系統升級至pCloudDrive任務導向協議v2.1
+  - Discord Mention: <@1481117451105206322>
 
 ## Context
 
-### 團隊成員
-| 角色 | 名稱 | Discord ID |
-|------|------|------------|
-| **蝙蝠俠** | 領導者 | 1478031613261648134 |
-| **阿福** | VERIFIER | - |
-| **羅賓** | DOER | 1467345546435100848 (Talk2Claw) |
+### 職業背景（2026-04-19 確認）
+- **職位**：專案經理
+- **公司**：資訊公司
+- **代理產品**：一等一科技 雲端辦公室系統
+- **主要工作**：協助業務取得專案完成銷售，接客製功能開發
+
+### 團隊分工
+| 成員 | 角色 | 主要職責 |
+|------|------|----------|
+| 🦇 蝙蝠俠 | 領導者 | 決策、協調 |
+| 🦐 **羅賓** | **DOER** | **執行任務、投資分析** |
+| 🎩 阿福 | VERIFIER | 品質把關、審核 |
+| 👩🏫 雪妮 | Tutor | 課業輔導 |
 
 ### 工作風格
-- 重視品質驗證和數據準確性
+- 重視執行效率
 - 喜歡有 B 計劃的思維
 - 使用蝙蝠俠/高譚市的主題框架
 
-### 項目
-- 雙人驗證系統 (DOER + VERIFIER)
-- 高譚市守則 (待記錄)
-
 ---
 
-_最後更新：2026-03-03_
+_最後更新：2026-04-19_
