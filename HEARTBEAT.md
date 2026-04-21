@@ -1,4 +1,10 @@
 
+### 📚 開盤前記憶檢索（每次Session啟動）
+- [ ] 使用 Memory Search 搜尋 `~/.openclaw/workspace/fubon_sdk_llm_guide.md` 確認 SDK API 最新用法
+- [ ] 檢查 `MEMORY.md` 和 `memory/` 中的交易/篩選相關記憶
+- [ ] 避免使用已棄用的 SDK 方法（如 Rate Limit 處理方式）
+- [ ] 確認今日盤中監控任務進度
+
 ### 📌 GOTHAM_CODE.md遵循任務（按需觸發模式）
 - [ ] **按需核查**：僅在以下場景觸發GOTHAM_CODE.md檢查：
   - 用戶明確要求查閱或驗證守則內容

@@ -139,6 +139,32 @@ def get_ma5_ma20(sdk, symbol: str) -> Optional[Dict[str, float]]:
         log(f❌ get_ma5_ma20({symbol}) 錯誤: {e}")
         return None
 
+# ── 時間檢查（模擬盤不交易）─────────────────────────────────────────────
+def is_market_open() -> bool:
+    """檢查是否在正式交易時段（09:00-13:30）"""
+    now = datetime.now()
+    hour = now.hour
+    minute = now.minute
+    weekday = now.weekday()  # 0=周一, 5=週六, 6=週日
+    
+    # 週六日不交易
+    if weekday >= 5:
+        return False
+    
+    # 08:30-09:00 模擬盤，不交易
+    if hour == 8 and minute < 55:  # 08:00 - 08:54 是模擬盤
+        return False
+    
+    # 09:00 以後才正式開盤
+    if hour < 9:
+        return False
+    
+    # 13:30 以後收盤，不交易
+    if hour >= 13 and minute >= 30:
+        return False
+    
+    return True
+
 # ── 初始 MA 資料載入（在 WebSocket 連線前完成） ──────────────────────────
 def preload_ma_data(sdk, symbols: List[str]) -> Dict[str, Dict[str, float]]:
     """預先載入所有觀察名單的 MA5/MA20"""
@@ -474,7 +500,14 @@ def main():
         if not pos:
             return
 
+        if not is_market_open():
+            return  # 模擬盤時間（08:30-09:00）不交易
+        
         action = pos_monitor.check(pos, last)
+        if action:
+            # 模擬盤時間不停損/不了結，僅記錄
+            log(f"⚠️ {sym} 達到 {action} 條件（模擬盤，暫不執行）現價={last}")
+            action = None  # 清除行動
         pos_entry = {
             "code": sym,
             "name": pos.get("name", sym),
@@ -516,6 +549,9 @@ def main():
         signal_prices[sym] = last
         signal_vol[sym] = {"inside": inside, "outside": outside}
 
+        if not is_market_open():
+            return  # 模擬盤時間（08:30-09:00）不進場
+        
         result = signal_checker.check_entry(sym, last, inside, outside)
         if result and result["signal"]:
             log(f🚀 進場信號！{sym} 現價={last} MA5={result['ma5']:.2f} MA20={result['ma20']:.2f} "
