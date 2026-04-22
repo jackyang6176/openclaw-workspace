@@ -387,9 +387,12 @@ def load_watchlist() -> dict:
     return {"holdings": {}, "watchlist": []}
 
 # ── 解析 Tick 訊息 ─────────────────────────────────────────────────────────
-def parse_tick(msg: dict) -> Optional[dict]:
+def parse_tick(msg) -> Optional[dict]:
     """從 WebSocket 訊息解析 tick data"""
     try:
+        # WebSocket 訊息可能是 str 或 dict，需要統一處理
+        if isinstance(msg, str):
+            msg = json.loads(msg)
         event = msg.get("event", "")
         if event != "message":
             return None
