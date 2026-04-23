@@ -37,7 +37,7 @@ RETRY_WAIT = 60       # 遇到 429 等候秒數
 MAX_RETRIES = 3       # WebSocket 重連次數
 
 # WebSocket channels
-CHANNEL_TICK = "tick"
+CHANNEL_TICK = "trades"
 
 # ── 載入環境變數 ────────────────────────────────────────────────────────────
 def load_env():
@@ -299,13 +299,11 @@ class SignalChecker:
         self.sdk = sdk
         self.ma_cache = ma_cache  # 預先載入的 MA 資料
 
-    def check_entry(self, symbol: str, last_price: float,
-                    inside_vol: int, outside_vol: int) -> Optional[Dict]:
+    def check_entry(self, symbol: str, last_price: float) -> Optional[Dict]:
         """
         檢查進場條件：
         1. MA5 > MA20（黃金交叉）
         2. 現價 > MA5
-        3. 外盤 > 內盤 × 2（大單買入）
         """
         ma = self.ma_cache.get(symbol)
         if not ma:
@@ -316,9 +314,8 @@ class SignalChecker:
 
         cond1 = ma5 > ma20            # 黃金交叉
         cond2 = last_price > ma5      # 價格 > MA5
-        cond3 = inside_vol > 0 and outside_vol > inside_vol * 2  # 大單買入
 
-        signal = cond1 and cond2 and cond3
+        signal = cond1 and cond2
 
         return {
             "symbol": symbol,
@@ -326,11 +323,8 @@ class SignalChecker:
             "ma5": ma5,
             "ma20": ma20,
             "gap_pct": (ma20 - ma5) / ma20 * 100 if ma20 else 0,
-            "inside_vol": inside_vol,
-            "outside_vol": outside_vol,
             "cond1_ma5_gt_ma20": cond1,
             "cond2_price_gt_ma5": cond2,
-            "cond3_big_order": cond3,
             "signal": signal,
         }
 
@@ -390,23 +384,22 @@ def load_watchlist() -> dict:
 def parse_tick(msg) -> Optional[dict]:
     """從 WebSocket 訊息解析 tick data"""
     try:
-        # WebSocket 訊息可能是 str 或 dict，需要統一處理
         if isinstance(msg, str):
             msg = json.loads(msg)
         event = msg.get("event", "")
-        if event != "message":
+        if event not in ("data", "message"):
             return None
         data = msg.get("data", {})
         if isinstance(data, dict):
             symbol = data.get("symbol", "")
-            last_price = data.get("lastPrice") or data.get("lastPrice") or 0
-            inside_vol = data.get("insideVolume") or 0
-            outside_vol = data.get("outsideVolume") or 0
+            # trades channel: price, volume
+            # tick channel: lastPrice, volume, insideVolume, outsideVolume
+            last_price = float(data.get("price") or data.get("lastPrice") or 0)
+            volume = int(data.get("volume") or 0)
             return {
                 "symbol": symbol,
                 "lastPrice": last_price,
-                "insideVolume": inside_vol,
-                "outsideVolume": outside_vol,
+                "volume": volume,
             }
     except Exception as e:
         log(f"ERROR: parse_tick 錯誤: {e}")
@@ -504,11 +497,7 @@ def main():
             return
 
         last = float(tick["lastPrice"] or 0)
-        inside = int(tick["insideVolume"] or 0)
-        outside = int(tick["outsideVolume"] or 0)
-
         position_prices[sym] = last
-        position_vol[sym] = {"inside": inside, "outside": outside}
 
         # 找持倉
         pos = next((p for p in holdings if p["code"] == sym), None)
@@ -532,8 +521,6 @@ def main():
             "pnl": round((last - pos["entry"]) / pos["entry"] * 100, 2) if pos["entry"] else 0,
             "stop": pos["stop"],
             "target": pos["target"],
-            "inside": inside,
-            "outside": outside,
             "action": action,
         }
 
@@ -558,19 +545,14 @@ def main():
             return
 
         last = float(tick["lastPrice"] or 0)
-        inside = int(tick["insideVolume"] or 0)
-        outside = int(tick["outsideVolume"] or 0)
-
         signal_prices[sym] = last
-        signal_vol[sym] = {"inside": inside, "outside": outside}
 
         if not is_market_open():
             return  # 模擬盤時間（08:30-09:00）不進場
         
-        result = signal_checker.check_entry(sym, last, inside, outside)
+        result = signal_checker.check_entry(sym, last)
         if result and result["signal"]:
-            log("INFO: 進場信號！{sym} 現價={last} MA5={result['ma5']:.2f} MA20={result['ma20']:.2f} "
-                f"外內比={outside}/{inside}={outside/inside if inside else 'N/A':.1f}")
+            log(f"INFO: 進場信號！{sym} 現價={last} MA5={result['ma5']:.2f} MA20={result['ma20']:.2f}")
 
             # 更新 signals
             status["signals"] = [s for s in status["signals"] if s["code"] != sym]
@@ -580,9 +562,7 @@ def main():
                 "ma5": result["ma5"],
                 "ma20": result["ma20"],
                 "gap_pct": round(result["gap_pct"], 3),
-                "inside": inside,
-                "outside": outside,
-                "note": "MA5>MA20 且 現價>MA5 且 外盤>內盤×2",
+                "note": "MA5>MA20 且 現價>MA5",
             })
             write_status(status)
 
@@ -591,7 +571,7 @@ def main():
     if holdings:
         if ws_positions.connect():
             for h in holdings[:5]:  # 最多 5 檔
-                ws_positions.subscribe({"channel": CHANNEL_TICK, "symbol": h["code"]})
+                ws_positions.subscribe({"channel": "trades", "symbol": h["code"]})
             ws_positions.add_handler("message", on_position_tick)
             log(f"INFO: 持倉監控已訂閱 {len(holdings[:5])} 檔")
         else:
@@ -607,7 +587,7 @@ def main():
             for i in range(0, min(len(watchlist_codes), 200), batch):
                 batch_codes = watchlist_codes[i:i+batch]
                 for code in batch_codes:
-                    ws_watchlist.subscribe({"channel": CHANNEL_TICK, "symbol": code})
+                    ws_watchlist.subscribe({"channel": "trades", "symbol": code})
                 log(f"INFO: 觀察名單已訂閱 {len(batch_codes)} 檔")
             ws_watchlist.add_handler("message", on_watchlist_tick)
         else:
@@ -646,7 +626,7 @@ def main():
                 if not ws_positions.reconnect():
                     break
                 for h in holdings[:5]:
-                    ws_positions.subscribe({"channel": CHANNEL_TICK, "symbol": h["code"]})
+                    ws_positions.subscribe({"channel": "trades", "symbol": h["code"]})
                 ws_positions.add_handler("message", on_position_tick)
 
             if watchlist_codes and not ws_watchlist.connected:
@@ -654,7 +634,7 @@ def main():
                 if not ws_watchlist.reconnect():
                     break
                 for code in watchlist_codes[:200]:
-                    ws_watchlist.subscribe({"channel": CHANNEL_TICK, "symbol": code})
+                    ws_watchlist.subscribe({"channel": "trades", "symbol": code})
                 ws_watchlist.add_handler("message", on_watchlist_tick)
 
     except KeyboardInterrupt:
