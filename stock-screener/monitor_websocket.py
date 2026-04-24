@@ -330,25 +330,80 @@ class SignalChecker:
 
 # ── 持倉監控 ───────────────────────────────────────────────────────────────
 class PositionMonitor:
-    """持倉監控，停損/目標檢查"""
+    """持倉監控，停損/目標檢查，支援移動停損和分批了結"""
+
+    # 移動停損階梯
+    TRAILING_STEPS = [
+        (0.02, -0.02),   # +2% → 停損提高到 -2%
+        (0.05, 0.01),    # +5% → 停損提高到 +1%
+        (0.08, 0.04),    # +8% → 停損提高到 +4%
+        (0.10, 0.06),    # +10% → 停損提高到 +6%
+    ]
+
+    # 分批了結（>= 3 張才適用）
+    PARTIAL_TARGETS = [
+        (0.05, 0.33),    # +5% 賣 1/3
+        (0.08, 0.50),    # +8% 再賣 1/2
+        (0.10, 1.00),    # +10% 最後出清
+    ]
 
     @staticmethod
-    def check(position: Dict, last_price: float) -> Optional[str]:
+    def check(position: Dict, last_price: float, ma5: float = 0, ma20: float = 0) -> Optional[Dict]:
         """
         檢查持倉狀態
-        回傳：'STOP_LOSS' | 'TARGET' | None
+        回傳：{'action': 'STOP_LOSS'|'TARGET'|'PARTIAL', 'qty_ratio': 0~1} 或 None
         """
         entry = position.get("entry", 0)
         stop = position.get("stop", 0)
         target = position.get("target", 0)
+        qty = position.get("qty", 1)
+        initial_stop = position.get("initial_stop", stop)  # 原始停損
 
         if not entry or not last_price:
             return None
 
+        pnl_pct = (last_price - entry) / entry
+
+        # 1. 死亡交叉：MA5 < MA20（技術面轉空）
+        if ma5 > 0 and ma20 > 0 and ma5 < ma20:
+            # 如果本來有盈利但變死亡交叉，考慮止損
+            if pnl_pct > 0:
+                return {"action": "STOP_LOSS", "qty_ratio": 1.0, "reason": "DEATH_CROSS"}
+            elif pnl_pct > -0.02:
+                # 小虧時死亡交叉也先出
+                return {"action": "STOP_LOSS", "qty_ratio": 1.0, "reason": "DEATH_CROSS"}
+
+        # 2. 移動停損檢查
+        new_stop = initial_stop  # 預設用初始停損
+        for target_pct, stop_pct in PositionMonitor.TRAILING_STEPS:
+            if pnl_pct >= target_pct:
+                new_stop = entry * (1 + stop_pct)
+                break
+
+        # 如果移動停損比現有停損高，更新
+        if new_stop > stop:
+            stop = new_stop
+
+        # 3. 停損檢查
         if stop > 0 and last_price <= stop:
-            return "STOP_LOSS"
+            return {"action": "STOP_LOSS", "qty_ratio": 1.0, "reason": "TRAILING_STOP"}
+
+        # 4. 分批了結（>= 3 張才適用）
+        if qty >= 3:
+            for target_pct, qty_ratio in PositionMonitor.PARTIAL_TARGETS:
+                if last_price >= entry * (1 + target_pct):
+                    # 計算已賣數量
+                    sold_ratio = position.get("sold_ratio", 0)
+                    remaining_ratio = 1.0 - sold_ratio
+                    if remaining_ratio > 0.01:  # 還有持股
+                        sell_ratio = min(qty_ratio - sold_ratio, remaining_ratio)
+                        if sell_ratio > 0.01:
+                            return {"action": "PARTIAL", "qty_ratio": sell_ratio, "reason": f"TARGET_{int(target_pct*100)}"}
+
+        # 5. 最終目標（全部了結）
         if target > 0 and last_price >= target:
-            return "TARGET"
+            return {"action": "TARGET", "qty_ratio": 1.0, "reason": "FINAL_TARGET"}
+
         return None
 
 # ── 訂單執行 ───────────────────────────────────────────────────────────────
@@ -507,11 +562,17 @@ def main():
         if not is_market_open():
             return  # 模擬盤時間（08:30-09:00）不交易
         
-        action = pos_monitor.check(pos, last)
-        if action:
-            # 模擬盤時間不停損/不了結，僅記錄
-            log(f"INFO: {sym} 達到 {action} 條件（模擬盤，暫不執行）現價={last}")
-            action = None  # 清除行動
+        result = pos_monitor.check(pos, last, ma5=0, ma20=0)
+        if result:
+            action = result.get("action")
+            qty_ratio = result.get("qty_ratio", 1.0)
+            reason = result.get("reason", "")
+            if action == "PARTIAL":
+                log(f"INFO: {sym} 達到分批了結條件（{reason}），賣出 {qty_ratio*100:.0f}%，現價={last}")
+            else:
+                log(f"INFO: {sym} 觸發 {action}（{reason}），現價={last}")
+        else:
+            action = None
         pos_entry = {
             "code": sym,
             "name": pos.get("name", sym),
@@ -528,10 +589,11 @@ def main():
         status["holdings"] = [p for p in status["holdings"] if p["code"] != sym]
         status["holdings"].append(pos_entry)
 
-        if action:
-            log(f"INFO: {sym} 觸發 {action}！現價={last} 停損={pos['stop']} 目標={pos['target']}")
+        if result:
+            action = result.get("action")
+            log(f"INFO: {sym} 觸發 {action}（{result.get('reason','')}）！現價={last} 停損={pos['stop']} 目標={pos['target']}")
             status["has_action"] = True
-            actions_taken.append((sym, action, pos))
+            actions_taken.append((sym, result, pos))
 
         write_status(status)
 
@@ -598,9 +660,20 @@ def main():
     # ── 執行買賣 ────────────────────────────────────────────────
     if actions_taken:
         log(f"INFO: 執行 {len(actions_taken)} 筆交易...")
-        for sym, action, pos in actions_taken:
-            if action in ("STOP_LOSS", "TARGET"):
-                log(f"  {'🛑' if action=='STOP_LOSS' else '🏠'} {action} {sym}")
+        for sym, result, pos in actions_taken:
+            action = result.get("action")
+            qty_ratio = result.get("qty_ratio", 1.0)
+            reason = result.get("reason", "")
+            
+            if action == "PARTIAL":
+                qty_to_sell = max(1, int(pos.get("qty", 1) * qty_ratio))
+                log(f"  📤 PARTIAL {sym} 賣出 {qty_to_sell} 股（{reason}）")
+                place_market_sell(sdk, sym, qty_to_sell)
+                
+                # 更新已賣比例
+                pos["sold_ratio"] = pos.get("sold_ratio", 0) + qty_ratio
+            elif action in ("STOP_LOSS", "TARGET"):
+                log(f"  {'🛑' if action=='STOP_LOSS' else '🏠'} {action} {sym}（{reason}）")
                 place_market_sell(sdk, sym, pos.get("qty", 1))
 
                 # 更新 watchlist.json 的 holdings
